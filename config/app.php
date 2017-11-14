@@ -1,6 +1,42 @@
 <?php
 
 return [
+		
+	/*
+    |--------------------------------------------------------------------------
+    | Database
+    |--------------------------------------------------------------------------
+    |
+    | This value determines whether the local database or the live one.
+    | Set this in your ".env" file.
+    |
+    */
+		
+	'database' => env('APP_DATABASE', 'local'),
+		
+    /*
+    |--------------------------------------------------------------------------
+    | Application Images and Videos
+    |--------------------------------------------------------------------------
+    |
+    | This value determines whether the local video and image files are used
+    | or the live embedded videos and images. Set this in your ".env" file.
+    |
+    */
+		
+	'livemedia' => env('APP_LIVEMEDIA', false),
+	
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Tool
+    |--------------------------------------------------------------------------
+    |
+    | This value determines whether the admin tool is enabled.
+    | Set this in your ".env" file.
+    |
+    */
+	
+	'admin' => env('APP_ADMIN', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +101,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/London',
 
     /*
     |--------------------------------------------------------------------------

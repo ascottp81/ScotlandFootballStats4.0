@@ -1,0 +1,3277 @@
+﻿@charset "utf-8";
+/* CSS Document */
+* {
+	/* box sizing includes padding and borders */
+	box-sizing: border-box;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;	
+	background-image:url(../img/background.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+}
+#container {
+	min-height:100%;
+	position:relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1040px;
+	background-color: #0000FF;
+}
+#header {
+	height: 120px;
+	padding: 10px;
+}
+#body {
+	padding-bottom:60px;   /* Height of the footer */
+	width: 1020px;
+	margin: 0 10px;
+}
+#footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:60px;   /* Height of the footer */
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+
+/* ======================== Main Elements =================================== */
+
+/* General title bar with no text */
+.titleBar{
+	display: block;	
+	height: 40px;	
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+}
+
+/* Title bar with Flag on right */
+.flagTitleLink {
+    color: #FFFFFF;
+    font: normal normal bold 20px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+	display: block;
+    line-height: 40px;
+	vertical-align: middle;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	letter-spacing: -1px;
+	padding-left:12px;
+	height: 40px;
+}
+/* Flag in flag title */
+.flagTitle {
+	background-image: url(../img/flagtitle.gif);
+	background-repeat: none;
+	float: right;
+	width: 45px;
+	height: 30px;
+	margin-right: 12px;
+	margin-top: 5px;
+}
+/* Title bar with smaller font size */
+.titleLink2 {
+	line-height: 40px;
+	vertical-align: middle;
+	padding-left: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	color: #fff;
+	text-decoration: none;
+	float: left;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF;
+	width: 100%;
+}
+/* Title bar at top that stretches with of page */
+.fullTitleBar {
+    color: #FFFFFF;
+    font: normal normal bold 20px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+	display: block;
+    line-height: 40px;
+	vertical-align: middle;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	letter-spacing: -1px;
+	padding-left:12px;
+	width: 100%;
+	height: 40px;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+/* Intro text box at top of some pages */
+.introText {
+    color: #FFFFFF;
+    font: normal normal bold 12px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+	display: block;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	padding:12px;
+	width: 100%;
+	margin-top: 0;
+}
+.introText p{
+	margin-top: 0;	
+}
+.yellow {
+	color: #ffff00;	
+}
+.blue {
+	color: #000066;	
+}
+.video {
+	margin-top: 10px;
+	float: left;
+}
+.video iframe {
+	float: left;	
+}
+.getty {
+	margin-top: 10px;	
+}
+.localGetty{
+	background-color: #fff;
+	display: inline-block;
+	position: relative;
+	float: left;
+}
+.localGetty img {
+	margin-bottom: 0px;
+	width: 100%;
+	float: left;
+}
+.pictureRow{
+	clear: left;
+	float: left;
+}
+.pictureHolderLeft{
+	width: calc(50% - 5px);
+	float: left;
+}
+.pictureHolderRight{
+	width: calc(50% - 5px);
+	float: right;
+}
+
+
+.breadcrumb {
+	float: right;
+	font-size: 13px !Important;
+	margin-right: 12px;
+	color: #ff0;
+}
+.breadcrumb a {
+	color: #fff;
+	text-decoration: none;
+}
+.breadcrumb a:hover {
+	text-decoration: underline;
+}
+
+
+.scrollerBullet {
+    color: #ffff00;
+    float: left;
+    padding-top: 0;
+}
+
+.loading {
+	clear: left;
+	float: left;
+	width: 100%;
+	line-height: 200px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 40px;
+	color: #000066;
+}
+
+/* Summary on competitions page and appearance breakdown on players page */
+.tooltipText {
+    background-color: #000066;
+    padding: 6px;
+    margin: 0px;
+    width: 180px;
+    font: normal normal bold 11px Arial;
+    color: #FFFFFF;
+    float: left;
+    clear: left;
+}
+
+.basicContent {
+	width: 100%;
+	min-height: 500px;
+	background-color: #FFFFFF;
+	float: left;
+	padding: 12px;
+}
+.basicContent h2 {
+	font: normal bold normal 20px Arial, Helvetica, sans-serif;
+	color: #000066;
+}
+.basicContent p {
+	font: normal normal normal 13px Arial, Helvetica, sans-serif;
+	color: #000066;
+	line-height: 26px;
+}
+
+/* ================================ Header ================================== */
+
+.header {
+	display: block;	
+	height: 70px;	
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	font: normal bold normal 44px Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	color: #fff;
+	padding: 0px 24px;
+	line-height: 70px;
+	vertical-align: middle;
+}
+.header:hover{
+	text-decoration: none;
+}
+.header .flagTitle {
+	background-image: url(../img/headerflag.gif);
+	background-repeat: none;
+	float: right;
+	width: 91px;
+	height: 55px;
+	margin-right: 0px;
+	margin-top: 7px;
+	background-size: 91px 55px;
+    background-repeat: no-repeat;
+}
+#header nav {
+	width: 100%;
+	height: 30px;
+	background-color: #FF0;
+	float: left;
+}
+#header nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	margin-top: 2px;
+}
+#header nav li {
+	float: left;
+	border-left: solid 1px #000066;
+	padding: 0 10px;
+	margin-top: 3px;
+}
+#header nav li:first-child{
+	border-left:0;
+}
+#header nav li a{
+	font: normal normal normal 16px Arial, Helvetica, sans-serif;
+	color: #000066;
+	text-decoration: none;
+}
+#header nav li a:hover, #header nav li a.selected{
+	color: #0000FF;
+}
+
+
+/* =============================== Footer ========================================= */
+
+.bottomFooter {
+	background:#000066;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	height: 40px;
+	display: block;
+	margin: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #fff;
+	line-height: 40px;
+	vertical-align: middle;
+	padding: 0 10px;
+}
+.bottomFooter a {
+	color: #fff;
+	text-decoration: none;
+}
+.bottomFooter a:hover {
+	text-decoration: underline;
+}
+.credit {
+	float: right;
+	color: #aaa;
+	font-size: 10px;
+}
+
+
+/* ===================================== Search ======================================= */
+
+.searchColumn {
+	width: 225px;
+	float: left;
+	margin-right: 10px;
+	display: block;	
+}
+.searchContainer {
+	width: 225px;
+	float: left;
+	display: block;
+	background-color:#FFF;
+}
+.searchForm {
+	padding: 10px;
+	width: 225px;
+	display: block;
+	float: left;
+}
+.searchFormHeading {
+    clear: left;
+    color: #000066;
+    float: left;
+    font: normal normal bold 12px Arial;
+    margin-top: 10px;
+    width: 205px;
+}
+.searchFormHeading:first-child {
+    margin-top: 0px;
+}
+.searchFormInput {
+    clear: left;
+    color: #000066;
+    float: left;
+    width: 205px;
+}
+.searchFormInput select, .searchFormInput input {
+    width: 205px;
+    color: #000066;
+}
+.searchButton {
+	width: 205px;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: middle;
+	background:#000066;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	display: block;
+	float: left;
+	margin-top: 10px;
+	cursor: pointer;
+}
+#ui-datepicker-div {
+	display: none;	
+}
+
+.homeArticles {
+	display: block;
+	padding: 10px;
+	width: 225px;
+	display: block;
+	float: left;
+	background:#000066;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	margin-top: 10px;
+	min-height: 70px;
+}
+.articleItem {
+	padding-bottom: 5px;
+	padding-top: 5px;
+	border-top: solid 1px #000066;
+	display: block;
+	font: normal normal bold 14px Arial, Helvetica, sans-serif;
+	color: #ffff00;
+	text-decoration: none;
+}
+.articleItem:first-child {
+	margin-top: 0px;
+	padding-top: 0px;
+	border-top: none;
+}
+
+/* ================================ Home Page ============================================== */
+
+.homeScroller{
+	width: 785px;
+	height: 40px;
+	float: left;
+	margin-bottom: 10px;
+}
+#introTicker {
+    display: none;
+    margin-top: 0px;   
+    font: normal normal bold 14px Arial;
+    color: #FFFFFF;
+    height: 16px;
+    list-style: none;
+    width: 10000px;
+}
+
+.homeMiddleColumn {
+	float: left;
+	width: 550px;
+}
+.homeMiddleRow {
+	margin-bottom: 0px;	
+	float: left;
+}
+.homeMiddleRow:first-child {
+	margin-bottom: 10px;	
+}
+.homeSector {
+    float: left;
+    background-color: #FFFFFF;
+    height: 200px;  
+    width: 270px;
+    margin-left: 10px;     
+}
+.homeSector:first-child {
+    margin-left: 0px;     
+}
+.newsHolder {
+	padding: 12px;	
+}
+.homeNewsItem {
+	float: left;
+    clear: left;
+    font: normal normal bold 12px Arial;
+    color: #000066;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.homeNewsItem:first-child {
+    font-size: 16px;
+}
+
+.homeResult {
+    float: left;
+    margin: 10px 12px 0px 12px;
+    width: 246px;
+}
+.homeResult div {
+    color: #000066;
+    float: left;
+    clear: left;
+    width: 246px;
+}
+.homeResultDate {
+    font: italic normal bold 12px Arial;
+}
+.homeResultScoreline {
+    font: normal normal bold 18px Arial;
+    padding-top: 3px;
+}
+.homeResultDetails {
+    font: normal normal bold 12px Arial;
+    padding-top: 3px;
+}
+.homeResultDetails a {
+    text-decoration: none;
+    color: #0066FF;
+}
+.homeResultDetails a:hover {
+    text-decoration: underline;
+}
+
+.homeRightColumn {
+	width: 225px;
+	float: right;
+	margin-left: 10px;
+	display: block;
+}
+.homeTableHolder {
+	width: 225px;
+	float: right;
+	display: block;
+	background-color:#FFF;
+    height: 460px;   
+}
+.homeGroupTitle {
+    float: left;
+    clear: left;
+    margin-left: 12px;
+    margin-top: 8px;
+    font: italic normal bold 14px Arial;
+    color: #000066;
+}
+.homeGroupData {
+    float: left;
+    clear: left;
+    margin-left: 12px;
+    margin-top: 8px;
+    font: normal normal bold 18px Arial;
+    color: #000066;
+    padding-bottom: 20px;
+    width: 201px;
+}
+.homeTableRow {
+    float: left;
+    clear: left;
+    padding-bottom: 3px;
+    width: 201px;
+}
+.homeTableCountry {
+    width: 120px;
+    float: left;
+}
+.homeTableValue {
+    width: 38px;
+    float: left;
+    text-align: right;
+}
+.homeGroupFixtures {
+    width: 201px;
+    margin-left: 12px;
+    padding-top: 5px;
+    float: left;
+    border-top: solid 1px #000066;
+}
+.tableFixturesDate {
+    float: left;
+    clear: left;
+    font: normal normal normal 12px Arial;
+    color: #000066;
+    margin-top: 10px;
+    width: 201px;
+}
+.tableFixture {
+    float: left;
+    clear: left;
+    font: normal normal bold 13px Arial;
+    color: #000066;
+    width: 201px;
+}
+.pastEvents {
+	float: right;
+	margin-top: 10px;
+	width: 225px;
+	background:#000066;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	padding: 10px;
+	color: #ffffff;
+}
+.pastEvents .title {
+	font: normal bold normal 16px Arial, Helvetica, sans-serif;
+	color: #ffffff;
+	margin: 0;
+	margin-bottom: 10px;
+}
+.pastEvents .eventDate {
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	color: #ffff00;
+}
+.pastEvents p{
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+}
+.pastEvents .year {
+	font: normal bold normal 14px Arial, Helvetica, sans-serif;
+	color: #ffff00;
+	margin: 0;
+}
+
+
+/* ======================================== Fixtures ====================================== */
+
+.fixtureItem {
+	width: 1020px;
+	height: 100px;
+	padding: 12px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	margin-top: 10px;
+}
+.fixtureItem:first-child {
+	margin-top: 0px;
+}
+.leftFixtureColumn {
+	width: 520px;
+	float: left;
+	height: 76px;
+}
+.rightFixtureColumn {
+	width: 476px;
+	float: left;
+	height: 76px;
+}
+.fixtureDate {
+	font: italic normal normal 16px Arial, Helvetica, sans-serif;
+	color: #FF0;
+}
+.fixture {
+	float: left;
+	clear: left;
+	margin-top: 10px;
+}
+.fixtureFlag {
+	height: 30px;
+	width: 45px;
+	float: left;
+}
+.fixtureFlag img {
+	height: 30px;
+	max-width: 45px;
+	float: left;
+}
+.fixtureString {
+	float: left;
+	padding: 0 20px;
+	font: normal normal normal 20px Arial, Helvetica, sans-serif;
+	color: #FFF;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+	width: 335px;
+}
+.fixtureVenue {
+	font: normal normal normal 16px Arial, Helvetica, sans-serif;
+	color: #FFF;
+	margin-top: 5px;
+}
+.fixtureKickoff {
+	font: normal normal normal 14px Arial, Helvetica, sans-serif;
+	color: #FFF;
+	margin-top: 5px;
+}
+.fixtureKickoff span {
+	font-weight:bold;
+}
+.fixtureMatchDetails {
+	font: normal normal normal 16px Arial, Helvetica, sans-serif;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.fixtureMatchDetails a{
+	color: #FF0;
+	text-decoration: none;
+}
+.fixtureMatchDetails a:hover{
+	color: #FF0;
+	text-decoration: underline;
+}
+.fixtureSpacer {
+	height: 10px;
+	width: 10px;
+}
+
+
+/* ============================== Latest News =============================== */
+
+.latestNewsContent {
+	float: left;
+	width: 785px;
+}
+.newsColumn {
+    background-color: #ffffff;
+    float: left;
+    margin-left: 0;
+    margin-top: 0px;
+    position: relative;
+    width: 475px;
+    min-height: 420px;
+	padding: 12px;
+}
+.newsArticle {
+    color: #000066;
+    font: normal normal normal 12px Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding-bottom: 15px;	
+}
+.newsArticle h2 {
+	margin: 0;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+.newsDate {
+    font: italic 11px arial;
+    text-decoration: none;
+}
+.squadColumn {
+    background-color: #ffffff;
+    float: left;
+    margin-left: 10px;
+    margin-top: 0px;
+    min-height: 420px;
+    position: relative;
+    width: 300px;	
+}
+.squadContent {
+	color: #000066;
+    font: normal normal normal 12px Arial, Helvetica, sans-serif;
+	padding: 12px;
+}
+.squadContent h2 {
+	color: #000066;
+    font: bold 13px arial;
+    margin-bottom: 5px;
+    margin-top: 0;
+    text-decoration: underline;
+}
+
+/* ============================== Article Page ======================================== */
+
+.articleHolder {
+	width: 100%;
+	padding: 12px;
+	background-color: #FFFFFF;
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	color: #000066;
+}
+
+
+/* ============================== Recent Results & Match Search ================================= */
+
+.searchMatchDetails {
+    float: right;
+    width: 620px;
+}
+.searchMatchDetails .matchDetailsData {
+	min-height: 340px;
+}
+.matchListCount {
+    background-color: #000066;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+    color: #ffffff;
+    display: block;
+    font: bold 14px Arial;
+    height: 40px;
+    letter-spacing: -1px;
+    margin-left: 0;
+    margin-top: 0;
+    padding-top: 9px;
+    text-decoration: none;
+    width: 620px;
+	float: left;
+}
+.countHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+    padding: 0 5px 0 12px;
+}
+.matchListSearch {
+	float: left;
+	width: 390px;
+}
+.matchSearchDetails {
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+    color: #ffffff;
+    float: left;
+    font: 12px Arial,Helvetica,sans-serif;
+    margin-top: 0;
+    padding: 10px;
+    width: 155px;
+	min-height: 380px;
+}
+.matchSearchDetails .searchDetailsData {
+	clear: left;
+	padding-bottom: 10px;
+}
+.matchSearchDetails .searchDetailsData1 {
+	clear: left;
+	float: left;
+	padding-bottom: 3px;
+	width: 115px;
+	font-weight: bold;
+}
+.matchSearchDetails .searchDetailsData2 {
+	float: left;
+	padding-bottom: 3px;
+	width: 20px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.searchDetailsHead1 {
+    color: #ffff00;
+    float: left;
+	padding-bottom: 10px;
+}
+
+/* ==============================  Match List ==================================== */
+
+.matchDetailsData {
+	width: 100%;
+	margin-top: 0px;
+	margin-left: 0px;
+	background-color: #FFFFFF;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-height: 280px;
+	float:right;
+}
+
+table.dataTable.no-footer {
+	font: normal normal bold 12px Arial;
+	border-bottom: 0 !Important;
+}
+table.dataTable thead th {
+	padding: 2px 10px 2px 0px !Important;
+	border: 0 !Important;
+	text-align: left;
+	color: #0066CC;
+	text-decoration: underline;
+}
+table.dataTable tbody td {
+	padding: 2px 0px !Important;
+	color: #000066;
+}
+table.dataTable tbody td a {
+	color: #0066CC;
+}
+table.dataTable .right {
+	text-align: right !Important;
+	padding-right: 20px !Important;
+}
+
+/* ================================= Opponents Index ====================================== */
+
+.opponentsColumn {
+	width: 333px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.opponentsColumn:nth-of-type(2) {
+	width: 334px;
+	margin-left: 0;
+}
+.opponentsColumn a.opponentLink {
+	float: left;
+	clear: left;
+	width: 100%;
+	color: #fff;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 40px;
+    padding-left: 12px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.opponentsColumn a:hover {
+	text-decoration: underline;	
+}
+.opponentsSector {
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+	float: left;
+	clear: left;
+	width: 100%;
+	color: #fff;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    padding-left: 12px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.opponentsSectorHeading {
+	background-color: #FFFFFF;
+	float: left;
+	clear: left;
+}
+.opponentsSectorHeading:nth-of-type(2) {
+	margin-top: 10px;	
+}
+.opponentsColumn p.opponentsImageText {
+    font: 11px Arial,Helvetica,sans-serif;
+    margin: 0;
+	background-color: #FFF;
+	padding: 5px;
+	color: #000066;
+	clear: left;
+}
+.opponentsSectorHeading .getty {
+	float: left;	
+}
+
+/* ========================================= Opponent Page ===================================== */
+
+.opponentMatchDetails {
+	width: 495px !Important;
+}
+.opponentLeft {
+	width: 515px;
+	float: left;
+	clear: left;
+}
+.opponentSummary {
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+	width: 100%;
+	float: left;
+	clear: left;
+	font: bold 12px Arial,Helvetica,sans-serif;
+	padding: 12px;
+	color: #ffffff;
+}
+.opponentTitle {
+	float: left;
+	clear: left;
+	margin-bottom: 10px;
+    font: normal bold 16px Arial;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.opponentFlag {
+	float: left;
+	width: 45px;
+	height: 30px;
+	margin-right: 20px;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+.opponentYears {
+    font: italic bold 12px Arial;
+}
+.opponentSummary p {
+    margin-top: 0;
+	margin-bottom: 20px;
+	clear: left;
+	float: left;
+}
+.opponentSummary table {
+    width: 100%;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	float: left;
+	clear: left;
+}
+.countHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+    padding: 0 5px 0 12px;
+    text-align: center;
+}
+.opponentSummary td {
+    padding: 1px 7px;
+	text-align: center;
+}
+.countSeparator {
+    border-left: 1px solid yellow;
+}
+.opponentMatch {
+	float: left;
+	clear: left;
+	margin-bottom: 10px !Important;
+}
+.opponentHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+}
+.opponentImage {
+	float: left;
+	clear: left;
+	width: 515px; 
+}
+
+/* =================================== Players & Managers ============================================ */
+
+.playersIndexColumn {
+	width: 525px;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: left;
+}
+.playerListSector{
+	float: left;
+	margin-top: 10px;
+	width: 100%;
+}
+.playerListSectorSummary {
+    background-color: #ffffff;
+    color: #000066;
+    font: bold 11px Arial;
+    height: 40px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 5px;
+}
+
+.playersRightColumn, .managersRightColumn{
+	float: left;
+	width: 225px;
+}
+.managersRightColumn .getty:first-child {
+	margin-top: 0;	
+}
+.playersRightColumn .localGetty img, .managersRightColumn .localGetty img {
+	margin-bottom: 15px;	
+}
+.playerImage .localGetty img {
+	margin-bottom: 15px;	
+}
+
+table.dataTable tbody td.matchDetailsInfo {
+	padding-top: 0px !Important;
+	padding-bottom: 0px !Important;
+	vertical-align: middle;
+}
+table.dataTable tbody th.matchDetailsInfo, table.dataTable tbody td.matchDetailsInfo {
+	padding-right: 6px !Important;
+}
+
+
+
+/* ====================================== Player List & Managers ============================================ */
+
+.playerList {
+    width: 525px;
+    margin-top: 10px;
+    margin-left: 0px;
+    background-color: #FFFFFF;
+    padding: 12px;
+    min-height: 350px;
+	float: left;
+}
+
+.searchDetails {
+	width: 100%;
+	padding: 12px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	margin-top: 0px;
+	color: #ffffff;
+    font: normal 12px Arial,Helvetica,sans-serif;
+	float: left;
+}
+.searchDetailsRow {
+	float: left;
+	clear: left;
+	padding: 2px 0;
+}
+.searchDetailsHead {
+	width: 70px;
+	float: left;
+	color: #ffff00;
+}
+.searchDetailsData {
+	width: 135px;
+	font-weight: bold;
+	float: left;
+}
+.searchFilterLink {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: middle;
+	background:#000066;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	display: block;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	cursor: pointer;
+	text-decoration: none;
+}
+.searchFilterLink:hover {
+	text-decoration: underline;	
+}
+
+
+/* =================================== Player & Manager Details ===================================== */
+
+.playerLeftContainer {
+	width: 445px;
+	float: left;
+}
+.playerImage {
+	width: 250px;
+	float: left;
+}
+.playerImage .getty:first-child {
+	margin-top: 0;	
+}
+.playerLeftContainer .localGetty img {
+	margin-bottom: 0px;	
+}
+
+.playerMatchDetails {
+	width: 565px;
+	float: right;	
+}
+
+.playerYear {
+    font: normal normal bold 18px Arial;
+	letter-spacing: 0px;
+}
+
+.playerDetailsLeft {
+    float: left;
+    width: 185px;   
+	margin-left: 10px;
+}
+.playerDetailsHolder {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+    margin-top: 10px;
+    width: 185px;
+    min-height: 165px;
+    padding-top: 10px;
+    float: left;
+    clear: left;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.playerDetailsHolder:first-child {
+    margin-top: 0px;
+}
+.playerStatsRow {
+    float: left;
+    clear: left;
+    width: 100%;
+    padding-bottom: 10px;   
+}
+.playerStatsHeading {
+    float: left;
+    width: 80px;
+    font: italic normal bold 18px Arial;
+    color: #FFFF00;
+    letter-spacing: -1px;
+}
+.playerStatsData {
+    float: left;
+    width: 50px;
+    font: normal normal bold 18px Arial;
+    color: #FFFFFF;
+    letter-spacing: -1px;
+    text-align: right;
+}
+.playerStatsInfo {
+    float: left;
+    width: 30px;
+    text-align: right;
+    padding-top: 3px;
+}
+.playerStatsSubHeading {
+    float: left;
+    width: 80px;
+    font: italic normal bold 14px Arial;
+    color: #FFFF00;
+    letter-spacing: -1px;
+}
+.playerStatsSubData {
+    float: left;
+    width: 50px;
+    font: normal normal bold 13px Arial;
+    color: #FFFFFF;
+    letter-spacing: -1px;
+    text-align: right;
+}
+
+.playerExtraDetailsRow {
+    float: left;
+    clear: left;
+    width: 100%;
+    padding-bottom: 10px;   
+}
+.playerExtraDetailsHeading {
+    float: left;
+    width: 60px;
+    font: italic normal bold 14px Arial;
+    color: #FFFF00;
+    letter-spacing: -1px;
+}
+.playerExtraDetailsData {
+    float: left;
+    width: 100%;
+    font: normal normal bold 13px Arial;
+    color: #FFFFFF;
+    letter-spacing: -1px;
+}
+
+.playerImage .noImage {
+	width: 250px;	
+	font-size: 210px;
+	background-color:#CCC;
+	color: #FFF;
+	text-align: center;
+}
+
+
+
+/* =================================== Manager Details ===================================== */
+
+.managerLeftContainer {
+	width: 470px;
+	float: left;
+}
+.managerMatchDetails {
+	width: 540px !Important;
+}
+
+.managerDetailsLeft {
+    float: left;
+    width: 235px;   
+	margin-left: 10px;
+}
+.managerDetailsHolder {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+    margin-top: 0px;
+    width: 235px;
+    min-height: 165px;
+    padding: 12px;
+    float: left;
+    clear: left;
+}
+
+.managerImage {
+	width: 225px;
+	float: left;
+}
+.managerImage .getty:first-child {
+	margin-top: 0;	
+}
+.noImage {
+	width: 225px;	
+	font-size: 210px;
+	background-color:#CCC;
+	color: #FFF;
+	text-align: center;
+}
+.managerSummaryName {
+    color: #ffffff;
+    font: bold 17px Arial;
+    letter-spacing: -1px;
+	padding-bottom: 10px;
+	float: left;
+	clear: left;
+}
+.managerSummaryHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+	float: left;
+	clear: left;
+}
+.managerSummaryValue {
+    color: #ffffff;
+    font: bold 14px Arial;
+    letter-spacing: -1px;
+	padding-bottom: 10px;
+	float: left;
+	clear: left;
+}
+.managerSummaryName2 {
+    color: #ffffff;
+    font: bold 14px Arial;
+    letter-spacing: -1px;
+}
+.managerSummaryStatement {
+    color: #ffffff;
+    font: bold 12px Arial;
+    padding: 10px 0 0 0;
+	clear: left;
+	float: left;
+}
+
+.managerCountData {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+    color: #ffffff;
+    font: bold 14px Arial;
+    letter-spacing: -1px;
+    margin-left: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 540px;
+	float: right;
+}
+.managerCountData table {
+    width: 100%;
+}
+.countHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+    padding: 0 5px 0 12px;
+    text-align: center;
+}
+.managerCountData td {
+    padding: 1px 7px;
+}
+.countSeparator {
+    border-left: 1px solid yellow;
+}
+
+/* ========================================= Competitions ======================================== */
+
+.competitiveHolder {
+	margin-top: 10px;
+}
+.competitiveBlock {
+	float: left;
+	margin-left: 10px;
+	width: 333px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	display: block;
+	height: 230px;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+}
+.competitiveBlock:hover {
+	text-decoration: none;
+	border: solid 1px #ffffff;
+}
+.competitiveBlock:first-child {
+	margin-left: 0;
+}
+.competitiveBlock h2 {
+	font: normal bold normal 20px Arial;
+	color: #ffffff;
+}
+.competitiveBlock p.competitiveYears {
+	font: normal bold normal 14px Arial;
+}
+.competitiveBlock p {
+	font: normal bold normal 12px Arial;
+	color: #ffffff;
+}
+.competitiveBlock p .yellow {
+	font-size:16px;
+}
+
+.competitionTitle {
+	line-height: 40px;
+	vertical-align: middle;
+	padding-left: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	color: #fff;
+	text-decoration: none;
+	float: left;
+	width: 295px;
+}
+
+.competitionsLeft {
+	float: left;
+	width: 475px;
+}
+.competitionsRight {
+	float: right;
+	width: 535px;
+}
+.competitionLinks {
+	margin-top: 10px;
+	width: 475px;
+	float: left;
+}
+.competitionRow {
+	width: 100%;
+	height: 40px;
+	float: left;
+	clear: left;
+}
+
+.competitionInfo {
+	width: 180px;
+	height: 40px;
+	background-image: linear-gradient(#0066FF, #0066FF, #CCCCCC);
+	color: #fff;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 6px 0 0 12px;
+	line-height: 13px;
+}
+
+.honoursLink {
+	color: #FFFFFF;
+	font: normal normal bold 12px Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	display: block;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	padding:12px;
+	margin-top: 10px;
+	clear: left;
+	float: left;
+	width: 100%;
+	text-align: center;
+	height: 56px;
+}
+.honoursLink i {
+	font-size: 32px;
+}
+.honoursLink h2 {
+	margin: 0;
+}
+.honoursLink:hover {
+	text-decoration: none;
+	border: solid 1px #FFFFFF;
+}
+
+.competitionsMiddle {
+	width: 285px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.competitionStats {
+	float: left;	
+}
+.competitionIcon {
+	float: right;	
+	padding: 6px 12px;
+}
+
+/* ============================= Honours ===================================== */
+
+.honours {
+	float: left;
+	width: 340px;
+}
+.honoursContent {
+	width: 100%;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	float: left;
+}
+.honoursCompetition {
+	border: solid 1px #fff;
+	width: 100%;
+	border-top: none;
+	padding: 11px;
+	float: left;
+}
+.honoursCompetition:first-child {
+	border-top: solid 1px #fff;
+}
+.honoursCompetition p {
+	margin-top: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
+	float: left;
+	clear: left;
+	margin-bottom: 5px;
+}
+.honoursCompetition p:first-child {
+	margin-bottom: 16px;
+}
+.honourFooterText {
+	font-size: 11px;
+	padding-top: 5px;
+	float: left;
+	clear: left;
+}
+.honourImage div.localGetty, .honourImage div.embed {
+	margin-left: 10px;
+	margin-top: 0px;
+	background-color: #ffffff;
+	float: left;
+}
+.honourImage div.embed {
+	margin-bottom: 24px;
+}
+.honourImage img {
+	height: 292px;
+	margin-bottom: 15px;
+}
+.bottomGap {
+	margin-bottom: 10px;
+
+}
+/* ============================ Individual Competition Index ============================== */
+
+.competitionIndexColumn {
+    width: 255px;
+    float: left;
+    margin-left: 10px;
+}
+.competitionIndexColumn:first-of-type {
+    margin-left: 0px;
+}
+.competitionImageColumn {
+	width: 490px;
+	float: right;
+}
+.competitionImageColumn .getty:first-child {
+	margin-top: 0;
+}
+
+.competitionListWindow {
+    width: 255px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    z-index: 2;
+    margin-top: 0px;
+    margin-left: 0px;
+    background-color: #0066FF;
+	height: 600px;
+	overflow-y: scroll;
+	margin-top: 1px;
+}
+.competitionListItem {
+    float: left;
+    clear: left;
+    height: 30px;
+    border-bottom: solid 1px #000066;
+    width:255px;
+    font: normal normal bold 16px Arial;
+    color: #FFFFFF;
+    background-color: #0066FF;
+}
+.competitionWon {
+    background-image: url(/img/trophy.png);
+    background-position: 200px center;
+    background-repeat: no-repeat;
+}
+.competitionWon a:hover {
+    background-image: url(/img/trophy.png);
+    background-position: 200px center;
+    background-repeat: no-repeat;
+}
+.competitionShared {
+    background-image: url(/img/trophy2.png);
+    background-position: 200px center;
+    background-repeat: no-repeat;
+}
+.competitionShared a:hover {
+    background-image: url(/img/trophy2.png);
+    background-position: 200px center;
+    background-repeat: no-repeat;
+}
+.competitionQualified {
+    background-image: url(/img/qualified.png);
+    background-position: 200px center;
+    background-repeat: no-repeat;
+}
+.competitionQualified a:hover {
+    background-image: url(/img/qualified.png);
+    background-position: 200px center;
+    background-repeat: no-repeat;
+}
+
+.competitionListItem a {
+    display: block;
+    font: normal normal bold 15px Arial;
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 255px;
+    height: 29px;
+    padding-left: 15px;
+	line-height: 29px;
+	vertical-align: middle;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.competitionListItem a:hover {
+    display: block;
+    font: normal normal bold 15px Arial;
+	line-height: 29px;
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #000066;
+}
+
+/* jScrollPane styling */
+.jspTrack {
+    background-color: #0066FF !Important;
+}
+.jspDrag {
+    background-color: #0000AA !Important;
+}
+.jspArrow {
+    background-color: #000066 !Important;
+	text-indent: 0 !Important;
+	color: #FFF !Important;
+	font-size: 12px !Important;
+	text-align: center;
+}
+
+
+.competitionSummaryColumn {
+    background-image: linear-gradient(#000066, #000066, #0066FF);
+    height: 440px;
+    background-color: #0066FF !Important;
+}
+.competitionSingleSummaryColumn {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF !Important;
+	margin-bottom: 10px;
+}
+.competitionSummary {
+    padding: 12px;
+    font: normal normal bold 12px Arial;
+    color: #FFFFFF;
+}
+.competitionSummary ul {
+	padding-left: 10px;
+	border-top: solid 1px #fff;
+	padding-top: 10px;
+}
+.competitionSummary ul li {
+	padding-top: 10px;
+}
+.competitionSummary ul li:first-child {
+	padding-top: 0px;
+}
+.competitionMatchCount {
+    padding: 12px;
+    font: normal normal bold 14px Arial;
+    color: #FFFFFF;
+    float: left;
+    clear: left;
+}
+.competitionCountRow {
+    float: left;
+    clear: left;
+    position: relative;
+    padding-bottom: 5px;
+    width: 231px;
+}
+.competitionCountRowTitle {
+    float: left;
+    clear: left;
+    padding-bottom: 5px;
+    color: #FFFF00;
+}
+.competitionCountData {
+    float: left;
+    width: 33px;
+    text-align: center;
+}
+.competitionKey {
+    color: #FFFFFF;
+    font: normal normal normal 14px Arial;
+    text-decoration: none;
+	display: block;
+	height:40px;
+    background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	padding-left:12px;
+	float: left;
+	clear: left;
+    width: 255px;
+}
+.keyItem {
+    display: table-cell;
+    vertical-align: middle;  
+    font: normal normal bold 12px Arial;
+    color: #FFFFFF;
+	height:40px;
+}
+
+
+/* ========================================= Competition Version Page ===================================== */
+
+
+.competitionScroller {
+	width: 1020px;
+	height: 40px;
+	float: left;
+	margin-bottom: 10px;
+	padding: 0 10px;
+}
+.competitionScroller ul {
+	width: 1000px;
+	height: 40px;
+	float: left;
+	margin: 0;
+	padding: 0;
+	color: #ffffff;
+    font: bold 14px Arial;
+    list-style: outside none none;
+}
+.competitionScroller ul li {
+	height: 40px;
+	line-height: 40px;
+	vertical-align: middle;
+	float: left;
+	padding-left: 15px;
+}
+.competitionScroller ul li:first-child {
+	padding-left: 0px;
+}
+.competitionVersionLeft {
+	width: 400px;
+	float: left;
+}
+.competitionVersionRight {
+	width: 610px;
+	float: right;
+}
+
+.competitionTable {
+	width: 610px;
+	float: left;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.competitionTableData {
+	padding: 12px;
+	background-color: #fff;
+	width: 100%;
+	clear: left;
+	float: left;
+}
+.tableRow {
+	float: left;
+	width: 100%;
+	clear: left;
+	font: normal bold normal 15px Arial, Helvetica, sans-serif;
+	color: #000066;
+	padding-bottom: 10px;
+}
+.tableRow div {
+	float: left;
+}
+.tableRow .team {
+	float: left;
+	width: 210px;
+}
+.tableRow .team span {
+	float: left;	
+}
+.tableRow .team span.flagHolder {
+	width: 40px;
+	display: block;
+}
+img.tableFlag {
+	height: 20px;
+	box-shadow: -1px 0px 5px #888888;
+	float: left;
+	margin-right: 10px;
+	max-width: 30px;
+}
+.tableRow .data {
+	float: left;
+	width: 45px;
+	text-align: right;
+}
+.tableFooterNote {
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	color: #000066;
+	padding-top: 20px;
+	float: left;
+}
+.solid {
+	border-top: solid 2px #000066;	
+}
+.dashed {
+	border-top: dashed 2px #000066;	
+}
+
+.groupResults {
+	float: left;
+	width: 100%;
+}
+.groupResultsData {
+	padding: 0 0 12px 12px;
+	background-color: #fff;
+	width: 100%;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	float: left;
+}
+.groupResultsColumn {
+	float: left;
+	width: 199px;
+}
+.groupResultsRound {
+	clear: left;
+	float: left;
+	width: 189px;
+	line-height: 16px;
+	padding-right: 10px;
+}
+.groupResultsDate {
+	font: normal normal normal 13px Arial, Helvetica, sans-serif;
+	color: #ff0;
+	padding-top: 12px;
+	float: left;
+	clear: left;
+}
+.groupResultsMatch {
+	font: normal bold normal 13px Arial, Helvetica, sans-serif;
+	color: #fff;
+	float: left;
+	clear: left;
+}
+
+.competitionResults {
+	width: 400px;
+	float: left;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.competitionResultsData {
+	padding: 12px 0 12px 0;
+	background-color: #fff;
+	width: 100%;
+	float: left;
+    font: normal normal bold 12px Arial;
+    color: #000066;
+}
+.scotlandMatchesBanner {
+	width: 100%;
+	height: 20px;
+	line-height: 20px !Important;
+	display: block;
+	vertical-align: middle;
+	padding: 0 12px;
+	color: #fff;
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	margin-bottom: 12px;
+	margin-top: 12px;
+	float: left;
+	clear: left;
+}
+.scotlandMatchesBanner:first-child {
+	margin-top: 0px;
+}
+.matchRow {
+    float: left;
+    clear: left;
+	width: 100%;
+	padding: 0 12px 5px 12px;
+}
+.matchDate {
+    float: left;
+    width: 80px;
+    text-align: left;
+}
+.matchOpponent {
+    float: left;
+    width: 115px;
+    text-align: left;
+}
+.matchHA {
+    float: left;
+    width: 35px;
+    text-align: center;
+}
+.matchResult {
+    float: left;
+    width: 40px;
+    text-align: center;
+}
+.matchAtt {
+    float: left;
+    width: 50px;
+    text-align: right;
+}
+.matchLink {
+    float: left;
+    width: 50px;
+    text-align: right;
+}
+.matchLink a {
+    color: #0066FF;
+}
+
+
+
+
+/* ==================================== Strips ======================================== */
+
+.stripLinksHolder {
+	width: 100%;
+	margin-top: 10px;
+	float: left;
+}
+.stripLinksColumn {
+	float: left;
+	margin-left: 10px;
+	width: calc(50% - 5px);
+}
+.stripLinksColumn:first-child {
+	margin-left: 0;
+}
+.stripLink {
+    color: #fff;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 40px;
+    padding-left: 12px;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.stripLeftContainer {
+    float: left;
+    width: 445px;
+}
+.stripDetailsLeft {
+    float: left;
+    margin-left: 10px;
+    width: 210px;
+}
+.stripDetailsHolder {
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+    clear: left;
+    float: left;
+    margin-top: 0;
+    min-height: 165px;
+    padding: 12px;
+    width: 210px;
+}
+.stripImageHolder {
+	width: 100%;
+	background-color: #CCCCCC;
+	text-align: center;
+	float: left;
+}
+.stripCopyright {
+	width: 100%;
+	background-color: #CCCCCC;
+	text-align: left;
+	margin-bottom: 10px;
+	padding: 0 10px 10px 10px;
+	float: left;
+}
+.stripCopyright p{
+	color: #06F;
+	font: normal normal normal 10px Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+.stripCopyright a{
+	color: #00f;
+	font: normal bold normal 10px Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+.stripCopyright a:hover{
+	text-decoration: underline;
+}
+.stripItemHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+	padding-bottom: 5px;
+	float: left;
+	clear: left;
+	width: 50%;
+}
+.stripItemValue {
+    color: #ffffff;
+    font: bold 12px Arial;
+    letter-spacing: -1px;
+	padding-bottom: 5px;
+	float: left;
+}
+.stripItemValue2 {
+    color: #ffffff;
+    font: bold 12px Arial;
+    letter-spacing: -1px;
+	padding-bottom: 10px;
+	float: left;
+	clear: left;
+}
+.stripSummaryStatement {
+    color: #ffffff;
+    font: bold 12px Arial;
+    padding: 10px 0 0 0;
+	clear: left;
+	float: left;
+}
+.stripVideoContainer {
+	float: right;
+	width: 565px;
+	height: 200px;
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+	margin-top: 10px;
+	padding: 10px;
+}
+.stripVideo {
+	float: left;
+}
+.stripVideoData {
+	float: left;
+	padding-left: 10px;
+	width: 270px;
+}
+.stripVideoData h2 {
+	font-size: 16px;
+	color: #FF0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+.stripVideoData p {
+	font-size: 13px;
+	color: #FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	margin: 0;
+}
+
+
+
+/* ================================== Match Details ===================================== */
+
+
+.scorelineComment {
+    font: bold 15px Arial;
+    letter-spacing: 0;
+}
+
+/* Tabs */
+
+#matchDetails, #matchDetails .ui-corner-all {
+    border-radius: 0px;
+}
+#matchDetails, #matchDetails .ui-widget-content {
+    background: none;
+    border: 0;
+}
+#matchDetails, #matchDetails .ui-tabs {
+    padding: 0;
+}
+#matchDetails .ui-tabs-nav {
+    padding: 0;
+}
+#matchDetails .ui-widget-header {
+    background: none;
+    border: 0;
+    color: #222222;
+    font-weight: bold;
+}
+#matchDetails .ui-tabs-nav li {
+    border-bottom: 0 none !important;
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+	margin-left: 10px;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+	border: 0;
+}
+#matchDetails .ui-tabs-nav div{
+    float: left;
+    margin: 0;
+	margin-left: 10px;
+    padding: 0;
+    position: relative;
+	width: 333px;
+	height: 30px;
+	display: block;
+}
+#matchDetails .ui-tabs-nav li:first-child {
+	margin-left: 0px;
+}
+#matchDetails .ui-tabs-nav li a {
+    padding: 0;
+	width: 196px;
+}
+#matchDetails .ui-state-active a, #matchDetails .ui-state-active a:link, #matchDetails .ui-state-active a:visited {
+    color: #ff0 !Important;
+}
+#matchDetails .ui-state-default a:hover {
+	text-decoration: underline;
+}
+#matchDetails .ui-tabs-panel {
+    padding: 0;
+}
+
+.tabLink {
+	line-height: 30px;
+	vertical-align: middle;
+	padding-left: 12px !Important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	color: #fff !Important;
+	text-decoration: none;
+	float: left;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF;
+}
+.tabLinkSize0 {
+	width: 0 !Important;
+	padding-left: 0px !Important;
+	height: 0px !Important;
+}
+.tabLinkSize1 {
+	width: 196px !Important;
+	padding-left: 0px !Important;
+}
+.tabLinkSize2 {
+	width: 402px !Important;
+	padding-left: 0px !Important;
+}
+.tabLinkSize3 {
+	width: 608px !Important;
+	padding-left: 0px !Important;
+}
+#basic, #lineup, #summary, #highlights {
+	margin-top: 10px;	
+}
+
+
+/* ============================== Basic Match Details ================================== */
+
+.mdBasicLeft {
+	float: left;
+	width: 300px;
+}
+.mdBasicRight {
+	float: right;
+	width: 710px;	
+}
+.mdBasicDetails {
+	width: 100%;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF;
+	padding: 10px;
+}
+.mdBasicDetails p {
+	font: normal bold normal 14px Arial, Helvetica, sans-serif;
+	color: #fff;
+	margin-top: 0;
+}
+.mdBasicDetails p.competition {
+	font-size: 16px;
+}
+.mdBasicDetails p.basicComment {
+	font-size: 12px;
+}
+.mdCurrentTable {
+	width: 100%;
+	margin-top: 10px;
+	background-color: #FFF;
+	float: left;
+}
+.currentTableDate {
+	font-size: 13px;
+	float: right;
+	margin-right: 12px;
+}
+.currentTableHolder {
+	width: 100%;
+	position: relative;
+	float: left;
+	padding: 10px;
+	font: normal bold normal 13px Arial, Helvetica, sans-serif;
+	color: #000066;
+}
+.currentTableRow {
+    clear: left;
+    float: left;
+    padding-bottom: 5px;
+    width: 100%;
+}
+.currentTableCountry {
+    float: left;
+    width: 105px;
+}
+.currentTableValue {
+    float: left;
+    text-align: right;
+    width: 25px;
+}
+.currentGroupFixtures {
+    border-top: 1px solid #000066;
+    float: left;
+    margin-left: 10px;
+    padding-top: 5px;
+    width: calc(100% - 20px);
+	padding-bottom: 20px;
+}
+.currentGroupFixtures .tableFixture, .currentGroupFixtures .tableFixturesDate {
+	padding-bottom: 5px;
+	width: 100%;
+}
+.mdVideoHolder {
+	width: 100%;
+	margin-top: 10px;
+	float: left;
+}
+
+.mdBasicLineups {
+	width: 100%;
+	background-color: #FFF;
+	position: relative;
+	float: left;
+}
+.basicLineupsTeam {
+	width: 350px;
+	position: relative;
+	padding-bottom: 20px;
+}
+.basicLineupsTeam:first-child {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.lineupH, .lineupN1 {
+	margin-left: 10px;
+	float: left;
+}
+.lineupA, .lineupN {
+	margin-right: 10px;
+	float: right;
+}
+.basicVerticalDivider {
+	width: 10px;
+	position: absolute;
+	float: left;
+	background-color:#00F;
+	top: 0;
+	bottom: 0;
+	left: 350px;
+}
+.basicLineupsTitle {
+    color: #FFFFFF;
+    font: normal normal bold 16px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+	display: block;
+    line-height: 40px;
+	vertical-align: middle;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	letter-spacing: -1px;
+	padding-left:12px;
+}
+.basicLineupsFlag {
+    float: right;
+    height: 30px;
+    margin-right: 12px;
+    margin-top: 5px;
+    width: 127px;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+.basicLineupsSector {
+	float: left;
+	width: 100%;
+	padding: 10px;
+	padding-top: 0;
+	border-top: 10px solid #0000ff;
+}
+.topPadding {
+	padding-top: 10px !Important;
+}
+.basicLineupsSector p:first-child  {
+	padding-top:10px;
+}
+.basicLineupsSector:nth-child(2) {
+	border-top: 0;
+}
+.basicLineupsSector p {
+	font: normal bold normal 13px Arial, Helvetica, sans-serif;
+	color: #000066;
+	margin: 0;
+	float: left;
+	clear: left;
+	width: 225px;
+}
+.basicScorer {
+	font: normal bold normal 13px Arial, Helvetica, sans-serif;
+	color: #000066;
+	margin: 0;
+}
+.basicScorer i {
+	color: #000000;
+}
+.basicScorer .fa-stack {
+	height: 13px !Important;
+	width: 13px !Important;
+}
+.basicScorer .fa-stack i {
+	height: 13px !Important;
+	width: 13px !Important;
+	margin-top: -7px !Important;
+}
+span i.fa-futbol-o {
+	background-color: transparent !Important;
+	border-radius: 10px;
+	display: inline-block;
+}
+
+i.redcard-icon {
+	width: 8px;
+	height: 12px;
+	display: inline-block;
+	background-color: #ff0000;
+	margin-right: 5px;
+}
+.basicStripHolder {
+	float: right;
+	width: 96px;
+	background-color: #dddddd;
+    padding: 10px;
+}
+.basicStripHolder img {
+	float: left;
+}
+
+.mdPenaltyShootout {
+	width: 100%;
+	background-color: #FFF;
+	position: relative;
+	float: left;
+	margin-top: 10px;
+}
+.mdPenaltyShootout .basicLineupsTeam {
+	padding-bottom: 0px;
+}
+.mdPenaltyShootout .basicLineupsTeam:nth-child(2) {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.mdPenaltyShootout .basicLineupsSector {
+	border-top: 0;
+	padding-bottom: 0px;
+}
+.mdPenaltyShootout .basicVerticalDivider {
+	top: 40px;
+}
+.mdPenaltyShootout .basicScorer {
+	width: 100%;
+}
+.penaltyScoreline {
+	float: right;
+	font-style: italic;
+	font-size: 11px;
+}
+
+.basicKey {
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #ffffff;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.basicKey span {
+	float: left;
+	width: 50px;
+}
+span.basicKeyItem {
+	width: 170px;
+}
+
+
+.extraStats {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+    margin-left: 0px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+    width: 480px;
+}
+.extraStatsRow {
+    float: left;
+    clear: left;
+    margin-top: 10px;
+    width: 480px;
+}
+.extraStatsTitle {
+    float: left;
+    width: 150px;
+    font: italic normal bold 12px Arial;
+    color: #FFFF00;
+    padding-left: 20px;
+}
+.extraStatsTeamLeft {
+    float: left;
+    width: 150px;
+    text-align: left;
+    font: normal normal bold 14px Arial;
+    color: #FFFFFF;
+}
+.extraStatsTeamRight {
+    float: left;
+    width: 150px;
+    text-align: right;
+    font: normal normal bold 14px Arial;
+    color: #FFFFFF;
+}
+.extraStatsBar {
+    float: left;
+    width: 302px;
+    height: 22px;
+    border: solid 1px #000066;
+}
+.extraStatsLeft {
+    float: left;
+    height: 20px;
+    padding-left: 8px;
+    font: normal normal bold 14px Arial;
+}
+.extraStatsRight {
+    float: left;
+    height: 20px;
+    padding-right: 8px;
+    font: normal normal bold 14px Arial;
+    text-align: right;
+}
+.extraStatsFooter {
+    font: normal normal normal 10px Arial;
+    color: #FFFFFF;
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+.extraStatsImage {
+	margin-left: 10px;
+	width: 220px;
+	padding: 10px;
+	float: left;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	margin-top: 10px;
+	padding-top: 0;
+}
+.whiteBack {
+    background-color: #FFFFFF;
+    color: #0000FF;
+}
+.blueBack {
+    background-color: #0000FF;
+    color: #FFFFFF;
+}
+.redBack {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+.yellowBack {
+    background-color: #FFFF00;
+    color: #0000FF;
+}
+.darkblueBack {
+    background-color: #0000FF;
+    color: #FFFFFF;
+}
+.orangeBack {
+    background-color: #FF9900;
+    color: #0000FF;
+}
+.greenBack {
+    background-color: #00FF00;
+    color: #0000FF;
+}
+.lightblueBack {
+    background-color: #00FFFF;
+    color: #0000FF;
+}
+.blackBack {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+.pinkBack {
+    background-color: #FF00FF;
+    color: #000000;
+}
+
+
+/* ============================= Lineup & Formation ================================== */
+
+.lineupDetails {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+    margin-left: 0px;
+    position: relative;
+    float: left;
+    width: 525px;
+    padding: 15px 10px 15px 5px;
+    margin-bottom: 10px;
+}
+#lineupDetailsTable {
+    width: 508px;
+}
+.shirtNo {
+    text-align: right;
+	vertical-align: top;
+    font: normal normal bold 14px Arial;
+    color: #FF0000;
+}
+.playerName {
+    text-align: left;
+    font: normal normal bold 14px Arial;
+    color: #FFFFFF;
+	max-width: 310px;
+}
+.lineupClub {
+    text-align: left;
+    font: italic normal bold 14px Arial;
+    color: #FFFF00;
+}
+.captain {
+    text-align: right;
+    font: normal normal bold 14px Arial;
+    color: #FF0000;
+}
+.capCount {
+    font: normal normal bold 12px Arial;
+    color: #FF0000;
+    text-align: right;
+	vertical-align: top;
+}
+.age {
+    font: normal normal bold 12px Arial;
+    color: #FFFF00;
+    text-align: right;
+	vertical-align: top;
+}
+.substituted {
+    font: italic normal bold 12px Arial;
+    color: #FFFFFF;
+}
+.key {
+    font: italic normal bold 11px Arial;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: bottom;
+    height: 30px;
+}
+i.fa-futbol-o {
+    background-color: #fff;
+    border-radius: 10px;
+    display: inline-block;
+}
+.formation {
+	background-image: url(/img/pitch.gif);
+	background-repeat: no-repeat;
+	background-color: #0099FF;
+    margin-left: 10px;
+    position: relative;
+    float: left;
+    width: 300px;
+    height: 400px;
+}
+.formationRow1, .formationRow2, .formationRow3, .formationRow4, .formationRow5 {
+    float: left;
+    clear: left;
+    width: 300px;
+    text-align: center;
+}
+.formationShirtHolder {
+    text-align: center;
+    float: left;
+}
+.formationRow1 .formationShirtHolder {
+	width: 300px;
+}
+.formationRow2 .formationShirtHolder {
+	width: 150px;
+	padding-right: 75px;
+	padding-left: 0;
+}
+.formationRow2 .formationShirtHolder:first-child {
+	padding-left: 75px;
+	padding-right: 0;
+}
+.formationRow3 .formationShirtHolder {
+	width: 100px;
+}
+.formationRow4 .formationShirtHolder {
+	width: 75px;
+}
+.formationRow5 .formationShirtHolder {
+	width: 60px;
+}
+.formationLabel {
+    font: normal normal bold 16px Arial;
+    text-align: center;
+    vertical-align: middle;
+    width: 300px;
+    display: block;
+    padding-top: 3px;
+    padding-bottom: 20px;
+}
+.noFormation {
+    font: italic normal bold 24px Arial;
+    color: #000066;
+    border: 1px 1px 1px 1px;
+    display: block;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 150px;
+}
+
+.lineupPicture {
+	width: 175px;
+	padding: 10px;
+	float: left;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	margin-left: 10px;
+	min-height: 250px;
+}
+.lineupPicture .getty {
+	margin-top: 0 !Important;
+}
+.lineupPicture img {
+	width: 100%;	
+}
+.lineupPicture p {
+	color: #fff;
+	font: normal bold normal 14px Arial, Helvetica, sans-serif;
+	float: left;
+	clear: left;
+}
+.lineupPicture p.noPicture {
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	color: #fff;
+	line-height: 18px;
+	margin: 0;
+}
+.interestingFact {
+	width: 175px;
+	padding: 10px;
+	float: left;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.factHeading {
+    color: #ffff00;
+    font: italic bold 12px Arial;
+    letter-spacing: -1px;
+}
+.factText {
+    color: #ffffff;
+    font: bold 14px Arial;
+    letter-spacing: -1px;
+    padding: 10px 0 ;
+}
+
+
+/* ========================================= Summary and Timeline ===================================== */
+
+.summary {
+	width: 355px;
+	padding: 10px;
+	padding-bottom: 0;
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	float: left;
+	background-color: #FFF;
+	color: #000066;
+	line-height: 18px;
+	min-height: 390px !Important;
+}
+.summary p {
+	margin-top: 0;	
+}
+.summary p a {
+	color: #000066;	
+}
+
+.timeline {
+	float: left;
+	margin-left: 10px;
+}
+.incident {
+	float: left;
+	clear: left;
+	margin-top: 10px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF;
+	width: 655px;
+}
+.incident:first-child {
+	margin-top: 0px;
+}
+.incidentImage {
+	float: left;
+	width: 300px;
+	height: 170px;
+}
+.incidentImage img {
+	width: 300px;
+	float: left;
+	height: 170px;
+}
+.incidentData {
+	float: left;
+	padding: 15px;
+	width: 355px;
+}
+.incidentFlag {
+	float: right;
+}
+.incidentMinute {
+	float: left;
+	clear: left;
+	font: normal bold normal 16px Arial;
+	color: #ffff00;
+	padding-bottom: 15px;
+}
+.incidentPlayer {
+	float: left;
+	clear: left;
+	font: normal bold normal 20px Arial;
+	color: #ffffff;
+	padding-bottom: 5px;
+}
+.incidentAction {
+	float: left;
+	clear: left;
+	font: normal bold normal 14px Arial;
+	color: #ff0000;
+	padding-bottom: 15px;
+}
+.incidentScore {
+	float: left;
+	clear: left;
+	font: normal bold normal 14px Arial;
+	color: #ffffff;
+}
+
+
+
+/* ========================================= Highlights ========================================= */
+
+.videoHolder {
+	float: left;
+	margin-left: 10px;
+	width: 655px;
+	height: 390px;
+}
+
+.novideo {
+	margin-left: 10px;
+	width: 710px !Important;
+}
+
+
+
+/* ======================================= History ========================================== */
+
+.history {
+	width:100%;
+	margin-top: 10px;
+	clear: left;
+	float: left;
+	background-color: #FFF;
+}
+.history:first-of-type {
+	margin-top: 0px;
+}
+.historyLeft {
+	float: left;
+	width: 370px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+}
+.historyLeft .getty {
+	width: 350px !Important;
+	margin: 10px;
+	float: left;
+}
+
+.historyRight {
+	float: left;
+	width: 650px;
+}
+.historyRight a {
+	font: bold 18px Arial;
+	color: #fff;
+	width: 100%;
+	line-height: 40px;
+	margin: 0;
+}
+.historyRightSummary {
+	float: left;
+	width: 325px;
+	padding: 10px;
+}
+.historyRightSummary p {
+	font: normal bold normal 12px Arial, Helvetica, sans-serif;
+	color: #006;
+	line-height: 18px;
+	margin: 0;
+}
+.historyRightMatches {
+	margin: 12px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	width: 301px;
+	float: right;
+	padding: 10px;
+}
+.historyRightMatches p {
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+.historyRightMatches p span {
+	color: #FF0;
+	font: normal normal normal 12px Arial, Helvetica, sans-serif;
+}
+.historyRightMatches p.historyMatchesTitle {
+	color: #FF0;
+	margin: 0 0 10px 0;
+	font: italic bold normal 12px Arial, Helvetica, sans-serif;
+}
+.historyRightMatches p a{
+	color: #FFF;
+	font: normal bold normal 14px Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+.historyRightMatches p a:hover{
+	text-decoration: underline;
+}
+
+
+
+/* ========================== History Chapter ======================================= */
+
+#historyAccordion h3 {
+	margin: 0;
+    color: #FFFFFF !Important;
+    font: normal normal bold 18px Arial, Helvetica, sans-serif !Important;
+	background-image: linear-gradient(#000066, #000066, #0066FF) !Important;
+	background-color: #000066 !Important;
+	border: 0 !Important;	
+	line-height: 40px !Important;
+	border-radius: 0px !Important;
+}
+#historyAccordion h3:hover {
+	text-decoration: underline;
+}
+.subChapter {
+	border-radius: 0px !Important;
+	border: 0 !Important;	
+    font: bold 12px Arial,Helvetica,sans-serif;
+	line-height: 18px !Important;
+	color: #000066 !Important;
+	padding: 12px !Important;
+	top: 0 !Important;
+	margin: 0 !Important;
+}
+.subChapterText {
+	width: 570px;
+	float: left;
+}
+.subChapter:nth-of-type(even) .subChapterText {
+	float: right;
+}
+.subChapterText p {
+	margin: 0;
+}
+.subChapterImage {
+	width: 400px;
+	float: right;
+}
+.subChapter:nth-of-type(even) .subChapterImage {
+	float: left;
+}
+.subChapterImage .getty{
+	margin-top: 0;
+}
+.subChapterImage p {
+    font: normal 11px Arial,Helvetica,sans-serif;
+	margin: 0;
+}
+
+/* ========================================== FIFA Rankings ========================================== */
+
+.rankingStats {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	width: 255px;
+	float: left;
+	height: 350px;
+	padding: 10px 0 0 0;
+	position: relative;
+	margin-top: 10px;
+}
+.rankingHeading {
+    clear: left;
+    color: #ffff00;
+    float: left;
+    font: italic bold 11px Arial;
+    height: 20px;
+    width: 125px;
+	padding-left: 10px;
+}
+.rankingData {
+    color: #ffffff;
+    float: left;
+    font: bold 12px Arial;
+    height: 20px;
+	padding-right: 10px;
+}
+.rankingHeadingTitle {
+    clear: left;
+    color: #ffffff;
+    float: left;
+    font: bold 12px Arial;
+    height: 20px;
+	padding-left: 10px;
+}
+
+.chartLink {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font: bold 15px Arial;
+    height: 30px;
+    margin-top: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 5px;
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+#fifaChart {
+	width: 755px; 
+	height: 350px;
+	float: left;
+	margin-left: 10px;
+	background-color: #fff;
+	margin-top: 10px;
+}
+
+/* Slider */
+.rankingSliderHolder {
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+	margin-top: 10px;
+	width: 100%;
+	height: 124px;
+	clear: left;
+	float: left;
+}
+.rankingSliderTitle {
+    float: left;
+    clear: left;
+    font: normal normal bold 13px Arial;
+    color: #FFFF00;
+    padding: 10px;
+    padding-bottom: 5px;  
+}
+.rankingSliderSubTitle {
+    float: left;
+    clear: left;
+    font: normal normal normal 10px Arial;
+    color: #FFFFFF;
+    padding: 10px; 
+    padding-top: 0px; 
+}
+
+.rankingSlider {
+    width: 100%;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    clear: left;
+}
+.sliderScale {
+   width: calc(100% - 7px);
+   margin-left: 7px;
+   float: left;
+   clear: left;
+}
+.sliderScaleSector {
+   width: 98px;
+   float: left;
+   height: 12px;
+   text-align: left;
+   font: normal normal normal 10px Arial;
+   color: #FFFFFF; 
+}
+.sliderScaleSector:last-of-type{
+   width: 25px;
+}
+.sliderDate {
+    float: left;
+    clear: left;
+    padding: 0px 0px 10px 10px;
+    font: normal normal bold 12px Arial;
+    color: #FFFFFF;
+}
+.sliderDateHeading {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 11px;
+    color: #FFFF00;
+}
+.ui-slider-range { background: #0000ff !Important; }
+
+/* Ranking Records */
+.rankingRecords {
+	clear: left;
+	float: left;
+	width: 100%;
+	margin-top: 10px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #000066;
+}
+.rankingRecordsColumn {
+	float: left;
+	width: 343px;
+	border-right: solid 10px #0000FF;
+	padding: 12px;
+}
+.rankingRecordsColumn:last-child {
+	border-right: 0;
+	width: 334px;
+}
+.rankingRecordsRow{
+	float: left;
+	clear: left;
+	color: #fff;
+	font: bold 12px Arial;
+}
+.rankingRecordsRow:first-child{
+	color: #ff0;
+	font: bold 12px Arial;
+}
+.rankingRecordsDate{
+	float: left;
+	width: 120px;
+}
+.rankingRecordsRanking{
+	float: left;
+	width: 62px;
+	text-align: center;
+}
+
+/* ==================================== Sitemap ======================================= */
+
+#sitemapTree {
+	font: normal bold normal 16px Arial, Helvetica, sans-serif;
+	color: #000066;
+	float: left;
+}
+#sitemapTree a:hover {
+	text-decoration: underline;
+	background: none;
+	border: none;
+	box-shadow: none;
+}
+#sitemapTree > ul > li > ul > li > a {
+	font-size: 14px;
+}
+#sitemapTree > ul > li > ul > li > ul > li > a {
+	font-size: 12px;
+}
+
+a .jstree-icon {
+    visibility: hidden !Important;
+	width: 5px !Important;
+}
+
+.jstree-closed > i:before, .jstree-open > i:before {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.jstree-closed > i:before {
+	content: "\f0fe";
+}
+.jstree-open > i:before {
+	content: "\f146";
+}
+.jstree-default .jstree-node, .jstree-default .jstree-icon, .jstree-default .jstree-hovered {
+	background: none !Important;
+	border: none !Important;
+	box-shadow: none !Important;
+}
+
+.sitemapImage {
+	float: right;
+	width: 594px;
+}
+
+
+/* ================================== External Links ======================================= */
+
+.linksRow {
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.linksRow:first-of-type {
+	margin-bottom: 10px;
+}
+.linksSector {
+	float: left;
+	width: 505px;
+	margin-left: 10px;
+}
+.linksSector:first-child {
+	margin-left: 0px;	
+}
+.linksSectorContent {
+	width: 100%;
+	padding: 12px;
+	min-height: 300px;
+	background-color: #FFFFFF;
+	color: #000066;
+    font: 13px/26px Arial,Helvetica,sans-serif;
+}
+.otherLinksSector {
+	float: left;
+	width: 600px;
+}
+.otherLinksSector .linksSectorContent {
+	min-height: 261px;
+}
+.linksImage {
+	float: left;
+	margin-left: 10px;
+	width: 410px;
+}
+.linksImage .getty{
+	margin-top: 0px;
+}
+.linksImage .localGetty img {
+    margin-bottom: 15px;
+}
+
+.externalLinkItem {
+	float: left;
+	clear: left;
+	padding-bottom: 10px;
+}
+.externalLinkItem h3 {
+	float: left;
+	clear: left;
+	margin: 0;
+}
+.externalLinkItem h3 a {
+	color: #000066;
+    font: bold 16px Arial,Helvetica,sans-serif;
+	text-decoration: none;
+}
+.externalLinkItem h3 i {
+	color: #000066;
+    font-size: 12px;
+}
+.externalLinkItem a:hover {
+	text-decoration: underline;
+}
+.externalLinkItem p {
+	float: left;
+	clear: left;
+	margin: 5px 0;
+}
+
+/* ===================================== Contact Us ======================================== */
+
+.contactContent {
+    background-color: #000066;
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+    color: #ffffff;
+    display: block;
+    font: bold 12px Arial,Helvetica,sans-serif;
+    margin-top: 10px;
+    padding: 22px 60px 12px 60px;
+    text-decoration: none;
+    width: 100%;
+	float: left;
+}
+.contactRow {
+	float: left;
+	clear: left;
+	padding-bottom: 10px;
+}
+.contactHeading {
+	float: left;
+	clear: left;
+	width: 200px;
+	color: #FF0;
+	line-height: 25px;
+	vertical-align: middle;
+}
+.contactInput {
+	float: left;
+}
+.contactInput input {
+	float: left;
+	width: 500px;
+    font: bold 12px Arial,Helvetica,sans-serif;
+	color: #000066;
+	height: 25px;
+}
+.contactInput textarea {
+	float: left;
+	width: 500px;
+	height: 200px;
+    font: bold 12px Arial,Helvetica,sans-serif;
+	color: #000066;
+}
+.contactInput span {
+	float: left;
+	clear: left;
+	color: #ff0;
+}
+.contactButtons {
+	clear: left;
+	float: left;
+	margin-top: 10px;
+}
+.contactButtons a {
+	float: left;
+	margin-left: 10px;
+    background-color: #000066;
+    background-image: linear-gradient(#000066, #000066, #0066ff);
+	width: 243px;
+	height: 48px;
+	text-align: center;
+	line-height: 50px !Important;
+	vertical-align: middle;
+    font: bold 20px Arial,Helvetica,sans-serif;
+	color: #ffffff;
+	display: inline-block;
+	letter-spacing: -1px;
+	border: solid 1px #fff;
+	cursor: pointer;
+}
+.contactButtons a:first-child {
+	margin-left: 0px;
+}
+.contactContent p {
+	float: left;
+	clear: left;
+}
+.contactContent p a {
+	color: #ff0;	
+}
+.contactSuccess {
+	border: solid 1px #fff;
+	background-color: #ff0;
+	color: #000066;
+	text-align: center;
+	line-height: 30px;
+	width: 500px;
+}
+#contactSuccess {
+	display: none;	
+}
