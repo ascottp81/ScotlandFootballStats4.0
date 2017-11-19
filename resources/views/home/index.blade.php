@@ -98,7 +98,12 @@
                     <div class="homeResultScoreline">{{ $fixture->short_fixture }}</div>
                     <div class="homeResultDetails">Kick Off: {{ $fixture->kickoff }}</div>
                 </div>
-                @endforeach                        
+                @endforeach
+                @if ($fixtures->count() == 0)
+                <div class="homeResult">
+                    <div class="homeResultDetails">There are currently no planned fixtures.</div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

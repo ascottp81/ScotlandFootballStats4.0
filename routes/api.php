@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/opponents', 'ApiController@opponents');
+Route::get('/v1/opponents', 'ApiController@opponents');

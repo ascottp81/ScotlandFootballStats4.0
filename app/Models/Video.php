@@ -216,11 +216,11 @@ class Video extends Model
     public static function getCompetitionVideo($competition_id)
     {
 		if (config('app.livemedia')) {
-			$video = Video::join('games', 'videos.match_id', '=', 'games.id')
-				->join('competitions','competitions.id','=','games.competition_id')
+			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
+				->join('competitions','competitions.id','=','matches.competition_id')
 				->select('videos.*')
-				->whereNotNull('games.result')
-				->where('games.result', '<>', '')
+				->whereNotNull('matches.result')
+				->where('matches.result', '<>', '')
 				->where('videos.youtube', '<>', '')
 				->where('competition_id','=',$competition_id)
 				->orderBy(DB::Raw('RAND()'))
@@ -228,8 +228,8 @@ class Video extends Model
 		}
 		else {
 			$competition = Competition::where('id','=',$competition_id)->firstOrFail();
-			$video = Video::join('games', 'videos.match_id', '=', 'games.id')
-				->join('competitions','competitions.id','=','games.competition_id')
+			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
+				->join('competitions','competitions.id','=','matches.competition_id')
 				->select('videos.*')
 				->where('competition_type_id','=',$competition->competition_type_id)
 				->where('year','=',$competition->year)
@@ -239,11 +239,11 @@ class Video extends Model
 				
 				
 			if (!$video) {
-				$video = Video::join('games', 'videos.match_id', '=', 'games.id')
-					->join('competitions','competitions.id','=','games.competition_id')
+				$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
+					->join('competitions','competitions.id','=','matches.competition_id')
 					->select('videos.*')
-					->whereNotNull('games.result')
-					->where('games.result', '<>', '')
+					->whereNotNull('matches.result')
+					->where('matches.result', '<>', '')
 					->where('competition_id','=',$competition_id)
 					->orderBy(DB::Raw('RAND()'))
 					->first();

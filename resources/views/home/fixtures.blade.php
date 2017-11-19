@@ -22,4 +22,7 @@
         </div>
     </div>
     @endforeach
+    @if ($fixtures->count() == 0)
+        <div class="fixtureItem"><div class="fixtureKickoff">There are currently no planned fixtures.</div></div>
+    @endif
 @endsection

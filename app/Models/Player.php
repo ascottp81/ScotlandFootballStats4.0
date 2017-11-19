@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -60,7 +61,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getFullnameAttribute()
+	public function getFullnameAttribute(): string
 	{
 		return $this->firstname . " " . $this->surname;
 	}
@@ -70,7 +71,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getShortnameAttribute()
+	public function getShortnameAttribute(): string
 	{
 		return substr($this->firstname, 0, 1) . " " . $this->surname;
 	}
@@ -80,7 +81,7 @@ class Player extends Model
      *
      * @return string
      */
-    public function getFullnameSortAttribute()
+    public function getFullnameSortAttribute(): string
     {
         return $this->surname . ", " . $this->firstname;
     }
@@ -89,9 +90,9 @@ class Player extends Model
     /**
 	 * Get cap count
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getCapsAttribute()
+	public function getCapsAttribute(): int
 	{
 		return $this->appearances()->count();
 	}
@@ -99,29 +100,29 @@ class Player extends Model
 	/**
 	 * Get goal count
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getGoalsAttribute()
+	public function getGoalsAttribute(): int
 	{
-		return $this->appearances()->sum('goals');
+		return (int)$this->appearances()->sum('goals');
 	}
 	
 	/**
 	 * Get penalty count
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getPensAttribute()
+	public function getPensAttribute(): int
 	{
-		return $this->appearances()->sum('penalties');
+		return (int)$this->appearances()->sum('penalties');
 	}
 	
 	/**
 	 * Get player's last year
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getLastYearAttribute()
+	public function getLastYearAttribute(): int
 	{
 		$player = Appearance::join('matches','matches.id','=','appearances.match_id')
 			->select(DB::Raw('YEAR(MAX(date)) as max_year'))
@@ -136,7 +137,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getYearsAttribute()
+	public function getYearsAttribute(): string
 	{
 		if ($this->debut_year == $this->last_year) {
 			return $this->debut_year;	
@@ -149,9 +150,9 @@ class Player extends Model
     /**
      * Get the year a player entered the SFA Hall of Fame
      *
-     * @return string
+     * @return int
      */
-    public function getHofEntryAttribute()
+    public function getHofEntryAttribute(): int
     {
         $player = Appearance::join('matches','matches.id','=','appearances.match_id')
             ->where('player_id','=',$this->id)
@@ -160,15 +161,15 @@ class Player extends Model
             ->limit(1)
             ->firstOrFail();
 
-        return date('Y', strtotime($player->date));
+        return (int)date('Y', strtotime($player->date));
     }
 	
 	/**
 	 * Determine if player is a goalkeeper
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	public function getKeeperAttribute()
+	public function getKeeperAttribute(): bool
 	{
 		if ($this->appearances()->where('keeper','=',1)->count() > 0) {
 			return true;	
@@ -181,9 +182,9 @@ class Player extends Model
 	/**
 	 * Get number of clean sheets
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getCleanSheetsAttribute()
+	public function getCleanSheetsAttribute(): int
 	{
 		// Get clean sheet appearances where player started
 		$shutOuts = $this->join('appearances','players.id','=','appearances.player_id')
@@ -208,9 +209,9 @@ class Player extends Model
 	/**
 	 * Get number of starts
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getStartsAttribute()
+	public function getStartsAttribute(): int
 	{
 		$starts = Appearance::where('player_id','=',$this->id)->where('replaced','=', 0)->count();
 
@@ -220,9 +221,9 @@ class Player extends Model
 	/**
 	 * Get number of substitute appearances
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getSubAppearancesAttribute()
+	public function getSubAppearancesAttribute(): int
 	{
 		$subs = Appearance::where('player_id','=',$this->id)->where('replaced','>', 0)->count();
 
@@ -232,9 +233,9 @@ class Player extends Model
 	/**
 	 * Get number of appearances as captain
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getCaptainCountAttribute()
+	public function getCaptainCountAttribute(): int
 	{
 		$count = Appearance::where('player_id','=',$this->id)->where('captain','=', 1)->count();
 
@@ -244,9 +245,9 @@ class Player extends Model
 	/**
 	 * Get number of yellow cards
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getYellowCardsAttribute()
+	public function getYellowCardsAttribute(): int
 	{
 		$yellow = $this->appearances()->where('cards','=','Y')->count();
 		$yellowRed = $this->appearances()->where('cards','=','YR')->count();
@@ -258,9 +259,9 @@ class Player extends Model
 	/**
 	 * Get number of red cards
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getRedCardsAttribute()
+	public function getRedCardsAttribute(): int
 	{
 		$red = $this->appearances()->where('cards','=','R')->count();
 		$yellowRed = $this->appearances()->where('cards','=','YR')->count();
@@ -274,7 +275,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getClubsAttribute()
+	public function getClubsAttribute(): string
 	{
 		$clubs = Club::join('appearances','appearances.club_id','=','clubs.id')
 			->join('matches','matches.id','=','appearances.match_id')
@@ -298,7 +299,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getUrlAttribute()
+	public function getUrlAttribute(): string
 	{
 		return strtolower($this->firstname . "-" . $this->surname);
 	}
@@ -308,7 +309,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getPastEventAttribute()
+	public function getPastEventAttribute(): string
 	{
 		return $this->fullname . " was born on this day in " . $this->birthplace . ".";
 	}
@@ -318,7 +319,7 @@ class Player extends Model
 	 *
 	 * @return string
 	 */
-	public function getImageAttribute()
+	public function getImageAttribute(): string
 	{
 		$image = $this->getty_image;
 		$gettyImage = new GettyImage($image, 0);
@@ -336,7 +337,7 @@ class Player extends Model
     /**
      * Get the recent top scorers
      *
-     * @return string
+     * @return object
      */
     public function getRecentTopScorers()
     {
@@ -358,7 +359,7 @@ class Player extends Model
     /**
      * Get the recent top scorers
      *
-     * @return string
+     * @return object
      */
     public function getRecentTopAppearances()
     {

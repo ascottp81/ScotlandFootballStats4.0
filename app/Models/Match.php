@@ -990,9 +990,9 @@ class Match extends Model
 	/**
 	 * Get competition match round date
 	 *
-	 * @return object
+	 * @return string
 	 */
-	public function getMatchRoundDateAttribute()
+	public function getMatchRoundDateAttribute(): string
 	{
         $table = CompetitionTable::where('competition_id', '=', $this->competition->id)->where('round_id', '=', $this->competitionRound->id)->firstOrFail();
         $result = $table->results()
@@ -1002,6 +1002,26 @@ class Match extends Model
 
 		return $result->match_date->format('j M Y');
 	}
+
+    /**
+     * Get competition round text, for competition pages
+     *
+     * @return string
+     */
+    public function getCompetitionRoundTextAttribute(): string
+    {
+        $previousMatches = Match::where('competition_id','=', $this->competition_id)
+            ->where('round_id','=', $this->round_id)
+            ->where('date','<', $this->date)
+            ->count();
+
+        if ($previousMatches == 0) {
+            return $this->competitionRound->name;
+        }
+        else {
+            return "";
+        }
+    }
 
 	
 	/**
@@ -1017,13 +1037,13 @@ class Match extends Model
 		}
 		
 		if (substr($this->result, 0, 1) == "W"){
-			$event = "Scotland defeated " . $this->opponent->name . " " . $this->score . " in " . $compString;
+			$event = "Scotland defeated " . $this->opponent->name . " " . substr($this->result, 1) . " in " . $compString;
 		}
 		elseif (substr($this->result, 0, 1) == "D"){
-			$event = "Scotland drew " . $this->score . " with " . $this->opponent->name . " in " . $compString;
+			$event = "Scotland drew " . substr($this->result, 1) . " with " . $this->opponent->name . " in " . $compString;
 		}
 		elseif (substr($this->result, 0, 1) == "L"){
-			$event = "Scotland lost " . $this->score . " to " . $this->opponent->name . " in " . $compString;
+			$event = "Scotland lost " . substr($this->result, 1) . " to " . $this->opponent->name . " in " . $compString;
 		}
 		else{
 			$event = "Scotland played " . $this->opponent->name . " in " . $compString;
@@ -1228,62 +1248,59 @@ class Match extends Model
 			}
 			$i++;
 		}
-		
-		// Get the widths and colours for each statistic
-		$shotsWidths = $this->getBarWidths($homeShots, $awayShots, $homeColour, $awayColour);
-		$onTargetWidths = $this->getBarWidths($homeOnTarget, $awayOnTarget, $homeColour, $awayColour);
-		$possessionWidths = $this->getBarWidths($homePossession, $awayPossession, $homeColour, $awayColour);
-		$taWidths = $this->getBarWidths($homeTa, $awayTa, $homeColour, $awayColour);
-		$foulsWidths = $this->getBarWidths($homeFouls, $awayFouls, $homeColour, $awayColour);
-		$cornersWidths = $this->getBarWidths($homeCorners, $awayCorners, $homeColour, $awayColour);
-		$offsideWidths = $this->getBarWidths($homeOffside, $awayOffside, $homeColour, $awayColour);
-		$savesWidths = $this->getBarWidths($homeSaves, $awaySaves, $homeColour, $awayColour);
-		$yellowCardsWidths = $this->getBarWidths($homeYellowCards, $awayYellowCards, $homeColour, $awayColour);
-		$redCardsWidths = $this->getBarWidths($homeRedCards, $awayRedCards, $homeColour, $awayColour);
-		
-		// Generate arrays with all the data for each statistic
-		$shots = array("Shots At Goal", $homeShots, $awayShots, $shotsWidths[0], $shotsWidths[1], $shotsWidths[2], $shotsWidths[3]);
-		$on_target = array("Shots On Target", $homeOnTarget, $awayOnTarget, $onTargetWidths[0], $onTargetWidths[1], $onTargetWidths[2], $onTargetWidths[3]);
-		$possession = array("Possession", $homePossession . "%", $awayPossession . "%", $possessionWidths[0], $possessionWidths[1], $possessionWidths[2], $possessionWidths[3]);
-		$ta = array("Territorial Advantage", $homeTa, $awayTa, $taWidths[0], $taWidths[1], $taWidths[2], $taWidths[3]);
-		$fouls = array("Fouls", $homeFouls, $awayFouls, $foulsWidths[0], $foulsWidths[1], $foulsWidths[2], $foulsWidths[3]);
-		$corners = array("Corners", $homeCorners, $awayCorners, $cornersWidths[0], $cornersWidths[1], $cornersWidths[2], $cornersWidths[3]);
-		$offside = array("Offsides", $homeOffside, $awayOffside, $offsideWidths[0], $offsideWidths[1], $offsideWidths[2], $offsideWidths[3]);
-		$saves = array("Saves", $homeSaves, $awaySaves, $savesWidths[0], $savesWidths[1], $savesWidths[2], $savesWidths[3]);
-		$yellow_cards = array("Yellow Cards", $homeYellowCards, $awayYellowCards, $yellowCardsWidths[0], $yellowCardsWidths[1], $yellowCardsWidths[2], $yellowCardsWidths[3]);
-		$red_cards = array("Red Cards", $homeRedCards, $awayRedCards, $redCardsWidths[0], $redCardsWidths[1], $redCardsWidths[2], $redCardsWidths[3]);
-		
+
+
 		$data = array();
 		
 		// Add populated statistics to the output array
 		if ($homeShots != "") {
+            $shotsWidths = $this->getBarWidths($homeShots, $awayShots, $homeColour, $awayColour);
+            $shots = array("Shots At Goal", $homeShots, $awayShots, $shotsWidths[0], $shotsWidths[1], $shotsWidths[2], $shotsWidths[3]);
 			$data[] = $shots;
 		}
 		if ($homeOnTarget != "") {
+            $onTargetWidths = $this->getBarWidths($homeOnTarget, $awayOnTarget, $homeColour, $awayColour);
+            $on_target = array("Shots On Target", $homeOnTarget, $awayOnTarget, $onTargetWidths[0], $onTargetWidths[1], $onTargetWidths[2], $onTargetWidths[3]);
 			$data[] = $on_target;
 		}
 		if ($homePossession != "") {
+            $possessionWidths = $this->getBarWidths($homePossession, $awayPossession, $homeColour, $awayColour);
+            $possession = array("Possession", $homePossession . "%", $awayPossession . "%", $possessionWidths[0], $possessionWidths[1], $possessionWidths[2], $possessionWidths[3]);
 			$data[] = $possession;
 		}
 		if ($homeTa != "") {
+            $taWidths = $this->getBarWidths($homeTa, $awayTa, $homeColour, $awayColour);
+            $ta = array("Territorial Advantage", $homeTa, $awayTa, $taWidths[0], $taWidths[1], $taWidths[2], $taWidths[3]);
 			$data[] = $ta;
 		}
 		if ($homeFouls != "") {
+            $foulsWidths = $this->getBarWidths($homeFouls, $awayFouls, $homeColour, $awayColour);
+            $fouls = array("Fouls", $homeFouls, $awayFouls, $foulsWidths[0], $foulsWidths[1], $foulsWidths[2], $foulsWidths[3]);
 			$data[] = $fouls;
 		}
 		if ($homeCorners != "") {
+            $cornersWidths = $this->getBarWidths($homeCorners, $awayCorners, $homeColour, $awayColour);
+            $corners = array("Corners", $homeCorners, $awayCorners, $cornersWidths[0], $cornersWidths[1], $cornersWidths[2], $cornersWidths[3]);
 			$data[] = $corners;
 		}
 		if ($homeOffside != "") {
+            $offsideWidths = $this->getBarWidths($homeOffside, $awayOffside, $homeColour, $awayColour);
+            $offside = array("Offsides", $homeOffside, $awayOffside, $offsideWidths[0], $offsideWidths[1], $offsideWidths[2], $offsideWidths[3]);
 			$data[] = $offside;
 		}		
 		if ($homeSaves != "") {
+            $savesWidths = $this->getBarWidths($homeSaves, $awaySaves, $homeColour, $awayColour);
+            $saves = array("Saves", $homeSaves, $awaySaves, $savesWidths[0], $savesWidths[1], $savesWidths[2], $savesWidths[3]);
 			$data[] = $saves;
 		}
 		if ($homeYellowCards != "") {
+            $yellowCardsWidths = $this->getBarWidths($homeYellowCards, $awayYellowCards, $homeColour, $awayColour);
+            $yellow_cards = array("Yellow Cards", $homeYellowCards, $awayYellowCards, $yellowCardsWidths[0], $yellowCardsWidths[1], $yellowCardsWidths[2], $yellowCardsWidths[3]);
 			$data[] = $yellow_cards;
 		}
 		if ($homeRedCards != "") {
+            $redCardsWidths = $this->getBarWidths($homeRedCards, $awayRedCards, $homeColour, $awayColour);
+            $red_cards = array("Red Cards", $homeRedCards, $awayRedCards, $redCardsWidths[0], $redCardsWidths[1], $redCardsWidths[2], $redCardsWidths[3]);
 			$data[] = $red_cards;
 		}
 

@@ -440,7 +440,9 @@ a:hover{
     margin-left: 0px;     
 }
 .newsHolder {
-	padding: 12px;	
+	padding: 12px;
+	padding-top: 8px;
+	float: left;
 }
 .homeNewsItem {
 	float: left;
@@ -1623,6 +1625,8 @@ table.dataTable tbody th.matchDetailsInfo, table.dataTable tbody td.matchDetails
 }
 .competitionSummary ul {
 	padding-left: 10px;
+}
+.competitionSummaryIndex ul {
 	border-top: solid 1px #fff;
 	padding-top: 10px;
 }
@@ -1783,15 +1787,22 @@ img.tableFlag {
 	width: 100%;
 }
 .groupResultsData {
-	padding: 0 0 12px 12px;
+	padding: 12px 12px 0 12px;
 	background-color: #fff;
 	width: 100%;
 	background-image: linear-gradient(#000066, #000066, #0066FF);
 	float: left;
+
+	-moz-column-count: 3;
+	-moz-column-gap: 10px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 10px;
+	column-count: 3;
+	column-gap: 10px;
 }
-.groupResultsColumn {
-	float: left;
-	width: 199px;
+.groupResultsDateBlock {
+	page-break-inside: avoid;
+	-webkit-column-break-inside: avoid;
 }
 .groupResultsRound {
 	clear: left;
@@ -1804,14 +1815,12 @@ img.tableFlag {
 	font: normal normal normal 13px Arial, Helvetica, sans-serif;
 	color: #ff0;
 	padding-top: 12px;
-	float: left;
-	clear: left;
+
 }
 .groupResultsMatch {
 	font: normal bold normal 13px Arial, Helvetica, sans-serif;
 	color: #fff;
-	float: left;
-	clear: left;
+
 }
 
 .competitionResults {
@@ -1886,7 +1895,95 @@ img.tableFlag {
     color: #0066FF;
 }
 
+/* Tabs */
 
+#competitionTables, #competitionTables .ui-corner-all {
+	border-radius: 0px;
+}
+#competitionTables, #competitionTables .ui-widget-content {
+	background: none;
+	border: 0;
+}
+#competitionTables, #competitionTables .ui-tabs {
+	padding: 0;
+}
+#competitionTables .ui-tabs-nav {
+	padding: 0;
+	margin-bottom: 10px;
+	float:left;
+}
+#competitionTables .ui-widget-header {
+	background: none;
+	border: 0;
+	color: #222222;
+	font-weight: bold;
+}
+#competitionTables .ui-tabs-nav li {
+	border-bottom: 0 none !important;
+	float: left;
+	list-style: outside none none;
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+	position: relative;
+	white-space: nowrap;
+	border: 0;
+	top: 0px;
+}
+#competitionTables .ui-tabs-nav div{
+	float: left;
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+	position: relative;
+	width: 333px;
+	height: 30px;
+	display: block;
+}
+#competitionTables .ui-tabs-nav li:first-child {
+	margin-left: 0px;
+}
+#competitionTables .ui-tabs-nav li a {
+	padding: 0;
+	width: 196px;
+}
+#competitionTables .ui-state-active a, #competitionTables .ui-state-active a:link, #competitionTables .ui-state-active a:visited {
+	color: #ff0 !Important;
+}
+#competitionTables .ui-state-default a:hover {
+	text-decoration: underline;
+}
+#competitionTables .ui-tabs-panel {
+	padding: 0;
+}
+
+.tabFiller {
+	height: 30px;
+	float: left;
+	margin-left: 10px;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF;
+}
+.tab1 {
+	width: 196px;
+}
+.tab2 {
+	width: 402px;
+}
+.tab0 {
+	width: 0;
+	margin-left: 0 !Important;
+}
+
+
+/* ===================================== Single Match Competition ============================= */
+
+.singleMatchComments {
+	margin-top: 10px;
+}
+.singleMatchComments ul {
+	padding-left: 10px;
+}
 
 
 /* ==================================== Strips ======================================== */

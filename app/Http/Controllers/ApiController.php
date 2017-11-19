@@ -14,8 +14,8 @@ class ApiController extends Controller
      */
     public function opponents()
     {
-        $output = Opponent::orderBy('name','asc')->get(['id', 'name', 'abbr_name', 'url']);
-        return $output;
+        $output = Opponent::orderBy('name','asc')->get(['id', 'name', 'abbr_name']);
+        return response()->json($output, 201);
     }
 
     public function index()

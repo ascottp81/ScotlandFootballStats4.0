@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Competition;
 use App\Models\CompetitionTable;
 use App\Models\Match;
 use App\Models\News;

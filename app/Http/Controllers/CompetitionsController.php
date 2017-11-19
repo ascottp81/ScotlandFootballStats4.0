@@ -107,10 +107,14 @@ class CompetitionsController extends Controller
             $matches = Match::where('competition_id', '=', $competition->id)->orWhere('other_competition_id', '=', $competition->id)->orderBy('date', 'asc')->get();
 
             // Table data
-            $table = CompetitionTable::where('competition_id', '=', $competition->id);
+            $tables = CompetitionTable::join('competitionrounds', 'competitiontables.round_id', '=', 'competitionrounds.id')
+                ->where('competition_id','=',$competition->id)
+                ->orderBy('competitionrounds.order', 'asc')
+                ->select('competitiontables.*');
+
 
             // if there is no table
-            if ($table->count() == 0) {
+            if ($tables->count() == 0) {
 
                 // Meta data
                 $metatitle = $competitionType->title;
@@ -121,25 +125,13 @@ class CompetitionsController extends Controller
             // if there is a table
             else {
 
-                $table = $table->firstOrFail();
-
-                // Table Results columns
-                $rounds = TableResult::where('competition_table_id', '=', $table->id)->orderBy('match_date', 'desc')->first();
-                if ($rounds)
-                    $columnSize = ceil($rounds->match_round / 3.00);
-                else
-                    $columnSize = 0;
-
-                $tableResults1 = TableResult::where('competition_table_id', '=', $table->id)->whereBetween('match_round', [1, (1 * $columnSize)])->orderBy('match_date', 'asc')->orderBy('id', 'asc')->get();
-                $tableResults2 = TableResult::where('competition_table_id', '=', $table->id)->whereBetween('match_round', [(1 * $columnSize) + 1, (2 * $columnSize)])->orderBy('match_date', 'asc')->orderBy('id', 'asc')->get();
-                $tableResults3 = TableResult::where('competition_table_id', '=', $table->id)->whereBetween('match_round', [(2 * $columnSize) + 1, (3 * $columnSize)])->orderBy('match_date', 'asc')->orderBy('id', 'asc')->get();
-
+                $tables = $tables->get();
 
                 // Meta data
                 $metatitle = $competitionType->title;
                 $metadescription = "Details of every " . $competitionType->title . " that the Scottish international football team has taken part in.";
 
-                return view('competitions.index.singletable', compact('competitionType', 'competition', 'matches', 'table', 'tableResults1', 'tableResults2', 'tableResults3', 'metatitle', 'metadescription'));
+                return view('competitions.index.singletable', compact('competitionType', 'competition', 'matches', 'tables', 'metatitle', 'metadescription'));
             }
         }
     }
@@ -168,43 +160,44 @@ class CompetitionsController extends Controller
                 ->firstOrFail();
         }
 
-        // Table data
-        $table = CompetitionTable::where('competition_id','=',$competition->id)->firstOrFail();
-
-        // Table Results columns
-        $rounds = TableResult::where('competition_table_id','=',$table->id)->orderBy('match_date','desc')->first();
-        if ($rounds)
-            $columnSize = ceil($rounds->match_round / 3.00);
-        else
-            $columnSize = 0;
-
-        $tableResults1 = TableResult::where('competition_table_id','=',$table->id)->whereBetween('match_round', [1, (1 * $columnSize)])->orderBy('match_date','asc')->orderBy('id','asc')->get();
-        $tableResults2 = TableResult::where('competition_table_id','=',$table->id)->whereBetween('match_round', [(1 * $columnSize) + 1, (2 * $columnSize)])->orderBy('match_date','asc')->orderBy('id','asc')->get();
-        $tableResults3 = TableResult::where('competition_table_id','=',$table->id)->whereBetween('match_round', [(2 * $columnSize) + 1, (3 * $columnSize)])->orderBy('match_date','asc')->orderBy('id','asc')->get();
-
-
         // Scotland Games
-        $games = Game::where('competition_id','=',$competition->id)->orWhere('other_competition_id','=',$competition->id)->orderBy('match_date','asc')->get();
+        $matches = Match::where('competition_id', '=', $competition->id)->orWhere('other_competition_id', '=', $competition->id)->orderBy('date', 'asc')->get();
 
-        $playoffs = Game::join('competitions','games.competition_id','=','competitions.id')
-            ->select('games.*')
-            ->where('competition_type_id','=',$competitionType->id)
-            ->where('year','=',$competition->year)
-            ->where('stage','=',$competition->stage)
-            ->where('competition_id','<>',$competition->id)
-            ->orderBy('match_date','asc');
-
-        // Video
-        $video = Video::getCompetitionVideo($competition->id);
-
-        // Meta data
-        $metatitle = $competitionType->title . " " . $competition->year . " " . $competition->stage;
-        $metadescription = "Details of Scotland's participation in " . $metatitle . ", including match details and group tables.";
 
         // Session variables for match list
         Session::put('MatchListUrl', $_SERVER['REQUEST_URI']);
         Session::put('MatchList', $competition->name);
 
-        return view('competitions/competition', compact('competition','competitionType','table','tableResults1','tableResults2','tableResults3','games','playoffs','video','metatitle','metadescription'));
+
+        // Table data
+        $tables = CompetitionTable::join('competitionrounds', 'competitiontables.round_id', '=', 'competitionrounds.id')
+            ->where('competition_id','=',$competition->id)
+            ->orderBy('competitionrounds.order', 'asc')
+            ->select('competitiontables.*');
+
+
+        // if there is no table
+        if ($tables->count() == 0) {
+
+            // Meta data
+            $metatitle = $competitionType->title . " " . $competition->year . " " . $competition->stage;
+            $metadescription = "Details of Scotland's participation in " . $metatitle . ".";
+
+            return view('competitions.notable', compact('competitionType', 'competition', 'matches', 'metatitle', 'metadescription'));
+        }
+        // if there is a table
+        else {
+            $tables = $tables->get();
+
+            // Video
+            $video = Video::getCompetitionVideo($competition->id);
+
+            // Meta data
+            $metatitle = $competitionType->title . " " . $competition->year . " " . $competition->stage;
+            $metadescription = "Details of Scotland's participation in " . $metatitle . ", including match details and group tables.";
+
+
+            return view('competitions.competition', compact('competition', 'competitionType', 'tables', 'matches', 'video', 'metatitle', 'metadescription'));
+        }
     }
 }

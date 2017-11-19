@@ -163,26 +163,63 @@ class TableResult extends Model
      */
     public function getDateRowAttribute()
     {
-        $previousResults = TableResult::where('competition_table_id','=',$this->competition_table_id)->orderBy('match_date','desc')->orderBy('id','desc')->get();
-        $next = false;
-        $previous_date = '1872-01-01 00:00:00';
-        foreach ($previousResults as $result) {
-            if ($next) {
-                $previous_date = $result->match_date;
-                break;
+        // loop through each table result for the same table
+        $results = TableResult::where('competition_table_id','=',$this->competition_table_id)->orderBy('match_date','asc')->get();
+        $previousDate = 'NULL';
+        foreach ($results as $result) {
+
+            // if the match date is different to the previous one,
+            // assign the match date to the variable
+            if ($result->match_date != $previousDate) {
+                $assignedDate = date_format(date_create($result->match_date), 'jS F Y');
+            }
+            // otherwise assign a blank string
+            else {
+                $assignedDate = "";
             }
 
+            // if the table result is the current one, return the assigned value
             if ($result->id == $this->id) {
-                $next = true;
+                return $assignedDate;
             }
+
+            $previousDate = $result->match_date;
         }
 
-        if ($previous_date != $this->match_date) {
-            return date_format(date_create($this->match_date), 'jS F Y');
+        return "";
+    }
+
+    /**
+     * Is this the last result in a date
+     *
+     * @return bool
+     */
+    public function getLastMatchInDateAttribute()
+    {
+        // loop through each table result for the same table, in reverse
+        $results = TableResult::where('competition_table_id','=',$this->competition_table_id)->orderBy('match_date','desc')->orderBy('id','desc')->get();
+        $previousDate = 'NULL';
+        foreach ($results as $result) {
+
+            // if the match date is different to the previous one (next in calendar),
+            // it is the last match in a date
+            if ($result->match_date != $previousDate) {
+                $lastMatch = true;
+            }
+            // otherwise it is not the last match
+            else {
+                $lastMatch = false;
+            }
+
+            // if the table result is the current one, return the assigned value
+            if ($result->id == $this->id) {
+                return $lastMatch;
+            }
+
+            $previousDate = $result->match_date;
         }
-        else {
-            return "";
-        }
+
+        return false;
     }
 
 

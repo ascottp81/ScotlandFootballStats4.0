@@ -16,6 +16,9 @@ $(document).ready(function() {
 	
 	// Match Details Tabs
 	$( "#matchDetails" ).tabs();
+
+	// Competition Tables Tabs
+	$( "#competitionTables" ).tabs();
 	
 	
 	// Fix position after scrolling to bottom of header

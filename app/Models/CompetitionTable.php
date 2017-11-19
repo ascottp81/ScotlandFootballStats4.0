@@ -23,7 +23,7 @@ class CompetitionTable extends Model
      *
      * @var array
      */
-    protected $fillable = ['competition_id', 'round_id', 'group_name', 'comment', 'home', 'head_to_head', 'win_points'];
+    protected $fillable = ['competition_id', 'round_id', 'group_name', 'home', 'head_to_head', 'win_points'];
 
 
 
@@ -80,7 +80,7 @@ class CompetitionTable extends Model
      */
     public function results()
     {
-        return $this->hasMany('App\Models\TableResult');
+        return $this->hasMany('App\Models\TableResult')->orderBy('match_date','asc');
     }
 
 
@@ -177,21 +177,20 @@ class CompetitionTable extends Model
         }
     }
 
-    /**
-     * Get the segmented table comments
-     *
-     * @return boolean
-     */
-    public function getCommentsAttribute()
-    {
-        $comments = explode(".", $this->comment);
-        array_pop($comments);
 
-        $commentItems = array();
-        foreach ($comments as $comment) {
-            $commentItems[] = $comment;
+    /**
+     * Get the table group name title
+     *
+     * @return string
+     */
+    public function getGroupNameAttribute($value)
+    {
+        $round = $this->competitionRound()->first()->name;
+
+        if ($round != "None" && $this->competition->type->status == "F") {
+            return $round . " - " . $value;
         }
 
-        return $commentItems;
+        return $value;
     }
 }

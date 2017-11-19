@@ -21,7 +21,7 @@ class Competition extends Model
      *
      * @var array
      */
-    protected $fillable = ['competition_type_id', 'year', 'stage', 'name', 'won', 'shared', 'qualified', 'withdrew'];
+    protected $fillable = ['competition_type_id', 'year', 'stage', 'name', 'won', 'shared', 'qualified', 'withdrew', 'comment'];
 
 
 
@@ -112,6 +112,25 @@ class Competition extends Model
 
 
     /* ACCESSORS */
+
+    /**
+     * Get the segmented competition comments
+     *
+     * @return array
+     */
+    public function getCommentsAttribute(): array
+    {
+        $comments = explode(".", $this->comment);
+
+        $commentItems = array();
+        foreach ($comments as $comment) {
+            if (trim($comment) != "") {
+                $commentItems[] = $comment . ".";
+            }
+        }
+
+        return $commentItems;
+    }
 
     /**
      * Get the competition URL
