@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 use Carbon\Carbon;
 
@@ -116,22 +119,22 @@ class Match extends Model
      * Scope query for opponent
      * 
      * @param  $query
-	 * @param  int  $opponent_id
+	 * @param  int  $opponentId
      */
-    public function scopeOpponentId($query, $opponent_id)
+    public function scopeOpponentId($query, int $opponentId)
     {
-        $query->where('opponent_id','=',$opponent_id)->whereNotNull('result');
+        $query->where('opponent_id','=',$opponentId)->whereNotNull('result');
     }
 	
     /**
      * Scope query for manager
      * 
      * @param  $query
-	 * @param  int  $manager_id
+	 * @param  int  $managerId
      */
-    public function scopeManagerId($query, $manager_id)
+    public function scopeManagerId($query, int $managerId)
     {
-        $query->where('manager_id','=',$manager_id)->whereNotNull('result');
+        $query->where('manager_id','=',$managerId)->whereNotNull('result');
     }
 	
     /**
@@ -157,17 +160,18 @@ class Match extends Model
     /**
      * Scope query for competition games
      *
-     * @param  $query
+     * @param int $typeId
+     * @param $query
      */
-    public function scopeCompetitionType($query, $typeid)
+    public function scopeCompetitionType($query, int $typeId)
     {
         $query->join('competitions', function ($join) {
             $join->on('matches.competition_id','=','competitions.id')->orOn('matches.other_competition_id','=','competitions.id');
         })
-            ->join('competitiontype', 'competitiontype.id','=','competitions.competition_type_id')
-            ->select('matches.*')
-            ->where('competition_type_id','=',$typeid)
-            ->whereNotNull('result');
+        ->join('competitiontype', 'competitiontype.id','=','competitions.competition_type_id')
+        ->select('matches.*')
+        ->where('competition_type_id','=',$typeId)
+        ->whereNotNull('result');
     }
 
     /**
@@ -196,7 +200,7 @@ class Match extends Model
      * @param  $query
 	 * @param  string  $parameters
      */
-    public function scopeSearch($query, $parameters)
+    public function scopeSearch($query, string $parameters)
     {
 		if ($parameters == "all") {
 			$query->whereNotNull('result');
@@ -389,7 +393,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getScorelineAttribute()
+	public function getScorelineAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return "Scotland " . $this->score . " " . $this->opponent->name;
@@ -404,7 +408,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getShortScorelineAttribute()
+	public function getShortScorelineAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return "Scotland " . $this->score . " " . $this->opponent->abbr_name;
@@ -419,7 +423,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getScoreAttribute()
+	public function getScoreAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return substr($this->result, 2);	
@@ -444,10 +448,10 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getUrlAttribute()
+	public function getUrlAttribute(): string
 	{
 		$datePart = $this->date->format('d-m-Y');
-		$teamPart = "";
+
 		if ($this->ha == "H" || $this->ha == "N1") {
 			$teamPart = "scotland-" . str_replace(" ", "-", $this->opponent->name);
 		}
@@ -464,7 +468,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getFixtureAttribute()
+	public function getFixtureAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return "Scotland v " . $this->opponent->name;
@@ -479,7 +483,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getShortFixtureAttribute()
+	public function getShortFixtureAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return "Scotland v " . $this->opponent->abbr_name;
@@ -494,7 +498,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getHomeTeamAttribute()
+	public function getHomeTeamAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return "Scotland";
@@ -509,7 +513,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getAwayTeamAttribute()
+	public function getAwayTeamAttribute(): string
 	{
 		if ($this->ha == "A" || $this->ha == "N") {
 			return "Scotland";
@@ -525,7 +529,7 @@ class Match extends Model
 	 * @param string $value
 	 * @return string
 	 */
-	public function getKickoffAttribute($value)
+	public function getKickoffAttribute(string $value): string
 	{
 		if ($value == "") {
 			return "unknown";
@@ -540,7 +544,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getHomeAwayAttribute()
+	public function getHomeAwayAttribute(): string
 	{
 		if ($this->ha == "N1") {
 			return "N";	
@@ -555,19 +559,19 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getVenueLocationAttribute()
+	public function getVenueLocationAttribute(): string
 	{
 		if ($this->venue != "" && $this->location_id > 0) {
 			return $this->venue . ", " . $this->location->city;
 		}
 		elseif ($this->venue == "" && $this->location_id == 0) {
-			return "Venue: unknown";	
+			return "Venue: unknown";
 		}
 		elseif ($this->location_id == 0) {
-			return $this->venue;	
+			return $this->venue;
 		}
 		else {
-			return $this->location->city;	
+			return $this->location->city;
 		}
 	}
 	
@@ -576,7 +580,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getVenueHaAttribute()
+	public function getVenueHaAttribute(): string
 	{
         if ($this->venue != "" && $this->location_id > 0) {
             return $this->venue . ", " . $this->location->city . " (" . $this->home_away . ")";
@@ -596,10 +600,10 @@ class Match extends Model
 	/**
 	 * Get attendance
 	 *
-	 * @param integer $value
+	 * @param int $value
 	 * @return string
 	 */
-	public function getAttendanceAttribute($value)
+	public function getAttendanceAttribute(int $value): string
 	{
 		if ($value == 0) {
 			return "N/A";	
@@ -608,8 +612,8 @@ class Match extends Model
 			return number_format($value , 0, '.', ',');	
 		}
 	}
-	
-	
+
+
 	/**
 	 * Is this a competitive match
 	 *
@@ -618,12 +622,12 @@ class Match extends Model
 	public function getIsCompetitiveAttribute()
 	{
 	    $competitionType = $this->competition->type->status;
-			
+
 		if ($competitionType == "C") {
-			return true;	
+			return true;
 		}
 		else {
-			return false;	
+			return false;
 		}
 	}
 
@@ -631,9 +635,10 @@ class Match extends Model
     /**
      * Get the result comment
      *
+     * @param string $value
      * @return string
      */
-    public function getResultCommentAttribute($value)
+    public function getResultCommentAttribute($value): string
     {
         if ($value != "")
             return ' (' . $value . ')';
@@ -645,9 +650,9 @@ class Match extends Model
 	 * Get Scotland scorers
 	 *
 	 * @param string $value
-	 * @return array $scorers
+	 * @return array
 	 */
-	public function getScotScorersAttribute($value)
+	public function getScotScorersAttribute($value): array
 	{
         if ($value == null) {
             return array();
@@ -659,9 +664,9 @@ class Match extends Model
 	 * Get Opponent scorers
 	 *
 	 * @param string $value
-	 * @return array $scorers
+	 * @return array
 	 */
-	public function getOppScorersAttribute($value)
+	public function getOppScorersAttribute($value): array
 	{
         if ($value == null) {
             return array();
@@ -673,9 +678,9 @@ class Match extends Model
 	 * Get Scotland penalty misses
 	 *
 	 * @param string $value
-	 * @return array $players
+	 * @return array
 	 */
-	public function getScotPenMissAttribute($value)
+	public function getScotPenMissAttribute($value): array
 	{
 	    if ($value == null) {
 	        return array();
@@ -687,9 +692,9 @@ class Match extends Model
 	 * Get Opponent penalty misses
 	 *
 	 * @param string $value
-	 * @return array $players
+	 * @return array
 	 */
-	public function getOppPenMissAttribute($value)
+	public function getOppPenMissAttribute($value): array
 	{
         if ($value == null) {
             return array();
@@ -701,9 +706,9 @@ class Match extends Model
 	 * Get Scotland red cards
 	 *
 	 * @param string $value
-	 * @return array $players
+	 * @return array
 	 */
-	public function getScotRedCardAttribute($value)
+	public function getScotRedCardAttribute($value): array
 	{
         if ($value == null) {
             return array();
@@ -715,9 +720,9 @@ class Match extends Model
 	 * Get Opponent red cards
 	 *
 	 * @param string $value
-	 * @return array $players
+	 * @return array
 	 */
-	public function getOppRedCardAttribute($value)
+	public function getOppRedCardAttribute($value): array
 	{
         if ($value == null) {
             return array();
@@ -729,9 +734,9 @@ class Match extends Model
 	/**
 	 * Get Scotland team
 	 *
-	 * @return $team string
+	 * @return string
 	 */
-	public function getScotTeamAttribute()
+	public function getScotTeamAttribute(): string
 	{
 		if ($this->team != "") {
 			return str_replace(", ", "<br />", $this->team);
@@ -754,9 +759,9 @@ class Match extends Model
 	 * Get Opponent team
 	 *
 	 * @param string $value
-	 * @return string $team
+	 * @return string
 	 */
-	public function getOppTeamAttribute($value)
+	public function getOppTeamAttribute($value): string
 	{
 		return str_replace(", ", "<br />", $value);	
 	}	
@@ -766,7 +771,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getHomeFlagAttribute()
+	public function getHomeFlagAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return "scotland";
@@ -781,7 +786,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getAwayFlagAttribute()
+	public function getAwayFlagAttribute(): string
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			return strtolower(str_replace(" ", "_", $this->opponent->name));
@@ -794,16 +799,15 @@ class Match extends Model
 	/**
 	 * Get Scotland's FIFA ranking for the match
 	 *
-
 	 * @return string
 	 */
-	public function getScotRankingAttribute()
+	public function getScotRankingAttribute(): string
 	{
 		$rankingString = "";
 		$ranking = Ranking::where('date', '<=', $this->date)->orderBy('date', 'desc');
 		
 		if ($ranking->count() > 0) {
-			$rankingString = $ranking->firstOrFail()->ranking;
+			$rankingString = (string) $ranking->firstOrFail()->ranking;
 		}
 		
 		return $rankingString;
@@ -814,7 +818,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getFormationStringAttribute()
+	public function getFormationStringAttribute(): string
 	{
 		$start = strpos($this->formation, "(") + 1;
 		return substr($this->formation, $start, strpos($this->formation, ")") - $start);
@@ -825,7 +829,7 @@ class Match extends Model
 	 *
 	 * @return array
 	 */
-	public function getFormationShirtsAttribute()
+	public function getFormationShirtsAttribute(): array
 	{
 		$shirtString = str_replace(" ", "", substr($this->formation, strpos($this->formation, ")") + 2));
 		$shirts = explode(",", $shirtString);
@@ -904,7 +908,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getImageAttribute()
+	public function getImageAttribute(): string
 	{
 		$image = $this->getty_image;
 		
@@ -921,9 +925,9 @@ class Match extends Model
 	/**
 	 * Get the match lineup Getty Image
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function getLineupImageAttribute()
+	public function getLineupImageAttribute(): array
 	{
 		$appearance = Appearance::join('players', 'appearances.player_id','=','players.id')
 			->where('match_id', '=', $this->id)
@@ -936,16 +940,16 @@ class Match extends Model
 			return array($gettyImage->outputImage(), $appearance->shirt_no, $appearance->player->full_name);
 		}
 		else {
-			return null;
+			return array();
 		}
 	}
 
     /**
-     * Get competition table
+     * Get competition table count
      *
-     * @return object
+     * @return int
      */
-    public function getCompetitionTableCountAttribute()
+    public function getCompetitionTableCountAttribute(): int
     {
         $table = CompetitionTable::where('competition_id', '=', $this->competition->id)
             ->where('round_id', '=', $this->competitionRound->id)
@@ -957,9 +961,9 @@ class Match extends Model
     /**
      * Get competition table
      *
-     * @return object
+     * @return CompetitionTable
      */
-    public function getCompetitionTableAttribute()
+    public function getCompetitionTableAttribute(): CompetitionTable
     {
         $table = CompetitionTable::where('competition_id', '=', $this->competition->id)
             ->where('round_id', '=', $this->competitionRound->id)
@@ -972,9 +976,9 @@ class Match extends Model
 	/**
 	 * Get competition match round
 	 *
-	 * @return integer
+	 * @return int
 	 */
-	public function getMatchRoundAttribute()
+	public function getMatchRoundAttribute(): int
 	{
 	    $table = CompetitionTable::where('competition_id', '=', $this->competition->id)->where('round_id', '=', $this->competitionRound->id)->firstOrFail();
 	    $result = $table->results()->where('match_date', '=', $this->date);
@@ -1010,14 +1014,17 @@ class Match extends Model
      */
     public function getCompetitionRoundTextAttribute(): string
     {
+        // get previous matches in the same round
         $previousMatches = Match::where('competition_id','=', $this->competition_id)
             ->where('round_id','=', $this->round_id)
             ->where('date','<', $this->date)
             ->count();
 
+        // if first match in that round, assign the round title
         if ($previousMatches == 0) {
             return $this->competitionRound->name;
         }
+        // otherwise make blank
         else {
             return "";
         }
@@ -1029,7 +1036,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getPastEventAttribute()
+	public function getPastEventAttribute(): string
 	{
 		$compString = "the " . $this->competition->name . ".";
 		if ($this->competition->name == "Friendly"){
@@ -1053,11 +1060,11 @@ class Match extends Model
 	}
 
     /**
-     * Get picture count
+     * Get picture count for match lightbox
      *
-     * @return integer
+     * @return int
      */
-    public function getPictureCountAttribute()
+    public function getPictureCountAttribute(): int
     {
         $path = public_path().'/storage/matches/' . $this->id;
         if (file_exists($path)) {
@@ -1070,18 +1077,18 @@ class Match extends Model
     }
 
     /**
-     * Get pictures
+     * Get pictures for lightbox
      *
      * @return array
      */
-    public function getPicturesAttribute()
+    public function getPicturesAttribute(): array
     {
         $fileData = array();
         $path = public_path().'/storage/matches/' . $this->id;
         if (file_exists($path)) {
             $pictures = File::allFiles("storage/matches/" . $this->id);
             foreach($pictures as $image) {
-                $fileData[] = basename($image);
+                $fileData[] = basename($image->getFilename());
             }
         }
         return $fileData;
@@ -1090,9 +1097,9 @@ class Match extends Model
     /**
      * Get number of empty tabs at top of details, to determine width
      *
-     * @return integer
+     * @return int
      */
-    public function getEmptyTabsAttribute()
+    public function getEmptyTabsAttribute(): int
     {
         $emptyTabs = 0;
         $mainVideo = Video::getMatchVideo($this->id);
@@ -1115,7 +1122,7 @@ class Match extends Model
 	 *
 	 * @return array
 	 */
-	public function getBreadcrumbAttribute() 
+	public function getBreadcrumbAttribute(): array
 	{
 		// split match list url into segments
 		$urlSegments = explode("/", Session::get('MatchListUrl'));
@@ -1152,7 +1159,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getMetaDescriptionAttribute() {
+	public function getMetaDescriptionAttribute(): string {
 		
 		$metadescription = "Match details of " . $this->scoreline . " played on " . $this->date->format('l jS F Y') . " at " . $this->venue_location . " for ";
 		if ($this->competition->name == "Friendly"){
@@ -1173,9 +1180,10 @@ class Match extends Model
 	/**
 	 * Split Scorers, Penalty Misses, and Sending Offs to Array
 	 *
-	 * @return array $players
+     * @param string $value
+	 * @return array
 	 */
-	public function playerStringToArray($value)
+	public function playerStringToArray(string $value)
 	{
 		// split players string by commas
 		$tempPlayers = explode(", ", $value);
@@ -1209,7 +1217,7 @@ class Match extends Model
 	 *
 	 * @return array
 	 */
-	public function getStats()
+	public function getStats(): array
 	{
 		if ($this->ha == "H" || $this->ha == "N1") {
 			$stats = $this->stats()->orderBy('team_id', 'asc')->get();
@@ -1217,139 +1225,108 @@ class Match extends Model
 		else {
 			$stats = $this->stats()->orderBy('team_id', 'desc')->get();
 		}
-		
-		$i = 0;
-		foreach ($stats as $row) {
-			if ($i == 0) {
-				$homeShots = $row->shots;
-				$homeOnTarget = $row->on_target;
-				$homePossession = $row->possession;	
-				$homeTa = $row->ta;
-				$homeFouls = $row->fouls;
-				$homeCorners = $row->corners;
-				$homeOffside = $row->offside;
-				$homeSaves = $row->saves;
-				$homeYellowCards = $row->yellow_cards;
-				$homeRedCards = $row->red_cards;
-				$homeColour = strtolower($row->colour);
-			}
-			elseif ($i == 1) {
-				$awayShots = $row->shots;
-				$awayOnTarget = $row->on_target;
-				$awayPossession = $row->possession;	
-				$awayTa = $row->ta;
-				$awayFouls = $row->fouls;
-				$awayCorners = $row->corners;
-				$awayOffside = $row->offside;
-				$awaySaves = $row->saves;
-				$awayYellowCards = $row->yellow_cards;
-				$awayRedCards = $row->red_cards;
-				$awayColour = strtolower($row->colour);
-			}
-			$i++;
-		}
-
 
 		$data = array();
-		
-		// Add populated statistics to the output array
-		if ($homeShots != "") {
-            $shotsWidths = $this->getBarWidths($homeShots, $awayShots, $homeColour, $awayColour);
-            $shots = array("Shots At Goal", $homeShots, $awayShots, $shotsWidths[0], $shotsWidths[1], $shotsWidths[2], $shotsWidths[3]);
-			$data[] = $shots;
-		}
-		if ($homeOnTarget != "") {
-            $onTargetWidths = $this->getBarWidths($homeOnTarget, $awayOnTarget, $homeColour, $awayColour);
-            $on_target = array("Shots On Target", $homeOnTarget, $awayOnTarget, $onTargetWidths[0], $onTargetWidths[1], $onTargetWidths[2], $onTargetWidths[3]);
-			$data[] = $on_target;
-		}
-		if ($homePossession != "") {
-            $possessionWidths = $this->getBarWidths($homePossession, $awayPossession, $homeColour, $awayColour);
-            $possession = array("Possession", $homePossession . "%", $awayPossession . "%", $possessionWidths[0], $possessionWidths[1], $possessionWidths[2], $possessionWidths[3]);
-			$data[] = $possession;
-		}
-		if ($homeTa != "") {
-            $taWidths = $this->getBarWidths($homeTa, $awayTa, $homeColour, $awayColour);
-            $ta = array("Territorial Advantage", $homeTa, $awayTa, $taWidths[0], $taWidths[1], $taWidths[2], $taWidths[3]);
-			$data[] = $ta;
-		}
-		if ($homeFouls != "") {
-            $foulsWidths = $this->getBarWidths($homeFouls, $awayFouls, $homeColour, $awayColour);
-            $fouls = array("Fouls", $homeFouls, $awayFouls, $foulsWidths[0], $foulsWidths[1], $foulsWidths[2], $foulsWidths[3]);
-			$data[] = $fouls;
-		}
-		if ($homeCorners != "") {
-            $cornersWidths = $this->getBarWidths($homeCorners, $awayCorners, $homeColour, $awayColour);
-            $corners = array("Corners", $homeCorners, $awayCorners, $cornersWidths[0], $cornersWidths[1], $cornersWidths[2], $cornersWidths[3]);
-			$data[] = $corners;
-		}
-		if ($homeOffside != "") {
-            $offsideWidths = $this->getBarWidths($homeOffside, $awayOffside, $homeColour, $awayColour);
-            $offside = array("Offsides", $homeOffside, $awayOffside, $offsideWidths[0], $offsideWidths[1], $offsideWidths[2], $offsideWidths[3]);
-			$data[] = $offside;
-		}		
-		if ($homeSaves != "") {
-            $savesWidths = $this->getBarWidths($homeSaves, $awaySaves, $homeColour, $awayColour);
-            $saves = array("Saves", $homeSaves, $awaySaves, $savesWidths[0], $savesWidths[1], $savesWidths[2], $savesWidths[3]);
-			$data[] = $saves;
-		}
-		if ($homeYellowCards != "") {
-            $yellowCardsWidths = $this->getBarWidths($homeYellowCards, $awayYellowCards, $homeColour, $awayColour);
-            $yellow_cards = array("Yellow Cards", $homeYellowCards, $awayYellowCards, $yellowCardsWidths[0], $yellowCardsWidths[1], $yellowCardsWidths[2], $yellowCardsWidths[3]);
-			$data[] = $yellow_cards;
-		}
-		if ($homeRedCards != "") {
-            $redCardsWidths = $this->getBarWidths($homeRedCards, $awayRedCards, $homeColour, $awayColour);
-            $red_cards = array("Red Cards", $homeRedCards, $awayRedCards, $redCardsWidths[0], $redCardsWidths[1], $redCardsWidths[2], $redCardsWidths[3]);
-			$data[] = $red_cards;
-		}
+
+		$stat = $this->getStatBar("Shots At Goal", "shots", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Shots On Target", "on_target", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Possession", "possession", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Territorial Advantage", "ta", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Fouls", "fouls", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Corners", "corners", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Offsides", "offside", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Saves", "saves", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Yellow Cards", "yellow_cards", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
+        $stat = $this->getStatBar("Red Cards", "red_cards", $stats);
+        if (sizeof($stat) > 0) {
+            $data[] = $stat;
+        }
 
 		return $data;
 	}
 	
 	/**
-	 * Calculate the widths and get the colours of the bars
+	 * Generate the bars for the extra stats
 	 *
+     * @param string $text
+     * @param string $field
+     * @param Collection $data
+     * @return array
 	 */
-	function getBarWidths($homeValue, $awayValue, $homeColour, $awayColour)
-	{
-		$homeWidth = 0;
-		$awayWidth = 0;
-		$homeZeroWidth = 0;
-		$awayZeroWidth = 0;
-	
-		$totalCount = $homeValue + $awayValue;
-	
-		if ($totalCount == 0){
-			$homeWidth = 150;
-			$awayWidth = 150;
-		}
-		else{
-			if ($homeValue == 0){
-				$homeColour = $awayColour;
-				$homeWidth = 150;
-				$awayWidth = 150;
-			}
-			else if ($awayValue == 0){
-				$awayColour = $homeColour;
-				$homeWidth = 150;
-				$awayWidth = 150;
-			}
-			else{
-				$homeWidth = round((300 * $homeValue / $totalCount),0);
-				$awayWidth = 300 - $homeWidth;
-			}
-		}
-		
-		return array($homeWidth, $awayWidth, $homeColour, $awayColour);
-	}
+    public function getStatBar(string $text, string $field, Collection $data): array
+    {
+        $homeValue = $data[0]->{$field};
+        $awayValue = $data[1]->{$field};
+
+        if (!is_numeric($homeValue) || !is_numeric($awayValue)) {
+            return array();
+        }
+
+        $homeWidth = 0;
+        $awayWidth = 0;
+
+        $totalCount = $homeValue + $awayValue;
+
+        $homeColour = strtolower($data[0]->colour);
+        $awayColour = strtolower($data[1]->colour);
+
+        if ($totalCount == 0){
+            $homeWidth = 150;
+            $awayWidth = 150;
+        }
+        else{
+            if ($homeValue == 0){
+                $homeColour = $awayColour;
+                $homeWidth = 150;
+                $awayWidth = 150;
+            }
+            else if ($awayValue == 0){
+                $awayColour = $homeColour;
+                $homeWidth = 150;
+                $awayWidth = 150;
+            }
+            else{
+                $homeWidth = round((300 * $homeValue / $totalCount),0);
+                $awayWidth = 300 - $homeWidth;
+            }
+        }
+
+        return array($text, $data[0]->{$field}, $data[1]->{$field}, $homeWidth, $awayWidth, $homeColour, $awayColour);
+    }
 
 	/**
 	 * Get competition match round table
 	 *
-	 * @return object
+	 * @return array
 	 */
-	public function getMatchRoundTable()
+	public function getMatchRoundTable(): array
 	{
 		$tableData = array();
 
@@ -1421,9 +1398,12 @@ class Match extends Model
 	/**
 	 * Compare group of teams in a table in a particular competition
 	 *
-	 * @return $tableData array
+     * @param Collection $teams
+     * @param CompetitionTable $competitionTable
+     * @param Collection $allTeams
+	 * @return array
 	 */	
-	function getTableData($teams, $competitionTable, $allTeams) 
+	function getTableData(Collection $teams, CompetitionTable $competitionTable, Collection $allTeams): array
 	{
 		
 		// Get Ids of every team in group
@@ -1555,8 +1535,12 @@ class Match extends Model
 	
 	/**
 	 * Sort teams by goal difference
+     *
+     * @param array $a
+     * @param array $b
+     * @return int
 	*/
-	function sortByGoalDifference($a, $b) 
+	function sortByGoalDifference(array $a, array $b): int
 	{
 		$points = $b[7] - $a[7];
 		if ($points == 0){
@@ -1597,7 +1581,7 @@ class Match extends Model
 	 *
 	 * @return array
 	 */
-	public function getMatchRoundResults()
+	public function getMatchRoundResults(): array
 	{
         $competitionTable = CompetitionTable::where('competition_id', '=', $this->competition->id)->where('round_id', '=', $this->competitionRound->id)->firstOrFail();
 		$results = TableResult::join('competitiontables', 'competitiontables.id', '=', 'tableresults.competition_table_id')
@@ -1628,9 +1612,9 @@ class Match extends Model
 	/**
 	 * Get Strip Info for a match
 	 *
-	 * @return string
+	 * @return bool
 	 */
-	public function getStripInfo()
+	public function getStripInfo(): bool
 	{
 		if ($this->strips()->first()->match_note != "") {
 			return true;	
@@ -1647,7 +1631,7 @@ class Match extends Model
 	 * @param  string  $parameters  The search parameters in a querystring 
 	 * @return  array
 	 */
-    public function getSearchParameters($parameters)
+    public function getSearchParameters(string $parameters): array
     {
 		$data = array();
 		
@@ -1707,10 +1691,10 @@ class Match extends Model
     /**
      * Get the match record numbers
      *
-     * @param $results
-     * @return array $matchNumbers
+     * @param Builder $results
+     * @return array
      */
-    public function getMatchRecordNumbers($results)
+    public function getMatchRecordNumbers(Builder $results): array
     {
         // Match Numbers
         $for = 0;

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -48,14 +49,14 @@ class CompetitionType extends Model
      *
      * @return string
      */
-    public function getYearsAttribute()
+    public function getYearsAttribute(): string
     {
         $competitions = $this->competitions()
             ->select(DB::Raw('MAX(year) as max_year'), DB::Raw('MIN(year) as min_year'))
             ->firstOrFail();
 
         if ($competitions->min_year == $competitions->max_year) {
-            return $competitions->min_year;
+            return (string) $competitions->min_year;
         }
         else {
             return $competitions->min_year . " - " . $competitions->max_year;
@@ -67,7 +68,7 @@ class CompetitionType extends Model
      *
      * @return array
      */
-    public function getMatchNumbersAttribute()
+    public function getMatchNumbersAttribute(): array
     {
         if ($this->status == "C") {
 
@@ -156,7 +157,7 @@ class CompetitionType extends Model
      *
      * @return string
      */
-    public function getHonoursAttribute()
+    public function getHonoursAttribute(): string
     {
         $competitions = $this->competitions()
             ->where(function ($q) {
@@ -198,9 +199,9 @@ class CompetitionType extends Model
     /**
      * Get competition honours count
      *
-     * @return string
+     * @return int
      */
-    public function getHonoursCountAttribute()
+    public function getHonoursCountAttribute(): int
     {
         $competitions = $this->competitions()
             ->where(function ($q) {

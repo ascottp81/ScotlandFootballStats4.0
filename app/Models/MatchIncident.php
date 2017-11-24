@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -57,7 +58,7 @@ class MatchIncident extends Model
      *
      * @return string
      */
-    public function getTeamAttribute()
+    public function getTeamAttribute(): string
     {
         if ($this->team_id == 0) {
             return "Scotland";
@@ -73,7 +74,7 @@ class MatchIncident extends Model
      *
      * @return string
      */
-    public function getFlagAttribute()
+    public function getFlagAttribute(): string
     {
         if ($this->team_id == 0) {
             return "scotland";
@@ -89,7 +90,7 @@ class MatchIncident extends Model
      *
      * @return string
      */
-    public function getScorelineAttribute()
+    public function getScorelineAttribute(): string
     {
         $scotlandScored = MatchIncident::where('match_id', '=', $this->match_id)->where('team_id', '=', '0')->where('minute', '<=', $this->minute)->whereIn('incident_type_id', array(1,2,3))->count();
         $opponentScored = MatchIncident::where('match_id', '=', $this->match_id)->where('team_id', '<>', '0')->where('minute', '<=', $this->minute)->whereIn('incident_type_id', array(1,2,3))->count();

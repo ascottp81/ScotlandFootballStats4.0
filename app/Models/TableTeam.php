@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -68,7 +69,7 @@ class TableTeam extends Model
      *
      * @return string
      */
-    public function getTeamAttribute()
+    public function getTeamAttribute(): string
     {
         if ($this->team_id == 0) {
             return "SCOTLAND";
@@ -84,7 +85,7 @@ class TableTeam extends Model
      *
      * @return string
      */
-    public function getShortTeamAttribute()
+    public function getShortTeamAttribute(): string
     {
         if ($this->team_id == 0) {
             return "SCOTLAND";
@@ -100,13 +101,13 @@ class TableTeam extends Model
      *
      * @return string
      */
-    public function getGoalDifferenceAttribute()
+    public function getGoalDifferenceAttribute(): string
     {
         $gd = $this->for - $this->against;
         if ($gd > 0) {
             $gd = "+" . $gd;
         }
-        return $gd;
+        return (string) $gd;
     }
 
     /**
@@ -114,7 +115,7 @@ class TableTeam extends Model
      *
      * @return string
      */
-    public function getFlagAttribute()
+    public function getFlagAttribute(): string
     {
         if ($this->team_id == 0) {
             return "scotland";
@@ -131,7 +132,7 @@ class TableTeam extends Model
      *
      * @return string
      */
-    public function getTableLineAttribute()
+    public function getTableLineAttribute(): string
     {
         if ($this->top_place == 1 || $this->playoff == 1) {
             $nextRow = TableTeam::where('competition_table_id','=',$this->competition_table_id)->where('position','=',$this->position + 1)->first();

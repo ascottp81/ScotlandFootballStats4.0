@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -52,9 +53,9 @@ class PastEvent extends Model
     /**
      * Get an array of today's events
      *
-     * @return  $data array
+     * @return  array
      */
-    public function getTodayEvents()
+    public function getTodayEvents(): array
     {
         $data = array();
         $count = 0;

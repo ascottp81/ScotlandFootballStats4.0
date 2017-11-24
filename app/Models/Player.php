@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -104,7 +105,7 @@ class Player extends Model
 	 */
 	public function getGoalsAttribute(): int
 	{
-		return (int)$this->appearances()->sum('goals');
+		return (int) $this->appearances()->sum('goals');
 	}
 	
 	/**
@@ -114,7 +115,7 @@ class Player extends Model
 	 */
 	public function getPensAttribute(): int
 	{
-		return (int)$this->appearances()->sum('penalties');
+		return (int) $this->appearances()->sum('penalties');
 	}
 	
 	/**
@@ -140,7 +141,7 @@ class Player extends Model
 	public function getYearsAttribute(): string
 	{
 		if ($this->debut_year == $this->last_year) {
-			return $this->debut_year;	
+			return (string) $this->debut_year;
 		}
 		else {
 			return $this->debut_year . "-" . $this->last_year;	
@@ -161,7 +162,7 @@ class Player extends Model
             ->limit(1)
             ->firstOrFail();
 
-        return (int)date('Y', strtotime($player->date));
+        return (int) date('Y', strtotime($player->date));
     }
 	
 	/**
@@ -337,9 +338,9 @@ class Player extends Model
     /**
      * Get the recent top scorers
      *
-     * @return object
+     * @return Collection
      */
-    public function getRecentTopScorers()
+    public function getRecentTopScorers(): Collection
     {
         $topScorers = Player::join('appearances','appearances.player_id','=','players.id')
             ->join('matches','matches.id','=','appearances.match_id')
@@ -359,9 +360,9 @@ class Player extends Model
     /**
      * Get the recent top scorers
      *
-     * @return object
+     * @return Collection
      */
-    public function getRecentTopAppearances()
+    public function getRecentTopAppearances(): Collection
     {
         $topAppearances = Player::join('appearances','appearances.player_id','=','players.id')
             ->join('matches','matches.id','=','appearances.match_id')

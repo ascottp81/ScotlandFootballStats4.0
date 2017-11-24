@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -57,7 +58,7 @@ class Opponent extends Model
      *
      * @return string
      */
-    public function getFlagAttribute()
+    public function getFlagAttribute(): string
     {
         return strtolower(str_replace(" ", "_", $this->name));
     }
@@ -67,7 +68,7 @@ class Opponent extends Model
      *
      * @return string
      */
-    public function getImageAttribute()
+    public function getImageAttribute(): string
     {
         $gettyImage = new GettyImage($this->getty_image, 2);
 

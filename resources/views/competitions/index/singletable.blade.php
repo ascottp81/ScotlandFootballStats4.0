@@ -54,12 +54,14 @@
     </div>
 
     <div class="competitionVersionRight" id="competitionTables">
+        @if ($tables[0]->competitionRound->name != "None")
         <ul>
             @foreach ($tables as $table)
-                <li><a href="#table{{ $table->id }}" class="tabLink">{{ $table->competitionRound->name }}</a></li>
+            <li><a href="#table{{ $table->id }}" class="tabLink">{{ $table->competitionRound->name }}</a></li>
             @endforeach
         </ul>
         <div class="tabFiller tab{{ 3 - sizeof($tables) }}"></div>
+        @endif
         @foreach ($tables as $table)
         <div id="table{{ $table->id }}">
             <div class="competitionTable">

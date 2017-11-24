@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -43,7 +44,5 @@ class CompetitionRound extends Model
     {
         return $this->hasMany('App\Models\CompetitionTable');
     }
-
-
 
 }

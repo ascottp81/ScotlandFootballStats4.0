@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -87,76 +88,84 @@ class CompetitionTable extends Model
     /* ACCESSORS */
 
     /**
-     * Get the home table fixtures
+     * Get the home table fixtures, or results if there are no fixtures
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return array
      */
-    public function getHomeTableFixturesAttributes()
+    public function getTableFixturesResultsAttribute(): array
     {
-        $round1 = 0;
-        $round2 = 0;
-
-        $nextFixture = CompetitionTable::where('home', '=', '1')->results()
-            ->where('date', '>=', Carbon::now())
-            ->orderBy('date', 'ASC')
-            ->limit(1)
-            ->get();
-
-        foreach ($nextFixture as $fix) {
-            $round1 = $fix->match_round;
-            $round2 = ($fix->match_round) + 1;
+        // Show fixtures or results if group stage is complete
+        $showFixtures = false;
+        $lastRound = TableResult::where('competition_table_id', $this->id)->orderBy('match_date','desc')->firstOrFail();
+        if ($lastRound->match_date >= date('Y-m-d', strtotime("now"))) {
+            $showFixtures = true;
         }
 
-        return $this->results()->whereIn('match_round',array($round1, $round2))->orderBy('date', 'asc')->get();
-    }
+        // Get Match Round number of fixtures or results
+        $data = array();
+        if ($showFixtures) {
+            $nextRound = TableResult::where('competition_table_id', $this->id)
+                ->where('match_date','>=',date('Y-m-d', strtotime("now")))
+                ->orderBy('match_date','asc')
+                ->firstOrFail()
+                ->match_round;
 
-    /**
-     * Get the home table results
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getHomeTableResultsAttributes()
-    {
-        $round1 = 0;
-        $round2 = 0;
+            // Get next 2 rounds fixtures
+            $tableFixtures = TableResult::where('competition_table_id', $this->id)
+                ->whereIn('match_round', array($nextRound, $nextRound + 1))
+                ->orderBy('match_date','asc')
+                ->get();
 
-        $lastResult = CompetitionTable::where('home', '=', '1')->results()
-            ->where('date', '<=', Carbon::now())
-            ->orderBy('date', 'DESC')
-            ->limit(1)
-            ->get();
-
-        foreach ($lastResult as $res) {
-            $round1 = $res->match_round;
-            $round2 = ($res->match_round) - 1;
-        }
-
-        return $this->results()->whereIn('match_round',array($round1, $round2))->orderBy('match_date', 'desc')->get();
-    }
-
-    /**
-     * Determine if the home table is complete
-     *
-     * @return boolean
-     */
-    public function getCompleteAttribute()
-    {
-        $lastResult = CompetitionTable::where('home', '=', '1')->results()->orderBy('date', 'DESC')->firstOrFail();
-
-        if ($lastResult->date >= Carbon::now()) {
-            return true;
+            $lastDate = "";
+            foreach ($tableFixtures as $fixture) {
+                $matchdate = $fixture->match_date->format('j F Y');
+                if ($lastDate == $matchdate) {
+                    $date = "";
+                }
+                else {
+                    $date = $matchdate;
+                }
+                $data[] = ["date" => $date, "fixture" => $fixture->short_fixture];
+                $lastDate = $matchdate;
+            }
         }
         else {
-            return false;
+            $lastRound = TableResult::where('competition_table_id', $this->id)
+                ->where('match_date','<',date('Y-m-d', strtotime("now")))
+                ->orderBy('match_date','desc')
+                ->firstOrFail()
+                ->match_round;
+
+            // Get last 2 rounds results
+            $tableResults = TableResult::where('competition_table_id', $this->id)
+                ->whereIn('match_round', array($lastRound, $lastRound - 1))
+                ->orderBy('match_date','desc')
+                ->get();
+
+            $lastDate = "";
+            foreach ($tableResults as $result) {
+                $matchdate = $result->match_date->format('j F Y');
+                if ($lastDate == $matchdate) {
+                    $date = "";
+                }
+                else {
+                    $date = $matchdate;
+                }
+                $data[] = ["date" => $date, "fixture" => $result->short_result];
+                $lastDate = $matchdate;
+            }
         }
+
+        return $data;
     }
 
+
     /**
-     * Determine if the table matches are fixtures and/or results
+     * Get the text for the table to state fixtures and/or results
      *
-     * @return boolean
+     * @return string
      */
-    public function getFixtureResultTextAttribute()
+    public function getFixtureResultTextAttribute(): string
     {
         if ($this->results()->count() > 0) {
             $firstDate = $this->results()->orderBy('match_date','asc')->first()->date;
@@ -183,14 +192,18 @@ class CompetitionTable extends Model
      *
      * @return string
      */
-    public function getGroupNameAttribute($value)
+    public function getGroupNameAttribute($value): string
     {
         $round = $this->competitionRound()->first()->name;
 
         if ($round != "None" && $this->competition->type->status == "F") {
             return $round . " - " . $value;
         }
-
-        return $value;
+        elseif ($this->competition->type->status == "C") {
+            return $value;
+        }
+        else {
+            return "";
+        }
     }
 }

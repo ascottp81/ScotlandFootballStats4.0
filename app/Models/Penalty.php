@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -69,7 +70,7 @@ class Penalty extends Model
      *
      * @return string
      */
-    public function getFirstTeamAttribute()
+    public function getFirstTeamAttribute(): string
     {
         $penalty = Penalty::where('match_id', '=', $this->match_id)->where('penalty_no', '=', '1')->firstOrFail();
 
@@ -87,7 +88,7 @@ class Penalty extends Model
      *
      * @return string
      */
-    public function getScorelineAttribute()
+    public function getScorelineAttribute(): string
     {
         $scotlandScored = Penalty::where('match_id', '=', $this->match_id)->where('team_id', '=', '0')->where('penalty_no', '<=', $this->penalty_no)->where('result', '=', 'scored')->count();
         $opponentScored = Penalty::where('match_id', '=', $this->match_id)->where('team_id', '<>', '0')->where('penalty_no', '<=', $this->penalty_no)->where('result', '=', 'scored')->count();
@@ -103,9 +104,9 @@ class Penalty extends Model
     /**
      * Is Scotland the away team and take the first penalty
      *
-     * @return string
+     * @return bool
      */
-    public function getScotlandFirstAttribute()
+    public function getScotlandFirstAttribute(): bool
     {
         if ($this->first_team == "Scotland") {
             return true;
@@ -118,9 +119,9 @@ class Penalty extends Model
     /**
      * Is the opponent the away team and take the first penalty
      *
-     * @return string
+     * @return bool
      */
-    public function getOpponentFirstAttribute()
+    public function getOpponentFirstAttribute(): bool
     {
         if ($this->first_team == "Scotland") {
             return false;

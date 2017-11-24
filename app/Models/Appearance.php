@@ -1,11 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Carbon\Carbon;
 
 class Appearance extends Model
 {
@@ -91,24 +91,24 @@ class Appearance extends Model
 	 *
 	 * @return string
 	 */
-	public function getReplacedPlayerAttribute()
+	public function getReplacedPlayerAttribute(): string
 	{
 	    $appearance = Appearance::where('match_id', '=', $this->match_id)->where('shirt_no', '=', $this->replaced)->firstOrFail();
 	    return $appearance->player->fullname;
 	}
 	
 	/**
-	 * Get the substitute string who replaced this player
+	 * Get the substitute who replaced this player, for the Scotland team string list
 	 *
 	 * @return string
 	 */
-	public function getSubstituteStringAttribute()
+	public function getSubstituteStringAttribute(): string
 	{
 		$substitute = "";
 
         $appearance = Appearance::where('match_id', '=', $this->match_id)->where('replaced', '=', $this->shirt_no);
 
-        if ($appearance->count()> 0) {
+        if ($appearance->count() > 0) {
             $appearance = $appearance->firstOrFail();
             $substitute = " (" . $appearance->player->short_name . " " . $appearance->player->minute . ")";
         }
@@ -121,7 +121,7 @@ class Appearance extends Model
 	 *
 	 * @return string
 	 */
-	public function getCapsAttribute()
+	public function getCapsAttribute(): string
 	{
 		$caps = Appearance::join('matches', 'matches.id', '=', 'appearances.match_id')
 			->select('match.date')
@@ -143,10 +143,10 @@ class Appearance extends Model
 	 *
 	 * @return string
 	 */
-	public function getAgeAttribute()
+	public function getAgeAttribute(): string
 	{
-		$age = intval(substr($this->match->date, 0, 4)) - intval(substr($this->player->date_of_birth, 0, 4));
-		if (substr($this->player->date_of_birth, 5) > substr($this->match->date, 5)) {
+		$age = intval($this->match->date->format('Y')) - intval($this->player->date_of_birth->format('Y'));
+		if ($this->player->date_of_birth->format('m-d') > $this->match->date->format('m-d')) {
 			$age--;	
 		}
 		
@@ -154,15 +154,15 @@ class Appearance extends Model
 			$age = "&mdash;";	
 		}
 		
-		return $age;
+		return (string) $age;
 	}
 
     /**
      * Determine if a player has an info tooltip for a match
      *
-     * @return string
+     * @return bool
      */
-    public function getPlayerInfoAttribute()
+    public function getPlayerInfoAttribute(): bool
     {
         $substituted = Appearance::where('match_id','=',$this->match_id)->where('replaced','=',$this->shirt_no)->count();
 

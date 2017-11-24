@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -55,7 +56,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getHomeTeamAttribute()
+    public function getHomeTeamAttribute(): string
     {
         if ($this->home_team_id == 0) {
             return "Scotland";
@@ -71,7 +72,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getAwayTeamAttribute()
+    public function getAwayTeamAttribute(): string
     {
         if ($this->away_team_id == 0) {
             return "Scotland";
@@ -87,7 +88,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getShortHomeTeamAttribute()
+    public function getShortHomeTeamAttribute(): string
     {
         if ($this->home_team_id == 0) {
             return "Scotland";
@@ -103,7 +104,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getShortAwayTeamAttribute()
+    public function getShortAwayTeamAttribute(): string
     {
         if ($this->away_team_id == 0) {
             return "Scotland";
@@ -120,7 +121,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getResultAttribute()
+    public function getResultAttribute(): string
     {
         return $this->home_team . " " . $this->home_goals . "-" . $this->away_goals . " " . $this->away_team;
     }
@@ -130,7 +131,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getShortResultAttribute()
+    public function getShortResultAttribute(): string
     {
         return $this->short_home_team . " " . $this->home_goals . "-" . $this->away_goals . " " . $this->short_away_team;
     }
@@ -141,7 +142,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getFixtureAttribute()
+    public function getFixtureAttribute(): string
     {
         return $this->home_team . " v " . $this->away_team;
     }
@@ -151,7 +152,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getShortFixtureAttribute()
+    public function getShortFixtureAttribute(): string
     {
         return $this->short_home_team . " v " . $this->short_away_team;
     }
@@ -161,7 +162,7 @@ class TableResult extends Model
      *
      * @return string
      */
-    public function getDateRowAttribute()
+    public function getDateRowAttribute(): string
     {
         // loop through each table result for the same table
         $results = TableResult::where('competition_table_id','=',$this->competition_table_id)->orderBy('match_date','asc')->get();
@@ -171,7 +172,7 @@ class TableResult extends Model
             // if the match date is different to the previous one,
             // assign the match date to the variable
             if ($result->match_date != $previousDate) {
-                $assignedDate = date_format(date_create($result->match_date), 'jS F Y');
+                $assignedDate = date_format($result->match_date, 'jS F Y');
             }
             // otherwise assign a blank string
             else {
@@ -194,7 +195,7 @@ class TableResult extends Model
      *
      * @return bool
      */
-    public function getLastMatchInDateAttribute()
+    public function getLastMatchInDateAttribute(): bool
     {
         // loop through each table result for the same table, in reverse
         $results = TableResult::where('competition_table_id','=',$this->competition_table_id)->orderBy('match_date','desc')->orderBy('id','desc')->get();
@@ -220,83 +221,5 @@ class TableResult extends Model
         }
 
         return false;
-    }
-
-
-
-    /* FUNCTIONS */
-
-    /**
-     * Get an array of home table fixtures and results
-     *
-     * @return  $data array
-     */
-    public function getHomeTableFixtures()
-    {
-        $homeTable = CompetitionTable::home()->firstOrFail();
-
-        // Show fixtures or results if group stage is complete
-        $showFixtures = false;
-        $lastRound = TableResult::where('competition_table_id', $homeTable->id)->orderBy('match_date','desc')->firstOrFail();
-        if ($lastRound->match_date >= date('Y-m-d', strtotime("now"))) {
-            $showFixtures = true;
-        }
-
-        // Get Match Round number of fixtures or results
-        $data = array();
-        if ($showFixtures) {
-            $nextRound = TableResult::where('competition_table_id', $homeTable->id)
-                ->where('match_date','>=',date('Y-m-d', strtotime("now")))
-                ->orderBy('match_date','asc')
-                ->firstOrFail()
-                ->match_round;
-
-            // Get next 2 rounds fixtures
-            $tableFixtures = TableResult::where('competition_table_id', $homeTable->id)
-                ->whereIn('match_round', array($nextRound, $nextRound + 1))
-                ->orderBy('match_date','asc')
-                ->get();
-
-            $lastDate = "";
-            foreach ($tableFixtures as $fixture) {
-                $matchdate = $fixture->match_date->format('j F Y');
-                if ($lastDate == $matchdate) {
-                    $date = "";
-                }
-                else {
-                    $date = $matchdate;
-                }
-                $data[] = ["date" => $date, "fixture" => $fixture->short_fixture];
-                $lastDate = $matchdate;
-            }
-        }
-        else {
-            $lastRound = TableResult::where('competition_table_id', $homeTable->id)
-                ->where('match_date','<',date('Y-m-d', strtotime("now")))
-                ->orderBy('match_date','desc')
-                ->firstOrFail()
-                ->match_round;
-
-            // Get last 2 rounds results
-            $tableResults = TableResult::where('competition_table_id', $homeTable->id)
-                ->whereIn('match_round', array($lastRound, $lastRound - 1))
-                ->orderBy('match_date','desc')
-                ->get();
-
-            $lastDate = "";
-            foreach ($tableResults as $result) {
-                $matchdate = $result->match_date->format('j F Y');
-                if ($lastDate == $matchdate) {
-                    $date = "";
-                }
-                else {
-                    $date = $matchdate;
-                }
-                $data[] = ["date" => $date, "fixture" => $result->short_result];
-                $lastDate = $matchdate;
-            }
-        }
-
-        return $data;
     }
 }

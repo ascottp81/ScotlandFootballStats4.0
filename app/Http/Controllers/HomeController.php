@@ -44,10 +44,8 @@ class HomeController extends Controller
 		
 		// Home Table
 		$homeTable = CompetitionTable::home()->firstOrFail();
-		$tableResult = new TableResult();
-		$homeTableFixtures = $tableResult->getHomeTableFixtures();
 										   
-		
+
 		// On this day
         $events = new PastEvent();
 		$events = $events->getTodayEvents();
@@ -62,7 +60,7 @@ class HomeController extends Controller
 		Session::put('MatchListUrl', '/recent-results');
 		Session::put('MatchList', "Recent Results");
 		
-        return view('home.index', compact('opponents','articles','news','video','recentResults','fixtures','homeTable','homeTableFixtures','events','metatitle','metadescription'));
+        return view('home.index', compact('opponents','articles','news','video','recentResults','fixtures','homeTable','events','metatitle','metadescription'));
     }
 
 
@@ -99,7 +97,7 @@ class HomeController extends Controller
         Session::put('MatchListUrl', '/recent-results/');
         Session::put('MatchList', "Recent Results");
 
-        return view('home/recentresults', compact('recentResults','topScorers','topAppearances','matchNumbers','opponents','articles','metatitle','metadescription'));
+        return view('home.recentresults', compact('recentResults','topScorers','topAppearances','matchNumbers','opponents','articles','metatitle','metadescription'));
     }
 
 
@@ -162,8 +160,6 @@ class HomeController extends Controller
 
         // Home Table
         $homeTable = CompetitionTable::home()->firstOrFail();
-        $tableResult = new TableResult();
-        $homeTableFixtures = $tableResult->getHomeTableFixtures();
 
 
         // On this day
@@ -176,7 +172,7 @@ class HomeController extends Controller
         $metadescription = strip_tags($article->content);
 
 
-        return view('home.article', compact('opponents','article','articles','homeTable','homeTableFixtures','events','metatitle','metadescription'));
+        return view('home.article', compact('opponents','article','articles','homeTable','events','metatitle','metadescription'));
     }
 
 

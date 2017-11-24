@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appearance;
-use App\Models\Club;
 use App\Models\Competition;
 use App\Models\CompetitionTable;
 use App\Models\CompetitionType;
-use App\Models\Manager;
 use App\Models\Match;
-use App\Models\Player;
-use App\Models\TableResult;
 use App\Models\Video;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Session;
 
 class CompetitionsController extends Controller

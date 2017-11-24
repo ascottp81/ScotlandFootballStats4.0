@@ -130,6 +130,7 @@
             <div class="extraStats">
                 <div class="extraStatsRow"><div class="extraStatsTitle">&nbsp;</div><div class="extraStatsTeamLeft">{{ $match->home_team }}</div><div class="extraStatsTeamRight">{{ $match->away_team }}</div></div>
                 @foreach ($match->getStats() as $row)
+                    @if (sizeof($row) > 0)
                     <div class="extraStatsRow">
                         <div class="extraStatsTitle">{{ $row[0] }}</div>
                         <div class="extraStatsBar">
@@ -137,6 +138,7 @@
                             <div class="extraStatsRight {{ $row[6] }}Back" style="width:{{ $row[4] }}px;">{{ $row[2] }}</div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
                 <div class="extraStatsRow"><div class="extraStatsFooter">Source: {{ $match->stats->first()->source }}</div></div>
             </div>

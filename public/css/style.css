@@ -1957,6 +1957,17 @@ img.tableFlag {
 	padding: 0;
 }
 
+/* styling before tabs load */
+#competitionTables ul {
+	list-style-type: none;
+	margin:0;
+	padding: 0;
+}
+#competitionTables ul li a {
+	float: left;
+	width: 196px;
+}
+
 .tabFiller {
 	height: 30px;
 	float: left;
@@ -2187,6 +2198,17 @@ img.tableFlag {
 }
 #matchDetails .ui-tabs-panel {
     padding: 0;
+}
+
+/* styling before tabs load */
+#matchDetails ul {
+	list-style-type: none;
+	margin:0;
+	padding: 0;
+}
+#matchDetails ul li a {
+	float: left;
+	width: 196px;
 }
 
 .tabLink {

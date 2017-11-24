@@ -127,7 +127,7 @@
                 @endforeach
             </div>
             <div class="homeGroupFixtures">
-                @foreach ($homeTableFixtures as $fixture)
+                @foreach ($homeTable->table_fixtures_results as $fixture)
                 @if ($fixture["date"] != "")
                 <div class="tableFixturesDate">{{ $fixture["date"] }}</div>
                 @endif

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -26,46 +27,6 @@ class Competition extends Model
 
 
     /* SCOPES */
-
-    /**
-     * Scope query for competitions won
-     *
-     * @param  $query
-     */
-    public function scopeWon($query)
-    {
-        $query->where('won','=','1');
-    }
-
-    /**
-     * Scope query for competitions shared
-     *
-     * @param  $query
-     */
-    public function scopeShared($query)
-    {
-        $query->where('shared','=','1');
-    }
-
-    /**
-     * Scope query for competitions qualified
-     *
-     * @param  $query
-     */
-    public function scopeQualified($query)
-    {
-        $query->where('qualified','=','1');
-    }
-
-    /**
-     * Scope query for competitions withdrawn from
-     *
-     * @param  $query
-     */
-    public function scopeWithdrew($query)
-    {
-        $query->where('withdrew','=','1');
-    }
 
     /**
      * Scope query for qualifers
@@ -120,7 +81,7 @@ class Competition extends Model
      */
     public function getCommentsAttribute(): array
     {
-        $comments = explode(".", $this->comment);
+        $comments = explode(".", (string) $this->comment);
 
         $commentItems = array();
         foreach ($comments as $comment) {
@@ -137,10 +98,10 @@ class Competition extends Model
      *
      * @return string
      */
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         if ($this->stage == "") {
-            return $this->year;
+            return (string) $this->year;
         }
         else {
             return $this->year . "-" . strtolower($this->stage);
@@ -152,10 +113,10 @@ class Competition extends Model
      *
      * @return string
      */
-    public function getTitleAttribute()
+    public function getTitleAttribute(): string
     {
         if ($this->stage == "") {
-            return $this->year;
+            return (string) $this->year;
         }
         else {
             return $this->year . " " . $this->stage;
@@ -167,7 +128,7 @@ class Competition extends Model
      *
      * @return string
      */
-    public function getClassAttribute()
+    public function getClassAttribute(): string
     {
         $class = "";
         if ($this->won == 1)
