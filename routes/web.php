@@ -42,8 +42,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/competitions/{url}', 'CompetitionsController@competitionindex');
     Route::get('/competitions/{type}/{url}', 'CompetitionsController@competition');
 
-    Route::get('/ajax/tooltip/{type}/{id}', 'PlayersController@playertooltip');
-    Route::get('/ajax/tooltip/{type}/{type_id}/{id}', 'PlayersController@matchtooltipx');
+    Route::get('/managers', 'ManagersController@index');
+    Route::get('/managers/{url}', 'ManagersController@manager');
 
 
 

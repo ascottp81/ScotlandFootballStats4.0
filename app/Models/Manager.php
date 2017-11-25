@@ -1,11 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Carbon\Carbon;
 use App\Classes\GettyImage;
 
 class Manager extends Model
@@ -32,6 +32,16 @@ class Manager extends Model
      */
     protected $dates = ['born'];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'caretaker' => 'boolean',
+        'appointed_first' => 'boolean'
+    ];
+
 
     /* RELATIONSHIPS */
 
@@ -53,7 +63,7 @@ class Manager extends Model
      *
      * @return string
      */
-    public function getFullnameAttribute()
+    public function getFullnameAttribute(): string
     {
         return $this->firstname . " " . $this->surname;
     }
@@ -63,7 +73,7 @@ class Manager extends Model
      *
      * @return string
      */
-    public function getExtendedFullnameAttribute()
+    public function getExtendedFullnameAttribute(): string
     {
         if ($this->name_extension == NULL) {
             return $this->fullname;
@@ -77,11 +87,21 @@ class Manager extends Model
     }
 
     /**
-     * Get the player Getty Image
+     * Get fullname in a sort format
      *
      * @return string
      */
-    public function getImageAttribute()
+    public function getFullnameSortAttribute(): string
+    {
+        return $this->surname . ", " . $this->firstname;
+    }
+
+    /**
+     * Get the manager Getty Image
+     *
+     * @return string
+     */
+    public function getImageAttribute(): string
     {
         $image = $this->getty_image;
         $gettyImage = new GettyImage($image, 0);
@@ -98,14 +118,57 @@ class Manager extends Model
      *
      * @return string
      */
-    public function getYearsAttribute()
+    public function getYearsAttribute(): string
     {
         if ($this->from == $this->to) {
-            return $this->from;
+            return (string) $this->from;
         }
         else {
             return $this->from . "-" . $this->to;
         }
+    }
+
+    /**
+     * Get manager's match count
+     *
+     * @return int
+     */
+    public function getMatchCountAttribute(): int
+    {
+        return Match::where('manager_id','=',$this->id)->count();
+    }
+
+    /**
+     * Get manager's earliest match date
+     *
+     * @return string
+     */
+    public function getMinDateAttribute(): string
+    {
+        return Match::where('manager_id','=',$this->id)->orderBy('date','asc')->firstOrFail()->date->format('Y-m-d');
+    }
+
+    /**
+     * Get manager's latest match date
+     *
+     * @return string
+     */
+    public function getMaxDateAttribute(): string
+    {
+        return Match::where('manager_id','=',$this->id)->orderBy('date','desc')->firstOrFail()->date->format('Y-m-d');
+    }
+
+    /**
+     * Get manager's win percentage
+     *
+     * @return string
+     */
+    public function getWinPercentageAttribute(): string
+    {
+        $wins = Match::where('manager_id','=',$this->id)->won()->count();
+        $number = 100 * $wins / $this->match_count;
+
+        return number_format((float)$number, 2, '.', '');
     }
 
 
@@ -114,7 +177,7 @@ class Manager extends Model
      *
      * @return string
      */
-    public function getPastEventAttribute()
+    public function getPastEventAttribute(): string
     {
         return $this->fullname . " was born on this day in " . $this->birthplace . ".";
     }
