@@ -211,28 +211,6 @@ function SetupPlayerTooltip(){
             style: { classes: 'playerTooltip' }
         });
     });
-
-	/*$('.icon').each(function() {
-		$(this).qtip({
-			content: {
-				url: '/ajax/tooltip/' + $(this).data('type') + '/' + $(this).data('id')
-			},
-			position: {
-				corner: {
-					target: 'rightMiddle',
-					tooltip: 'leftTop'
-				}
-			},
-			show: 'mouseover',
-			hide: 'mouseout',
-			style: {
-				tip: {corner: 'leftTop', color: '#FFFFFF'},
-				width: 210,
-				backgroundColor: '#000066',
-				border: {width: 1, color: '#FFFFFF'}
-			}
-		});
-	});*/
 }
 
 /* ====================================== Competition Tooltip ========================================= */
@@ -249,53 +227,33 @@ function SetupCompetitionTooltip(){
             style: { classes: 'playerTooltip' }
         });
     });
-
-
-	/*$('.icon1').each(function() {
-        $(this).qtip({
-			content: '<div class="tooltipText">' + $(this).data("summary") +  '</div>',
-			position: {
-				corner: {
-					target: 'rightMiddle',
-					tooltip: 'leftTop'
-				}
-			},
-			show: 'mouseover',
-			hide: 'mouseout',
-			style: {
-				tip: {corner: 'leftTop', color: '#FFFFFF'},
-				width: 210,
-				backgroundColor: '#000066',
-				border: {width: 1, color: '#FFFFFF'}
-			}
-		})
-	}); */
 }
 
 /* ====================================== Strip Details Tooltip ========================================= */
 
 function SetupStripTooltip(){
+    // http://qtip2.com/
     $('.stripIcon').each(function() {
         $(this).qtip({
             content: {
-                url: '/ajax/strip-tooltip/' + $(this).attr('id')
-            },
-            position: {
-                corner: {
-                    target: 'leftMiddle',
-                    tooltip: 'rightMiddle'
+                text: function (event, api) {
+                    $.ajax({
+                        url: '/strips/tooltip/matches/' + $(this).attr('id')
+                    })
+                        .then(function(content) {
+                            // Set the tooltip content upon successful retrieval
+                            api.set('content.text', content);
+                        }, function(xhr, status, error) {
+                            // Upon failure... set the tooltip content to error
+                            api.set('content.text', status + ': ' + error);
+                        });
+                    return '';
                 }
             },
-            show: 'mouseover',
-            hide: 'mouseout',
-            style: {
-                tip: {corner: 'rightMiddle', color: '#000066'},
-                width: 200,
-                backgroundColor: '#000066',
-                border: { width: 0 }
-            }
-        })
-    });    
+            position: { my: 'rightMiddle', at: 'leftMiddle' },
+            style: { classes: 'matchTooltip' }
+        });
+    });
 }
 
 /* ======================================= Contact Us =========================================== */
@@ -330,7 +288,7 @@ function sendMessage() {
 		}
 		
 		if (valid) {
-			$.post( "/ajax/email", { email: $("#email").val(), subject: $("#subject").val(), message: $("#message").val(), _token: $("input[name=_token]").val() })
+			$.post( "/email", { email: $("#email").val(), subject: $("#subject").val(), message: $("#message").val(), _token: $("input[name=_token]").val() })
 			.done(function( data ) {
 				$("#clear").click();
 				$(".contactSuccess").html("Your message has been sent.");

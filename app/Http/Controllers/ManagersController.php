@@ -45,12 +45,12 @@ class ManagersController extends Controller
         // Match Records
         $match = new Match();
         $managerMatches = Match::managerId($manager->id);
-        $matchNumbers = $match->getMatchRecordNumbers($managerMatches);
-        $homeMatchNumbers = $match->getMatchRecordNumbers($managerMatches->home());
-        $awayMatchNumbers = $match->getMatchRecordNumbers($managerMatches->awayNeutral());
-        $matchNumbersComp = $match->getMatchRecordNumbers($managerMatches->competitive());
-        $homeMatchNumbersComp = $match->getMatchRecordNumbers($managerMatches->competitive()->home());
-        $awayMatchNumbersComp = $match->getMatchRecordNumbers($managerMatches->competitive()->awayNeutral());
+        $matchNumbers = $match->getMatchRecordNumbers(with(clone $managerMatches));
+        $homeMatchNumbers = $match->getMatchRecordNumbers(with(clone $managerMatches)->home());
+        $awayMatchNumbers = $match->getMatchRecordNumbers(with(clone $managerMatches)->awayNeutral());
+        $matchNumbersComp = $match->getMatchRecordNumbers(with(clone $managerMatches)->competitive());
+        $homeMatchNumbersComp = $match->getMatchRecordNumbers(with(clone $managerMatches)->competitive()->home());
+        $awayMatchNumbersComp = $match->getMatchRecordNumbers(with(clone $managerMatches)->competitive()->awayNeutral());
 
 
         // Meta data

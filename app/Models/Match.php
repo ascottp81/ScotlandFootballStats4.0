@@ -438,7 +438,7 @@ class Match extends Model
 	 *
 	 * @return string
 	 */
-	public function getSitemapScorelineAttribute()
+	public function getSitemapScorelineAttribute(): string
 	{
 		return $this->short_scoreline . ", " . $this->date->format('Y');
 	}
@@ -1606,22 +1606,6 @@ class Match extends Model
         }
 
 		return $data;
-	}	
-
-	
-	/**
-	 * Get Strip Info for a match
-	 *
-	 * @return bool
-	 */
-	public function getStripInfo(): bool
-	{
-		if ($this->strips()->first()->match_note != "") {
-			return true;	
-		}
-		else {
-			return false;
-		}
 	}
 
 

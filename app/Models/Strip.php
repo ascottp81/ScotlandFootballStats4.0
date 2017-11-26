@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -39,26 +40,6 @@ class Strip extends Model
     }
 
     /**
-     * Scope query for away strips
-     *
-     * @param  $query
-     */
-    public function scopeAway($query)
-    {
-        $query->where('type','=','Away');
-    }
-
-    /**
-     * Scope query for third strips
-     *
-     * @param  $query
-     */
-    public function scopeThird($query)
-    {
-        $query->where('type','=','Third');
-    }
-
-    /**
      * Scope query for away and third strips
      *
      * @param  $query
@@ -72,23 +53,23 @@ class Strip extends Model
     /* RELATIONSHIPS */
 
     /**
-     * A strip belongs to a video
+     * A strip has many videos
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function video()
     {
-        return $this->belongsTo('App\Models\Video', 'video_id');
+        return $this->hasMany('App\Models\Video', 'video_id');
     }
 
     /**
-     * A strip match belongs to a strip
+     * A strip has many matches
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function matches()
     {
-        return $this->belongsTo('App\Models\StripMatch', 'strip_id');
+        return $this->hasMany('App\Models\StripMatch', 'strip_id');
     }
 
 
@@ -100,7 +81,7 @@ class Strip extends Model
      *
      * @return string
      */
-    public function getTitleAttribute()
+    public function getTitleAttribute(): string
     {
         return $this->type . " (" . $this->year_from . (($this->year_from != $this->year_to)? '-' . $this->year_to : '') . ")";
     }
@@ -110,7 +91,7 @@ class Strip extends Model
      *
      * @return string
      */
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return strtolower($this->type) . '-' . $this->year_from;
     }
@@ -120,7 +101,7 @@ class Strip extends Model
      *
      * @return string
      */
-    public function getImageAttribute()
+    public function getImageAttribute(): string
     {
         $gettyImage = new GettyImage($this->getty_image, 1);
 

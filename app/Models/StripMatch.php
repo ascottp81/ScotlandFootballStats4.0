@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -45,5 +46,23 @@ class StripMatch extends Model
     public function strip()
     {
         return $this->belongsTo('App\Models\Strip', 'strip_id');
+    }
+
+
+    /* ACCESSORS */
+
+    /**
+     * Get Strip Info for a match
+     *
+     * @return bool
+     */
+    public function getStripInfoAttribute(): bool
+    {
+        if ($this->match_note != "") {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

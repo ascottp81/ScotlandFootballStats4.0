@@ -52,5 +52,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/fifa-rankings/chart/{start}/{end}/{chart}', 'RankingsController@chart');
     Route::get('/fifa-rankings/date-range/{start}/{end}', 'RankingsController@dateRange');
 
+    Route::get('/strips', 'StripsController@index');
+    Route::get('/strips/{url}', 'StripsController@strip');
+    Route::get('/strips/tooltip/matches/{id}', 'StripsController@matchtooltip');
+
+    Route::get('/sitemap', 'OtherController@sitemap');
+    Route::get('/links', 'OtherController@links');
+    Route::get('/contact', 'OtherController@contact');
+    Route::post('/email', 'OtherController@email');
 
 });

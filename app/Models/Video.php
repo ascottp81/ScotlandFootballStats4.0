@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -44,9 +45,9 @@ class Video extends Model
     /**
      * Get the most recent video for the home page
      * 
-     * @return object
+     * @return Video
      */
-    public static function getHomeVideo()
+    public static function getHomeVideo(): Video
     {
 		if (config('app.livemedia')) {
 			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
@@ -75,10 +76,11 @@ class Video extends Model
 	
     /**
      * Get a mini video for the match details page
-     * 
-     * @return object
+     *
+     * @param int $match_id
+     * @return Video
      */
-    public static function getMiniMatchVideo($match_id)
+    public static function getMiniMatchVideo(int $match_id): Video
     {
 		if (config('app.livemedia')) {
 			$video = Video::where('match_id', '=', $match_id)->where('type_id','=','1')
@@ -100,10 +102,11 @@ class Video extends Model
 	
     /**
      * Get a large video for the match details page
-     * 
-     * @return object
+     *
+     * @param int $match_id
+     * @return Video
      */
-    public static function getMatchVideo($match_id)
+    public static function getMatchVideo(int $match_id): Video
     {
 		if (config('app.livemedia')) {
 			$video = Video::where('match_id', '=', $match_id)->where('type_id','=','1')
@@ -126,9 +129,9 @@ class Video extends Model
     /**
      * Get a random video for the competitions page
      * 
-     * @return object
+     * @return Video
      */
-    public static function getCompetitionsVideo()
+    public static function getCompetitionsVideo(): Video
     {
 		if (config('app.livemedia')) {
 			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
@@ -157,10 +160,11 @@ class Video extends Model
 
     /**
      * Get a random video for the competition type index page
-     * 
-     * @return object
+     *
+     * @param int $type_id
+     * @return Video
      */
-    public static function getCompetitionTypeVideo($type_id)
+    public static function getCompetitionTypeVideo(int $type_id): Video
     {
 		if (config('app.livemedia')) {
 			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
@@ -210,10 +214,11 @@ class Video extends Model
 	
     /**
      * Get a video for the competition page
-     * 
-     * @return object
+     *
+     * @param int $competition_id
+     * @return Video
      */
-    public static function getCompetitionVideo($competition_id)
+    public static function getCompetitionVideo(int $competition_id): Video
     {
 		if (config('app.livemedia')) {
 			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
@@ -267,44 +272,45 @@ class Video extends Model
 	
     /**
      * Get a video for the strip page
-     * 
-     * @return object
+     *
+     * @param int $strip_id
+     * @return Match
      */
-    public static function getStripVideo($strip_id)
+    public static function getStripVideo(int $strip_id): Match
     {
 		if (config('app.livemedia')) {
-			$video = Game::join('videos', 'videos.match_id', '=', 'games.id')
-				->join('stripmatchdetails','stripmatchdetails.match_id','=','games.id')
-				->select('videos.*', 'games.*')
+			$video = Match::join('videos', 'videos.match_id', '=', 'matches.id')
+				->join('stripmatchdetails','stripmatchdetails.match_id','=','matches.id')
+				->select('videos.*', 'matches.*')
 				->where('videos.youtube', '<>', '')
 				->where('type_id','=',1)
-				->where('shirt_id','=',$strip_id)
+				->where('strip_id','=',$strip_id)
 				->orderBy(DB::Raw('RAND()'))
 				->first();
 				
 			if (!$video) {
-				$video = Game::join('videos', 'videos.match_id', '=', 'games.id')
-					->join('competitions','competitions.id','=','games.competition_id')
-					->select('videos.*', 'games.*')
+				$video = Match::join('videos', 'videos.match_id', '=', 'matches.id')
+					->join('competitions','competitions.id','=','matches.competition_id')
+					->select('videos.*', 'matches.*')
 					->where('videos.youtube', '<>', '')
 					->where('type_id','=',1)
-					->orderBy('match_date','desc')
+					->orderBy('date','desc')
 					->first();
 			}
 		}
 		else {
-			$video = Game::join('videos', 'videos.match_id', '=', 'games.id')
-				->join('stripmatchdetails','stripmatchdetails.match_id','=','games.id')
-				->select('videos.*', 'games.*')
+			$video = Match::join('videos', 'videos.match_id', '=', 'matches.id')
+				->join('stripmatchdetails','stripmatchdetails.match_id','=','matches.id')
+				->select('videos.*', 'matches.*')
 				->where('type_id','=',1)
-				->where('shirt_id','=',$strip_id)
+				->where('strip_id','=',$strip_id)
 				->orderBy(DB::Raw('RAND()'))
 				->first();	
 				
 			if (!$video) {
-				$video = Game::join('videos', 'videos.match_id', '=', 'games.id')
-					->join('competitions','competitions.id','=','games.competition_id')
-					->select('videos.*', 'games.*')
+				$video = Match::join('videos', 'videos.match_id', '=', 'matches.id')
+					->join('competitions','competitions.id','=','matches.competition_id')
+					->select('videos.*', 'matches.*')
 					->where('type_id','=',1)
 					->orderBy('match_date','desc')
 					->first();
