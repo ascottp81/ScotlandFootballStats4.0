@@ -42,16 +42,15 @@ class ManagersController extends Controller
     {
         $manager = Manager::where('url','=',$url)->firstOrFail();
 
-        $matchList = Match::managerId($manager->id)->get();
-
         // Match Records
         $match = new Match();
-        $matchNumbers = $match->getMatchRecordNumbers(Match::managerId($manager->id));
-        $homeMatchNumbers = $match->getMatchRecordNumbers(Match::managerId($manager->id)->home());
-        $awayMatchNumbers = $match->getMatchRecordNumbers(Match::managerId($manager->id)->awayNeutral());
-        $matchNumbersComp = $match->getMatchRecordNumbers(Match::managerId($manager->id)->competitive());
-        $homeMatchNumbersComp = $match->getMatchRecordNumbers(Match::managerId($manager->id)->competitive()->home());
-        $awayMatchNumbersComp = $match->getMatchRecordNumbers(Match::managerId($manager->id)->competitive()->awayNeutral());
+        $managerMatches = Match::managerId($manager->id);
+        $matchNumbers = $match->getMatchRecordNumbers($managerMatches);
+        $homeMatchNumbers = $match->getMatchRecordNumbers($managerMatches->home());
+        $awayMatchNumbers = $match->getMatchRecordNumbers($managerMatches->awayNeutral());
+        $matchNumbersComp = $match->getMatchRecordNumbers($managerMatches->competitive());
+        $homeMatchNumbersComp = $match->getMatchRecordNumbers($managerMatches->competitive()->home());
+        $awayMatchNumbersComp = $match->getMatchRecordNumbers($managerMatches->competitive()->awayNeutral());
 
 
         // Meta data
@@ -62,6 +61,6 @@ class ManagersController extends Controller
         Session::put('MatchListUrl', $_SERVER['REQUEST_URI']);
         Session::put('MatchList', $manager->fullname);
 
-        return view('managers.manager', compact('manager','matchList','matchNumbers','homeMatchNumbers','awayMatchNumbers','matchNumbersComp','homeMatchNumbersComp','awayMatchNumbersComp','metatitle','metadescription'));
+        return view('managers.manager', compact('manager','matchNumbers','homeMatchNumbers','awayMatchNumbers','matchNumbersComp','homeMatchNumbersComp','awayMatchNumbersComp','metatitle','metadescription'));
     }
 }

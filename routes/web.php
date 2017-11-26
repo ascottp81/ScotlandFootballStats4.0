@@ -45,6 +45,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/managers', 'ManagersController@index');
     Route::get('/managers/{url}', 'ManagersController@manager');
 
+    Route::get('/history', 'HistoryController@index');
+    Route::get('/history/{url}', 'HistoryController@chapter');
+
+    Route::get('/fifa-rankings', 'RankingsController@index');
+    Route::get('/fifa-rankings/chart/{start}/{end}/{chart}', 'RankingsController@chart');
+    Route::get('/fifa-rankings/date-range/{start}/{end}', 'RankingsController@dateRange');
 
 
 });

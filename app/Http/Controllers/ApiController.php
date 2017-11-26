@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Opponent;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
     /**
      * List all of the opponents
      *
-     * @return JSON
+     * @return JsonResponse
      */
-    public function opponents()
+    public function opponents(): JsonResponse
     {
         $output = Opponent::orderBy('name','asc')->get(['id', 'name', 'abbr_name']);
         return response()->json($output, 201);

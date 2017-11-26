@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\Competition;
 use App\Models\CompetitionTable;
 use App\Models\Match;
 use App\Models\News;
 use App\Models\Opponent;
 use App\Models\PastEvent;
 use App\Models\Player;
-use App\Models\TableResult;
 use App\Models\Video;
 
 use Illuminate\Support\Facades\Session;
@@ -179,9 +177,10 @@ class HomeController extends Controller
     /**
      * Show the match search page
      *
+     * @param string $parameters
      * @return \Illuminate\Http\Response
      */
-    public function matchsearch($parameters)
+    public function matchsearch(string $parameters)
     {
         $searchResults = Match::search($parameters)->orderBy("date")->get();
 

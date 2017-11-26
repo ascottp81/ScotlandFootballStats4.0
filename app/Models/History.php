@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -47,7 +49,7 @@ class History extends Model
      *
      * @return string
      */
-    public function getImageAttribute()
+    public function getImageAttribute(): string
     {
         $gettyImage = new GettyImage($this->getty_image, 0);
 
@@ -57,9 +59,10 @@ class History extends Model
     /**
      * Get the famous matches
      *
-     * @return \Illuminate\Support\Collection
+     * @param string $value
+     * @return Collection
      */
-    public function getFamousMatchesAttribute($value)
+    public function getFamousMatchesAttribute(string $value): Collection
     {
         $famousMatches = explode(",", $value);
 

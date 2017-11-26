@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -47,7 +48,7 @@ class HistoryPage extends Model
      *
      * @return string
      */
-    public function getImageAttribute()
+    public function getImageAttribute(): string
     {
         $gettyImage = new GettyImage($this->getty_image, 0);
 
