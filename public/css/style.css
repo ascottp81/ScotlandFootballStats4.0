@@ -69,7 +69,7 @@ a:hover{
 /* Flag in flag title */
 .flagTitle {
 	background-image: url(../img/flagtitle.gif);
-	background-repeat: none;
+	background-repeat: no-repeat;
 	float: right;
 	width: 45px;
 	height: 30px;
@@ -243,7 +243,6 @@ a:hover{
 }
 .header .flagTitle {
 	background-image: url(../img/headerflag.gif);
-	background-repeat: none;
 	float: right;
 	width: 91px;
 	height: 55px;
@@ -378,7 +377,6 @@ a:hover{
 	display: block;
 	padding: 10px;
 	width: 225px;
-	display: block;
 	float: left;
 	background:#000066;
 	background-image: linear-gradient(#000066, #000066, #0066FF);
@@ -854,7 +852,6 @@ table.dataTable .right {
 	clear: left;
 	width: 100%;
 	color: #fff;
-    float: left;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 15px;
     font-weight: bold;
@@ -872,7 +869,6 @@ table.dataTable .right {
 	clear: left;
 	width: 100%;
 	color: #fff;
-    float: left;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -1522,7 +1518,6 @@ table.dataTable tbody th.matchDetailsInfo, table.dataTable tbody td.matchDetails
     padding: 0;
     text-align: left;
     z-index: 2;
-    margin-top: 0px;
     margin-left: 0px;
     background-color: #0066FF;
 	height: 600px;
@@ -1686,33 +1681,6 @@ table.dataTable tbody th.matchDetailsInfo, table.dataTable tbody td.matchDetails
 /* ========================================= Competition Version Page ===================================== */
 
 
-.competitionScroller {
-	width: 1020px;
-	height: 40px;
-	float: left;
-	margin-bottom: 10px;
-	padding: 0 10px;
-}
-.competitionScroller ul {
-	width: 1000px;
-	height: 40px;
-	float: left;
-	margin: 0;
-	padding: 0;
-	color: #ffffff;
-    font: bold 14px Arial;
-    list-style: outside none none;
-}
-.competitionScroller ul li {
-	height: 40px;
-	line-height: 40px;
-	vertical-align: middle;
-	float: left;
-	padding-left: 15px;
-}
-.competitionScroller ul li:first-child {
-	padding-left: 0px;
-}
 .competitionVersionLeft {
 	width: 400px;
 	float: left;
@@ -1804,23 +1772,14 @@ img.tableFlag {
 	page-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
 }
-.groupResultsRound {
-	clear: left;
-	float: left;
-	width: 189px;
-	line-height: 16px;
-	padding-right: 10px;
-}
 .groupResultsDate {
 	font: normal normal normal 13px Arial, Helvetica, sans-serif;
 	color: #ff0;
 	padding-top: 12px;
-
 }
 .groupResultsMatch {
 	font: normal bold normal 13px Arial, Helvetica, sans-serif;
 	color: #fff;
-
 }
 
 .competitionResults {
@@ -2270,6 +2229,9 @@ img.tableFlag {
 .mdBasicDetails p.competition {
 	font-size: 16px;
 }
+.mdBasicDetails p.competition .round {
+	font-size: 14px;
+}
 .mdBasicDetails p.basicComment {
 	font-size: 12px;
 }
@@ -2561,45 +2523,46 @@ span.basicKeyItem {
 	margin-top: 10px;
 	padding-top: 0;
 }
+
 .whiteBack {
-    background-color: #FFFFFF;
-    color: #0000FF;
+	background-color: #FFFFFF;
+	color: #0000FF;
 }
 .blueBack {
-    background-color: #0000FF;
-    color: #FFFFFF;
+	background-color: #0000FF;
+	color: #FFFFFF;
 }
 .redBack {
-    background-color: #FF0000;
-    color: #FFFFFF;
+	background-color: #FF0000;
+	color: #FFFFFF;
 }
 .yellowBack {
-    background-color: #FFFF00;
-    color: #0000FF;
+	background-color: #FFFF00;
+	color: #0000FF;
 }
 .darkblueBack {
-    background-color: #0000FF;
-    color: #FFFFFF;
+	background-color: #0000FF;
+	color: #FFFFFF;
 }
 .orangeBack {
-    background-color: #FF9900;
-    color: #0000FF;
+	background-color: #FF9900;
+	color: #0000FF;
 }
 .greenBack {
-    background-color: #00FF00;
-    color: #0000FF;
+	background-color: #00FF00;
+	color: #0000FF;
 }
 .lightblueBack {
-    background-color: #00FFFF;
-    color: #0000FF;
+	background-color: #00FFFF;
+	color: #0000FF;
 }
 .blackBack {
-    background-color: #000000;
-    color: #FFFFFF;
+	background-color: #000000;
+	color: #FFFFFF;
 }
 .pinkBack {
-    background-color: #FF00FF;
-    color: #000000;
+	background-color: #FF00FF;
+	color: #000000;
 }
 
 
@@ -2721,7 +2684,7 @@ i.fa-futbol-o {
 .noFormation {
     font: italic normal bold 24px Arial;
     color: #000066;
-    border: 1px 1px 1px 1px;
+    border: 1px;
     display: block;
     width: 300px;
     height: 200px;

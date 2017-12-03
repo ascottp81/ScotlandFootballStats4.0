@@ -1,4 +1,6 @@
-<?php namespace App\Classes;
+<?php
+
+namespace App\Classes;
 
 class GettyImage {
 	
