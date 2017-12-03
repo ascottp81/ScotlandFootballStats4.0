@@ -30,8 +30,8 @@ class MatchController extends Controller
 		$dateParts = explode("-", $date);
 		$matchdate = $dateParts[2] . "-" . $dateParts[1] . "-" . $dateParts[0];
 		$match = Match::where('date', $matchdate)->firstOrFail();
-		$video = Video::getMiniMatchVideo($match->id);
-		$mainVideo = Video::getMatchVideo($match->id);
+		$video = $match->videos->first();
+        $videoDimensions = ["width" => "300px", "height" => "200px"];
 		
 		
 		// If no Session variables for match list, default to opponents list
@@ -45,7 +45,7 @@ class MatchController extends Controller
 		$metatitle = $match->scoreline . " " . $match->date->format("Y");
 		$metadescription = $match->meta_description;
 
-		return view('matchdetails.index', compact('match','video','mainVideo','metatitle','metadescription'));
+		return view('matchdetails.index', compact('match','video','videoDimensions','metatitle','metadescription'));
 	}
 			
 }

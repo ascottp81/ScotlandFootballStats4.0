@@ -49,6 +49,7 @@ class StripsController extends Controller
 			
 		// Video
 		$video = Video::getStripVideo($strip->id);
+        $videoDimensions = ["width" => "275px", "height" => "180px"];
 		
 		
 		// Meta data
@@ -59,7 +60,7 @@ class StripsController extends Controller
 		Session::put('MatchListUrl', $_SERVER['REQUEST_URI']);
 		Session::put('MatchList', $metatitle);
 
-		return view('strips.strip', compact('strip','video','metatitle','metadescription'));
+		return view('strips.strip', compact('strip','video','videoDimensions','metatitle','metadescription'));
 	}	
 	
 

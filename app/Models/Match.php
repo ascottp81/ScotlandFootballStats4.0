@@ -322,7 +322,12 @@ class Match extends Model
      */
     public function videos()
     {
-        return $this->hasMany('App\Models\Video', 'match_id');
+        if (config('app.livemedia')) {
+            return $this->hasMany('App\Models\Video', 'match_id')->where('type_id','=','1')->where('videos.youtube', '<>', '');
+        }
+        else {
+            return $this->hasMany('App\Models\Video', 'match_id')->where('type_id','=','1');
+        }
     }
 	
 	/**
@@ -1102,8 +1107,8 @@ class Match extends Model
     public function getEmptyTabsAttribute(): int
     {
         $emptyTabs = 0;
-        $mainVideo = Video::getMatchVideo($this->id);
-        if ($mainVideo->count() == 0) {
+        //$mainVideo = Video::getMatchVideo($this->id);
+        if ($this->videos->count() == 0) {
             $emptyTabs += 1;
         }
         if (!$this->summary && ($this->incidents->count() == 0 || config('app.livemedia'))) {

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -66,66 +67,10 @@ class Video extends Model
 				->orderBy('matches.date', 'DESC')
 				->firstOrFail();	
 		}
-			
-		$video['width'] = '270px';
-		$video['height'] = '200px';
-		$video['baseurl'] = config('app.url');
 
         return $video;
     }
-	
-    /**
-     * Get a mini video for the match details page
-     *
-     * @param int $match_id
-     * @return Video
-     */
-    public static function getMiniMatchVideo(int $match_id): Video
-    {
-		if (config('app.livemedia')) {
-			$video = Video::where('match_id', '=', $match_id)->where('type_id','=','1')
-				->where('videos.youtube', '<>', '');
-		}
-		else {
-			$video = Video::where('match_id', '=', $match_id)->where('type_id','=','1');	
-		}
-		
-		if ($video->count() > 0) {
-			$video = $video->firstOrFail();
-			$video['width'] = '300px';
-			$video['height'] = '200px';
-			$video['baseurl'] = config('app.url');
-		}
 
-        return $video;
-    }
-	
-    /**
-     * Get a large video for the match details page
-     *
-     * @param int $match_id
-     * @return Video
-     */
-    public static function getMatchVideo(int $match_id): Video
-    {
-		if (config('app.livemedia')) {
-			$video = Video::where('match_id', '=', $match_id)->where('type_id','=','1')
-				->where('videos.youtube', '<>', '');
-		}
-		else {
-			$video = Video::where('match_id', '=', $match_id)->where('type_id','=','1');	
-		}
-		
-		if ($video->count() > 0) {
-			$video = $video->firstOrFail();
-			$video['width'] = '710px';
-			$video['height'] = '423px';
-			$video['baseurl'] = config('app.url');
-		}
-
-        return $video;
-    }
-	
     /**
      * Get a random video for the competitions page
      * 
@@ -204,10 +149,6 @@ class Video extends Model
 				$video = $video->firstOrFail();
 			}
 		}
-			
-		$video['width'] = '255px';
-		$video['height'] = '191px';
-		$video['baseurl'] = config('app.url');
 
         return $video;
     }
@@ -261,10 +202,6 @@ class Video extends Model
 		else {
 			$video['count'] = 0;
 		}
-			
-		$video['width'] = '400px';
-		$video['height'] = '240px';
-		$video['baseurl'] = config('app.url');
 
         return $video;
     }
@@ -312,14 +249,10 @@ class Video extends Model
 					->join('competitions','competitions.id','=','matches.competition_id')
 					->select('videos.*', 'matches.*')
 					->where('type_id','=',1)
-					->orderBy('match_date','desc')
+					->orderBy('date','desc')
 					->first();
 			}
 		}
-			
-		$video['width'] = '275px';
-		$video['height'] = '180px';
-		$video['baseurl'] = config('app.url');
 
         return $video;
     }

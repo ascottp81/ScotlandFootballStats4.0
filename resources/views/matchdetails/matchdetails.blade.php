@@ -1,7 +1,7 @@
 <div id="basic">
     <div class="mdBasicLeft">
         @include('matchdetails.partial.basicmatchdetails')
-        @if ($video->count() && $match->stats->count())
+        @if ($match->videos->count() && $match->stats->count())
             <div class="mdVideoHolder">
                 @include('partial.minivideo')
             </div>

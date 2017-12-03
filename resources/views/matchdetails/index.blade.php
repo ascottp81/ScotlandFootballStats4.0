@@ -10,7 +10,7 @@
         <ul>
             <li><a href="#basic" class="tabLink">Match Details</a></li>
             <li><a href="#lineup" class="tabLink">Lineup &amp; Formation</a></li>
-            @if ($mainVideo->count())
+            @if ($match->videos->count())
             <li><a href="#highlights" class="tabLink">Highlights</a></li>
             @endif
             @if ($match->incidents->count() && !config('app.livemedia'))
@@ -25,7 +25,7 @@
         </ul>
         @include('matchdetails.matchdetails')
         @include('matchdetails.lineup')
-        @if ($mainVideo->count())
+        @if ($match->videos->count())
         @include('matchdetails.highlights')
         @endif
         @if ($match->incidents->count() || $match->summary)

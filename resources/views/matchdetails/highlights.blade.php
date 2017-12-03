@@ -1,4 +1,4 @@
-@if ($mainVideo->count())
+@if ($match->videos->count())
 <div id="highlights">
     <div class="mdBasicLeft">
         @include('matchdetails.partial.basicmatchdetails')

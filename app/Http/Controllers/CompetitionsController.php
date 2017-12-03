@@ -83,13 +83,14 @@ class CompetitionsController extends Controller
 
             // Video
             $video = Video::getCompetitionTypeVideo($competitionType->id);
+            $videoDimensions = ["width" => "255px", "height" => "191px"];
 
 
             // Meta data
             $metatitle = $competitionType->title;
             $metadescription = "Details of every " . $competitionType->title . " that the Scottish international football team has taken part in.";
 
-            return view('competitions.index.multiple', compact('competitionType', 'competitions', 'matchNumbers', 'video', 'metatitle', 'metadescription'));
+            return view('competitions.index.multiple', compact('competitionType', 'competitions', 'matchNumbers', 'video', 'videoDimensions', 'metatitle', 'metadescription'));
         }
         // There is a single competition
         else {
@@ -185,13 +186,14 @@ class CompetitionsController extends Controller
 
             // Video
             $video = Video::getCompetitionVideo($competition->id);
+            $videoDimensions = ["width" => "400px", "height" => "240px"];
 
             // Meta data
             $metatitle = $competitionType->title . " " . $competition->year . " " . $competition->stage;
             $metadescription = "Details of Scotland's participation in " . $metatitle . ", including match details and group tables.";
 
 
-            return view('competitions.competition', compact('competition', 'competitionType', 'tables', 'matches', 'video', 'metatitle', 'metadescription'));
+            return view('competitions.competition', compact('competition', 'competitionType', 'tables', 'matches', 'video', 'videoDimensions', 'metatitle', 'metadescription'));
         }
     }
 }

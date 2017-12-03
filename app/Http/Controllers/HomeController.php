@@ -35,6 +35,7 @@ class HomeController extends Controller
 		$fixtures = Match::fixtures()->limit(2)->get();
 		$news = News::recent()->limit(5)->get();
 		$video = Video::getHomeVideo();
+        $videoDimensions = ["width" => "270px", "height" => "200px"];
 		$articles = Article::all();
 		
 		// Match Search opponents
@@ -58,7 +59,7 @@ class HomeController extends Controller
 		Session::put('MatchListUrl', '/recent-results');
 		Session::put('MatchList', "Recent Results");
 		
-        return view('home.index', compact('opponents','articles','news','video','recentResults','fixtures','homeTable','events','metatitle','metadescription'));
+        return view('home.index', compact('opponents','articles','news','video','videoDimensions','recentResults','fixtures','homeTable','events','metatitle','metadescription'));
     }
 
 
