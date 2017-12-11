@@ -36,7 +36,7 @@ class Player extends Model
      * @var array
      */
     protected $dates = ['date_of_birth'];
-	
+
 	
 	
 	
@@ -130,7 +130,7 @@ class Player extends Model
 			->where('player_id','=',$this->id)
 			->firstOrFail();
 		
-		return $player->max_year;
+		return (int) $player->max_year;
 	}
 	
 	/**

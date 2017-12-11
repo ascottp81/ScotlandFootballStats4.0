@@ -870,13 +870,13 @@ class Match extends Model
 		$goalkeeperTop = $this->strips->goalkeeper_top;
 		if ($goalkeeperTop == ""){
 			if (($stripColour == "DarkBlue") || ($stripColour == "LightBlue") || ($stripColour == "Claret")){
-				$goalkeeperTop = "yellow";
+				$goalkeeperTop = "Yellow";
 			}
 			elseif (($stripColour == "White") || ($stripColour == "Yellow")){
 				$goalkeeperTop = "Claret";
 			}
 			else{
-				$goalkeeperTop = "yellow";
+				$goalkeeperTop = "Yellow";
 			}
 		}
 		
@@ -1107,7 +1107,7 @@ class Match extends Model
     public function getEmptyTabsAttribute(): int
     {
         $emptyTabs = 0;
-        //$mainVideo = Video::getMatchVideo($this->id);
+
         if ($this->videos->count() == 0) {
             $emptyTabs += 1;
         }

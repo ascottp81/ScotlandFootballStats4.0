@@ -33,6 +33,14 @@ class TableResult extends Model
      */
     protected $dates = ['match_date'];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'match_round' => 'integer',
+    ];
 
 
     /* RELATIONSHIPS */
