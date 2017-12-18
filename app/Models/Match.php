@@ -734,42 +734,41 @@ class Match extends Model
         }
 		return $this->playerStringToArray($value);
 	}
-	
-	
-	/**
-	 * Get Scotland team
-	 *
-	 * @return string
-	 */
-	public function getScotTeamAttribute(): string
-	{
-		if ($this->team != "") {
-			return str_replace(", ", "<br />", $this->team);
-		}
-		else {
-			$team = "";
-			foreach ($this->appearances()->starts()->get() as $player) {
-				$team .= substr($player->player->firstname, 0, 1) . " " . $player->player->surname;
-				if ($player->captain == 1) {
-					$team .= "(C)";	
-				}
-				$team .= $player->substitute_string . "<br />";
-			}
-			
-			return $team;
-		}	
-	}
 
-	/**
-	 * Get Opponent team
-	 *
-	 * @param string $value
-	 * @return string
-	 */
-	public function getOppTeamAttribute($value): string
-	{
-		return str_replace(", ", "<br />", $value);	
-	}	
+    /**
+     * Get Scotland Team in array format
+     *
+     * @return array
+     */
+    public function getScotTeamAttribute(): array
+    {
+        if ($this->team != "") {
+            return $this->playerStringToArray($this->team);
+        }
+        else {
+            $team = "";
+            foreach ($this->appearances()->starts()->get() as $player) {
+                $team .= substr($player->player->firstname, 0, 1) . " " . $player->player->surname;
+                if ($player->captain == 1) {
+                    $team .= "(C)";
+                }
+                $team .= $player->substitute_string . ", ";
+            }
+
+            return $this->playerStringToArray($team);
+        }
+    }
+
+    /**
+     * Get Opponent team in array format
+     *
+     * @param string $value
+     * @return array
+     */
+    public function getOppTeamAttribute($value): array
+    {
+        return $this->playerStringToArray($value);
+    }
 	
 	/**
 	 * Get the home team flag image

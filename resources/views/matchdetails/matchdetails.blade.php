@@ -34,7 +34,11 @@
                     @if ($match->strips && $match->strips->strip)
                         <div class="basicStripHolder"><img src="/img/strips/shirts/{{ $match->strips->strip->name }}.gif" /><br />@if($match->strips->scotland_shorts)<img src="/img/strips/shorts/{{ $match->strips->scotland_shorts }}.gif" width="76px" height="30px" />@endif</div>
                     @endif
-                    <p>{!! $match->scot_team !!}</p>
+                    <p>
+                    @foreach ($match->scot_team as $player)
+                        {{ $player }}<br />
+                    @endforeach
+                    </p>
                     <p>&nbsp;</p>
                     <p>Manager:<br />{{ $match->manager }}</p>
                     @if ($match->scot_ranking != "")
@@ -68,7 +72,11 @@
                     @if ($match->strips && $match->strips->opponent_shirt)
                         <div class="basicStripHolder"><img src="/img/strips/shirts/{{ $match->strips->opponent_shirt }}.gif" /><br />@if($match->strips->opponent_shorts)<img src="/img/strips/shorts/{{ $match->strips->opponent_shorts }}.gif" width="76px" height="30px" />@endif</div>
                     @endif
-                    <p>{!! $match->opp_team !!}</p>
+                    <p>
+                    @foreach ($match->opp_team as $player)
+                        {{ $player }}<br />
+                    @endforeach
+                    </p>
                     @if ($match->opp_ranking)
                         <p>&nbsp;</p>
                         <p>FIFA Ranking: {{ $match->opp_ranking }}</p>
