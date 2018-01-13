@@ -246,7 +246,7 @@ class Match extends Model
     /* RELATIONSHIPS */
 
     /**
-     * A game belongs to an opponent
+     * A match belongs to an opponent
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -256,7 +256,7 @@ class Match extends Model
     }
 	
     /**
-     * A game belongs to a competition
+     * A match belongs to a competition
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -266,7 +266,7 @@ class Match extends Model
     }
 	
     /**
-     * A game belongs to a competition round
+     * A match belongs to a competition round
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -276,7 +276,7 @@ class Match extends Model
     }
 	
     /**
-     * A game belongs to an other competition version
+     * A match belongs to an other competition version
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -286,7 +286,7 @@ class Match extends Model
     }
 
     /**
-     * A game belongs to a location
+     * A match belongs to a location
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -296,7 +296,7 @@ class Match extends Model
     }
 
     /**
-     * A game belongs to a manager
+     * A match belongs to a manager
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -306,7 +306,7 @@ class Match extends Model
     }
 
     /**
-     * A game has many lineups
+     * A match has many appearances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -316,7 +316,7 @@ class Match extends Model
     }
 	
 	/**
-     * A game has many videos
+     * A match has many videos
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -331,7 +331,7 @@ class Match extends Model
     }
 	
 	/**
-     * A game has one summary
+     * A match has one summary
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -341,7 +341,7 @@ class Match extends Model
     }
 	
 	/**
-     * A game has one fact
+     * A match has one fact
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -351,7 +351,7 @@ class Match extends Model
     }
 	
 	/**
-     * A game has one stripmatch
+     * A match has one stripmatch
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -361,7 +361,7 @@ class Match extends Model
     }
 	
     /**
-     * A game has many extramatchstats
+     * A match has many extramatchstats
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -371,7 +371,7 @@ class Match extends Model
     }
 
     /**
-     * A game has many incidents
+     * A match has many incidents
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -381,7 +381,7 @@ class Match extends Model
     }
 
     /**
-     * A game has many penalties from a shootout
+     * A match has many penalties from a shootout
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
