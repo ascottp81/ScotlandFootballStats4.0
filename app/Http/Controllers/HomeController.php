@@ -31,34 +31,34 @@ class HomeController extends Controller
      */
     public function index()
     {
-		$recentResults = Match::recent()->limit(2)->get();
-		$fixtures = Match::fixtures()->limit(2)->get();
-		$news = News::recent()->limit(5)->get();
-		$video = Video::getHomeVideo();
+        $recentResults = Match::recent()->limit(2)->get();
+        $fixtures = Match::fixtures()->limit(2)->get();
+        $news = News::recent()->limit(5)->get();
+        $video = Video::getHomeVideo();
         $videoDimensions = ["width" => "270px", "height" => "200px"];
-		$articles = Article::all();
-		
-		// Match Search opponents
-		$opponents = Opponent::orderBy('name')->get();
-		
-		// Home Table
-		$homeTable = CompetitionTable::home()->firstOrFail();
-										   
+        $articles = Article::all();
 
-		// On this day
+        // Match Search opponents
+        $opponents = Opponent::orderBy('name')->get();
+
+        // Home Table
+        $homeTable = CompetitionTable::home()->firstOrFail();
+
+
+        // On this day
         $events = new PastEvent();
-		$events = $events->getTodayEvents();
+        $events = $events->getTodayEvents();
 
-								 
-		// Meta data
-		$metatitle = "Match and Player Stats, Competition Details, Scotland International Football Team";
-		$metadescription = "Statistics for Scottish International Football, which includes in-depth Match and Player Stats, Competition Details, FIFA Rankings, and a Brief History.";
-		
-		
-		// Session variables for match list
-		Session::put('MatchListUrl', '/recent-results');
-		Session::put('MatchList', "Recent Results");
-		
+
+        // Meta data
+        $metatitle = "Match and Player Stats, Competition Details, Scotland International Football Team";
+        $metadescription = "Statistics for Scottish International Football, which includes in-depth Match and Player Stats, Competition Details, FIFA Rankings, and a Brief History.";
+
+
+        // Session variables for match list
+        Session::put('MatchListUrl', '/recent-results');
+        Session::put('MatchList', "Recent Results");
+
         return view('home.index', compact('opponents','articles','news','video','videoDimensions','recentResults','fixtures','homeTable','events','metatitle','metadescription'));
     }
 

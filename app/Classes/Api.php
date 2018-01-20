@@ -185,21 +185,19 @@ class Api
 
         return [
             "id" => $match->id,
-            "date" => $match->date->format("d/m/Y"),
-            "opponent" => $match->opponent->only(['id', 'name', 'abbr_name']),
-            "result" => $match->score,
+            "date" => $match->date->format("j F Y"),
+            "opponent" => $match->opponent->name,
             "scoreline" => $match->scoreline,
-            "short_scoreline" => $match->short_scoreline,
-            "venue" => substr($match->ha, 0, 1),
+            "venue" => $match->venue_ha,
+            "attendance" => $match->attendance,
+            "kickoff" => $match->kickoff,
             "competition" => $competitions,
             "round" => ($match->competitionRound->name != "None")? $match->competitionRound->name : "",
             "manager" => $match->manager,
             "scot_scorers" => $match->scot_scorers,
             "opp_scorers" => $match->opp_scorers,
             "scot_team" => $match->scot_team,
-            "opp_team" => $match->opp_team,
-            "kickoff" => $match->kickoff,
-            "venue_ha" => $match->venue_ha
+            "opp_team" => $match->opp_team
         ];
     }
 
