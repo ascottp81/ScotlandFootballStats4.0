@@ -64,8 +64,7 @@ class Api
     {
         $col = $_GET['col'] ?? 'date';
         $order = $_GET['order'] ?? 'asc';
-        //$matches = Match::whereNull('result')->orderBy($col,$order)->get();
-        $matches = Match::where('date', '>=', Carbon::now()->addYears(-1))->whereNotNull('result')->orderBy($col,$order)->get();
+        $matches = Match::whereNull('result')->orderBy($col,$order)->get();
 
         $matchData = array();
         foreach ($matches as $match) {
