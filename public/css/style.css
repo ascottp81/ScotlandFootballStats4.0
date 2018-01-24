@@ -495,7 +495,7 @@ a:hover{
 	float: right;
 	display: block;
 	background-color:#FFF;
-    height: 460px;   
+    padding-bottom: 20px;
 }
 .homeGroupTitle {
     float: left;
