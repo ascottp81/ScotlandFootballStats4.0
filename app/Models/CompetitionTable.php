@@ -168,8 +168,8 @@ class CompetitionTable extends Model
     public function getFixtureResultTextAttribute(): string
     {
         if ($this->results()->count() > 0) {
-            $firstDate = $this->results()->orderBy('match_date','asc')->first()->date;
-            $lastDate = $this->results()->orderBy('match_date','desc')->first()->date;
+            $firstDate = $this->results()->orderBy('match_date','asc')->first()->match_date;
+            $lastDate = $this->results()->orderBy('match_date','desc')->first()->match_date;
 
             if (Carbon::now() < $firstDate){
                 return "Fixtures";

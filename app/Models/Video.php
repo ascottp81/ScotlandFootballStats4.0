@@ -171,6 +171,13 @@ class Video extends Model
 				->where('competition_id','=',$competition_id)
 				->orderBy(DB::Raw('RAND()'))
 				->first();
+
+			// use random video, if no videos from that competition
+            if (!$video) {
+                $video = Video::where('videos.youtube', '<>', '')
+                    ->orderBy(DB::Raw('RAND()'))
+                    ->first();
+            }
 		}
 		else {
 			$competition = Competition::where('id','=',$competition_id)->firstOrFail();
@@ -183,7 +190,7 @@ class Video extends Model
 				->where('type_id','=',4)
 				->first();	
 				
-				
+            // use random video from same competition type
 			if (!$video) {
 				$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
 					->join('competitions','competitions.id','=','matches.competition_id')
@@ -194,6 +201,13 @@ class Video extends Model
 					->orderBy(DB::Raw('RAND()'))
 					->first();
 			}
+
+            // use random montage video, if no videos from that competition
+            if (!$video) {
+                $video = Video::where('type_id', '=', 3)
+                    ->orderBy(DB::Raw('RAND()'))
+                    ->first();
+            }
 		}
 		
 		if ($video) {
