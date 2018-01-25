@@ -79,6 +79,9 @@
                         <div class="data">GD</div>
                     </div>
                     @foreach ($table->teams()->get() as $row)
+                        @if ($row->table_line == "relegated")
+                            <div class="tableRow {{ $row->table_line }}"></div>
+                        @endif
                         <div class="tableRow">
                             <div class="team"><span class="flagHolder"><img src="/img/flags/{{ $row->flag }}.gif" class="tableFlag" /></span><span>{{ $row->team }}</span></div>
                             <div class="data">{{ $row->played }}</div>
@@ -90,7 +93,7 @@
                             <div class="data">{{ $row->points }}</div>
                             <div class="data">{{ $row->goal_difference }}</div>
                         </div>
-                        @if ($row->table_line != "")
+                        @if ($row->table_line == "solid" || $row->table_line == "dashed")
                             <div class="tableRow {{ $row->table_line }}"></div>
                         @endif
                     @endforeach

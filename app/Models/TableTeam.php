@@ -22,7 +22,7 @@ class TableTeam extends Model
      *
      * @var array
      */
-    protected $fillable = ['competition_table_id', 'position', 'team_id', 'played', 'won', 'drew', 'lost', 'for', 'against', 'points', 'top_place', 'playoff'];
+    protected $fillable = ['competition_table_id', 'position', 'team_id', 'played', 'won', 'drew', 'lost', 'for', 'against', 'points', 'top_place', 'playoff', 'relegated'];
 
 
 
@@ -46,6 +46,16 @@ class TableTeam extends Model
     public function scopePlayoff($query)
     {
         $query->where('playoff','=','1');
+    }
+
+    /**
+     * Scope query for bottom in table
+     *
+     * @param  $query
+     */
+    public function scopeRelegated($query)
+    {
+        $query->where('relegated','=','1');
     }
 
 
@@ -144,16 +154,19 @@ class TableTeam extends Model
                 elseif ($this->playoff == 1 && $nextRow->playoff != 1) {
                     return "dashed";
                 }
-                else {
-                    return "";
+            }
+        }
+        elseif ($this->relegated == 1) {
+            $previousRow = TableTeam::where('competition_table_id','=',$this->competition_table_id)->where('position','=',$this->position - 1)->first();
+
+            if ($previousRow) {
+                if ($this->relegated == 1 && $previousRow->relegated != 1) {
+                    return "relegated";
                 }
             }
-            else {
-                return "";
-            }
         }
-        else {
-            return "";
-        }
+
+        return "";
+
     }
 }

@@ -1743,7 +1743,7 @@ img.tableFlag {
 	padding-top: 20px;
 	float: left;
 }
-.solid {
+.solid, .relegated {
 	border-top: solid 2px #000066;	
 }
 .dashed {
