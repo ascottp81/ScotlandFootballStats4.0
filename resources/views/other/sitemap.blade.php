@@ -42,7 +42,9 @@ $(document).ready(function() {
                         <li><a href="/opponents/{{ $opponent->url }}">{{ $opponent->name }}</a>
                             <ul>
                                 @foreach ($opponent->matches()->get() as $match)
+                                @if ($match->result != "")
                                 <li><a href="/match-details/{{ $match->url }}">{{ $match->sitemap_scoreline }}</a></li>
+                                @endif
                                 @endforeach
                             </ul>
                         </li>
