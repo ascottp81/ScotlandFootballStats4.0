@@ -1,4 +1,4 @@
-@if ($match->summary)
+@if ($match->summary || $match->incidents->count() )
 <div id="summary">
     @if ($match->incidents->count() == 0 || config('app.livemedia'))
     <div class="mdBasicLeft">
