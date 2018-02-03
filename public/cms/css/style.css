@@ -1,0 +1,488 @@
+@charset "utf-8";
+/* CSS Document */
+
+.addLink{
+	float: left;
+	margin-right: 10px;
+	display: block;
+	padding: 5px;
+	width: 150px;
+	text-align: center;
+	color: #FFF;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+	text-decoration: none;
+	font-weight: bold;
+	background: #000066 linear-gradient(#000066, #000066, #0066ff) repeat scroll 0 0;
+	cursor: pointer;
+}
+
+select, input, textarea {
+	font: normal normal normal 13px Arial, Helvetica, sans-serif;
+}
+
+
+
+/* ================================ Login page ================================== */
+
+.login_holder{
+	width: 400px;
+	height: 194px;
+	position: absolute;
+	left: 50%;
+	margin-left: -200px;
+	background: #000066 linear-gradient(#000066, #000066, #0066ff) repeat scroll 0 0;
+	top: 50%;
+	margin-top: -97px;
+}
+.login_holder form{
+	margin: 4px;
+	padding: 20px;
+	width: 392px;
+	height: 186px;
+	background-color: #FFF;
+}
+.login_holder label{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+	color: #000066;
+	width: 75px;
+	float: left;
+	clear: left;
+	padding-top: 5px;
+}
+.login_holder input{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+	color: #000066;
+	width: 270px;
+	float: left;
+	margin-bottom: 20px;
+}
+.login_holder a{
+	margin-top: 10px;
+}
+.forgottenpassword{
+	margin-top: 15px !Important;
+	margin-left: 20px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+	text-decoration: none;
+	color: #000066;
+	float: left;
+}
+.forgottenpassword:hover{
+	text-decoration: underline;
+}
+.login_holder p{
+	margin-top: 15px !Important;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+	text-decoration: none;
+	color: #00f;
+	float: left;
+}
+.login_holder ul{
+	margin:0;
+	list-style-type: none;
+	padding: 0;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+	color: #d00;
+}
+.login_holder li{
+	padding-bottom: 10px;
+}
+
+
+/* ========================== Dashboard ============================== */
+
+.dashboardItem{
+	width: 240px;
+	height: 220px;
+	border: solid 3px #000066;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+  	color: #000066;
+	background-color:#FFF;
+}
+.dashboardItem:nth-of-type(4),
+.dashboardItem:nth-of-type(8),
+.dashboardItem:nth-of-type(12){
+	margin-right: 0;
+}
+.dashboardItem:hover{
+  	color: #00f;
+}
+.dashboardItem i{
+	font-size: 110px;
+	margin-top: 30px;	
+}
+.dashboardItem p{
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+/* ========================= Index Pages ================================= */
+
+.cmsContent {
+	width: 100%;
+	background-color: #fff;
+	padding: 20px;
+	font: bold 12px Arial;
+	color: #000066 !Important;
+	float: left;
+}
+.cmsContent table {
+	width: 100%;	
+	font: bold 12px Arial;
+}
+.cmsContent table th {
+	font: bold 13px Arial;
+	text-align: left;
+}
+.cmsContent table a{
+	color: #00F;
+}
+
+.cmsContent table.dataTable tbody th, 
+.cmsContent table.dataTable tbody td {
+    padding: 2px 0px;
+}
+
+.cmsContent table.dataTable tbody tr:first-child td {
+    padding-top: 10px;
+}
+.cmsContent table.dataTable tbody tr:last-child td {
+    padding-bottom: 10px;
+}
+.cmsContent table.dataTable thead th {
+    padding: 10px 0;
+}
+table.dataTable thead th {
+    background-position: right 10px center !Important;
+}
+table.dataTable thead th.noSort{
+	background: none;	
+}
+
+.fullTitleBar a.add {
+	font-size: 16px;
+	font-weight: normal;
+	color: #FF0;
+	text-decoration: none;
+	padding-left: 20px;
+}
+.fullTitleBar a.add:hover {
+	text-decoration: underline;
+}
+
+.subTitle {
+	font: normal normal normal 16px Arial, Helvetica, sans-serif !Important;
+	color: #ff0;
+}
+
+/* =========================== Add / Edit Page ================================ */
+
+.addContent {
+	width: 100%;
+	background-color: #000066;
+	background-image: linear-gradient(#000066, #000066, #0066ff);
+	padding: 20px;
+	font: bold 12px Arial;
+	color: #ffffff !Important;
+	float: left;
+}
+.leftInputs{
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+.inputRow{
+	clear: left;
+	float: left;
+	width: 100%;
+	padding-bottom: 5px;
+}
+.inputHead{
+	float: left;
+	width: 30%;
+	font: italic bold 11px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #ffff00;
+	margin-top: 5px;
+}
+.inputClear {
+	clear: left;
+	width: 100% !Important;
+}
+.input{
+	float: left;
+	width: 70%;
+    font: 12px Helvetica;
+}
+.input input, .input select, .input textarea{
+	width: 100%;
+	box-sizing: border-box;
+    padding: 2px;
+	border: 1px solid #000066;
+	color: #000066;
+	font-weight: bold;
+	background-color: #fff;
+}
+.input input{
+	padding-left: 6px;
+}
+.input option{
+	text-transform: capitalize;	
+}
+.input input[type=checkbox] {
+	width: 0;	
+}
+.incidentImg {
+	width:150px;
+}
+.submitRow{
+	clear: both;
+	padding-top: 20px;
+	text-align: right;
+}
+.errorInput {
+	border: solid 1px #FF0000 !Important;	
+}
+
+.notification {
+	width: 800px;
+	height: 400px;
+	position: absolute;
+	left: 50%;
+	margin-left: -400px;
+	top: 50%;
+	margin-top: -200px;	
+	z-index: 10;
+	border: solid 5px #000066;
+	background-color: #fff;
+	padding: 30px;
+	font: normal bold normal 14px Arial, Helvetica, sans-serif;
+	line-height: 24px;
+	color: #000066;
+}
+
+
+/* Tabs */
+
+#matchDetails{
+	margin-top: 10px;
+	float: left;
+}
+#matchDetails, #matchDetails .ui-corner-all {
+    border-radius: 0px;
+}
+#matchDetails, #matchDetails .ui-widget-content {
+    background: none;
+    border: 0;
+}
+#matchDetails, #matchDetails .ui-tabs {
+    padding: 0;
+}
+#matchDetails .ui-tabs-nav {
+    padding: 0;
+}
+#matchDetails .ui-widget-header {
+    background: none;
+    border: 0;
+    color: #222222;
+    font-weight: bold;
+}
+#matchDetails .ui-tabs-nav li {
+    border-bottom: 0 none !important;
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+	margin-left: 10px;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+	border: 0;
+}
+#matchDetails .ui-tabs-nav li:first-child {
+	margin-left: 0px;
+}
+#matchDetails .ui-tabs-nav li a {
+    padding: 0;
+	width: 248px;
+}
+#matchDetails .ui-tabs-nav li:first-child a {
+	width: 246px;
+}
+#matchDetails .ui-state-active a, #matchDetails .ui-state-active a:link, #matchDetails .ui-state-active a:visited {
+    color: #ff0 !Important;
+}
+#matchDetails .ui-state-default a:hover {
+	text-decoration: underline;
+}
+#matchDetails .ui-tabs-panel {
+    padding: 0;
+}
+
+.tabLink {
+	line-height: 30px;
+	vertical-align: middle;
+	padding-left: 12px !Important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	color: #fff !Important;
+	text-decoration: none;
+	float: left;
+	background-image: linear-gradient(#000066, #000066, #0066FF);
+	background-color: #0066FF;
+}
+
+/* ======================== Team Lineup page =============================== */
+
+.lineup .input {
+	width: auto;	
+	color: #ffff00;
+    font: italic bold 12px Arial;
+}
+.shirtIp {
+	width: 50px !Important;
+}
+.shirtCb {
+	width: 50px !Important;
+}
+.playerSelect {
+	width: 200px !Important;
+}
+.clubSelect {
+	width: 200px !Important;
+}
+.captainCb {
+	width: 50px !Important;
+}
+.goalsIp {
+	width: 50px !Important;
+}
+.cardsSelect {
+	width: 150px !Important;
+}
+
+.input.shirtno {
+	width: 50px !Important;
+}
+.input.shirtcb {
+	width: 55px !Important;
+}
+.input.player {
+	width: 205px !Important;
+}
+.input.club {
+	width: 205px !Important;
+}
+.input.captaincb {
+	width: 60px !Important;
+}
+.input.goals {
+	width: 55px !Important;
+}
+.input.cards {
+	width: 155px !Important;
+}
+.input.penaltyno {
+	width: 100px !Important;
+}
+.removesub, .removeIncident, .removePenalty {
+	cursor: pointer;
+}
+
+.lineupHeading {
+	margin-top: 20px;
+}
+
+/* ================================= Formation ================================== */
+
+.formationip input {
+	clear: left;
+	width: 50px;
+	float: left;
+	margin-bottom: 5px;	
+}
+
+.formationip > .row1 ~ .row1, 
+.formationip > .row2 ~ .row2, 
+.formationip > .row3 ~ .row3, 
+.formationip > .row4 ~ .row4, 
+.formationip > .row5 ~ .row5, 
+.formationip > .row6 ~ .row6, 
+.formationip > .row7 ~ .row7, 
+.formationip > .row8 ~ .row8, 
+.formationip > .row9 ~ .row9, 
+.formationip > .row10 ~ .row10, 
+.formationip > .row11 ~ .row11 {
+	clear: none;
+}
+
+.formationip .size1 { margin-left: 140px; }
+.formationip .size2 { margin-left: 115px; }
+.formationip .size3 { margin-left: 90px; }
+.formationip .size4 { margin-left: 65px; }
+.formationip .size5 { margin-left: 40px; }
+.formationip .size6 { margin-left: 15px; }
+
+
+/* ======================= Extra Stats =========================== */
+
+.statInputs{
+	float: left;
+	width: 70%;
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+
+.statInput {
+	width: 30% !Important;	
+	font-size: 14px;
+    font-weight: bold;
+}
+
+.fullInputs{
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+
+
+/* ============================ Competitions ============================== */
+
+.cmsCompetitions{
+	width: 500px !Important;
+}
+.addContentHalf {
+	width: 510px !Important;
+	margin-left: 10px;
+}
+.hide {
+	display: none;	
+}
+
+
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.removeRow {
+	cursor: pointer;	
+}

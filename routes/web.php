@@ -62,3 +62,51 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/email', 'OtherController@email');
 
 });
+/*Auth::routes();
+
+Route::group(['middleware' => ['web','auth']], function () {
+    Route::get('/auth/matches', 'Auth\MatchController@index');
+
+});*/
+
+// Admin CMS Routes
+if (config('app.admin')) {
+
+    Route::group(['middleware' => ['web','auth']], function () {
+        Route::get('/admin', 'Admin\AdminController@index');
+
+        Route::get('/admin/matches', 'Admin\MatchController@matches');
+        Route::get('/admin/fixture/{id?}', 'Admin\MatchController@fixture');
+        Route::post('/admin/fixture', 'Admin\MatchController@fixtureUpdate');
+        Route::get('/admin/match/{id}', 'Admin\MatchController@match');
+        Route::get('/admin/match/{id}/basic', 'Admin\MatchController@basic');
+        Route::post('/admin/match/basic', 'Admin\MatchController@basicUpdate');
+        Route::get('/admin/match/{id}/lineup', 'Admin\MatchController@lineup');
+        Route::post('/admin/match/lineup', 'Admin\MatchController@lineupUpdate');
+        Route::get('/admin/match/{id}/strips', 'Admin\MatchController@strips');
+        Route::post('/admin/match/strips', 'Admin\MatchController@stripsUpdate');
+        Route::get('/admin/match/{id}/summary', 'Admin\MatchController@summary');
+        Route::post('/admin/match/summary', 'Admin\MatchController@summaryUpdate');
+        Route::get('/admin/match/{id}/stats', 'Admin\MatchController@stats');
+        Route::post('/admin/match/stats', 'Admin\MatchController@statsUpdate');
+        Route::get('/admin/match/{id}/incidents', 'Admin\MatchController@incidents');
+        Route::post('/admin/match/incidents', 'Admin\MatchController@incidentsUpdate');
+        Route::get('/admin/match/{id}/penalties', 'Admin\MatchController@penalties');
+        Route::post('/admin/match/penalties', 'Admin\MatchController@penaltiesUpdate');
+        Route::get('/admin/match/{id}/other', 'Admin\MatchController@other');
+        Route::post('/admin/match/other', 'Admin\MatchController@otherUpdate');
+
+        Route::get('/admin/ajax/lineup/{id}', 'Admin\MatchController@addLineup');
+        Route::get('/admin/ajax/lineup/remove/{id}', 'Admin\MatchController@removeLineup');
+        Route::get('/admin/ajax/penalty/{id}', 'Admin\MatchController@addPenalty');
+        Route::get('/admin/ajax/penalty/remove/{id}', 'Admin\MatchController@removePenalty');
+        Route::get('/admin/ajax/incident/{id}', 'Admin\MatchController@addIncident');
+        Route::get('/admin/ajax/incident/remove/{id}', 'Admin\MatchController@removeIncident');
+
+        Route::get('/logout', 'Auth\LoginController@logout');
+
+
+    });
+    Route::auth();
+
+}

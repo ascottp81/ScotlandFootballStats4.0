@@ -824,6 +824,9 @@ class Match extends Model
 	 */
 	public function getFormationStringAttribute(): string
 	{
+	    if ($this->formation == null) {
+	        return "";
+        }
 		$start = strpos($this->formation, "(") + 1;
 		return substr($this->formation, $start, strpos($this->formation, ")") - $start);
 	}	
@@ -905,6 +908,51 @@ class Match extends Model
 		
 		return $rows;
 	}
+
+    /**
+     * Get Scotland's formation shirt numbers
+     *
+     * @return array
+     */
+    public function getFormationShirtNumbersAttribute(): array
+    {
+        if ($this->formation == null) {
+            return ['','','','','','','','','','',''];
+        }
+
+        $shirtNumbers = explode(",", substr($this->formation, strpos($this->formation, ") ") + 2));
+
+        return $shirtNumbers;
+    }
+
+    /**
+     * Get classes for the formation in CMS to position inputs
+     *
+     * @return array
+     */
+    public function getFormationInputClassesAttribute(): array
+    {
+        $rowSizes = explode("-", $this->formation_string);
+
+        $formationClasses = array();
+
+        if (sizeof($rowSizes) == 0 || $this->formation == "") {
+            $formationClasses = ['','','','','','','','','',''];
+        }
+
+        for ($i = 0; $i < sizeof($rowSizes); $i++) {
+            for ($j = 0; $j < $rowSizes[$i]; $j++) {
+                if ($j == 0) {
+                    $formationClasses[] = 'row' . ($i + 2) . ' size' . $rowSizes[$i];
+                }
+                else {
+                    $formationClasses[] = 'row' . ($i + 2);
+                }
+            }
+        }
+
+        return $formationClasses;
+    }
 	
 	
 	/**
