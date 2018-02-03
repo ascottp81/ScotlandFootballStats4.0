@@ -1329,6 +1329,7 @@ table.dataTable tbody th.matchDetailsInfo, table.dataTable tbody td.matchDetails
 .competitiveBlock:hover {
 	text-decoration: none;
 	border: solid 1px #ffffff;
+	padding: 19px;
 }
 .competitiveBlock:first-child {
 	margin-left: 0;
@@ -1418,6 +1419,7 @@ table.dataTable tbody th.matchDetailsInfo, table.dataTable tbody td.matchDetails
 .honoursLink:hover {
 	text-decoration: none;
 	border: solid 1px #FFFFFF;
+	padding:11px;
 }
 
 .competitionsMiddle {
