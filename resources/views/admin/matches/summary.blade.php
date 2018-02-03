@@ -1,8 +1,8 @@
 @extends('admin.app')
 
 @section('head')
-    <script type="text/javascript" src="/cms/js/tiny_mce/tiny_mce.js"></script>
-    <script type="text/javascript" src="/cms/js/tiny_mce_config.js"></script>
+    <script type="text/javascript" src="/js/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript" src="/js/tiny_mce_config.js"></script>
 @endsection
 
 @section('content')

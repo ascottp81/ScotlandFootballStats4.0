@@ -1,5 +1,9 @@
 @extends('admin.app')
 
+@section('head')
+
+@endsection
+
 @section('content')
     <h1 class="fullTitleBar">{{ ($id == null)? 'Add':'Edit' }} Fixture<div class="breadcrumb"><a href="/logout">Logout</a></div></h1>
     <div class="addContent">
@@ -89,6 +93,6 @@
             <li>The Competition</li>
             <li>The Location</li>
         </ol>
-        <div class="submitRow"><a class="addLink closeNotification" id="submit" href="#">OK</a></div>
+        <div class="submitRow"><a class="addLink closeNotification" href="#">OK</a></div>
     </div>
 @endsection

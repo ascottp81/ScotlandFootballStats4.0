@@ -206,6 +206,6 @@
             <li>All Players</li>
             <li>Each Player's Club</li>
         </ol>
-        <div class="submitRow"><a class="addLink closeNotification" id="submit" href="#">OK</a></div>
+        <div class="submitRow"><a class="addLink closeNotification" href="#">OK</a></div>
     </div>
 @endsection
