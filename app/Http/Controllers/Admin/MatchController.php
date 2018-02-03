@@ -425,16 +425,16 @@ class MatchController extends Controller
             if ($request->id[$i] == 0) {
                 $incident = MatchIncident::create($data);
 
-                if ($image != null) {
-                    $image->move($destinationPath, $incident->id . '.gif');
-                }
+                //if ($image != null) {
+                //    $image->move($destinationPath, $incident->id . '.gif');
+                //}
             }
             else {
                 $incident = MatchIncident::where('id', '=', $request->id[$i])->update($data);
 
-                if ($image != null) {
-                    $image->move($destinationPath, $request->id[$i] . '.gif');
-                }
+                //if ($image != null) {
+                //    $image->move($destinationPath, $request->id[$i] . '.gif');
+                //}
             }
 
         }
