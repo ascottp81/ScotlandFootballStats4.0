@@ -113,7 +113,7 @@ if (config('app.admin')) {
 
             Route::get('/news', 'Admin\NewsController@index');
             Route::get('/news/article/{id?}', 'Admin\NewsController@article');
-            Route::post('/news/update', 'Admin\NewsController@update');
+            Route::post('/news', 'Admin\NewsController@update');
             Route::get('/news/delete/{id}', 'Admin\NewsController@delete');
 
         });
