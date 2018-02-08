@@ -54,6 +54,23 @@ class PlayerController extends Controller
      */
     public function playerUpdate(Request $request) : RedirectResponse
     {
+        // Validation
+        $rules = [
+            'surname' => 'required',
+            'firstname' => 'required',
+            'debut_year' => 'date_format:Y',
+            'date_of_birth' => 'date_format:j F Y',
+        ];
+        $messages = [
+            'surname.required' => 'Please input a valid surname',
+            'firstname.required' => 'Please input a valid firstname',
+            'debut_year.date_format' => 'Please input a valid year',
+            'date_of_birth.date_format' => 'Please input a valid date',
+        ];
+        $request->validate($rules, $messages);
+
+
+        // Obtain data
 		$data = [
 			'surname' => trim($request->surname),
 			'firstname' => trim($request->firstname),
@@ -65,7 +82,8 @@ class PlayerController extends Controller
 			'retired' => ($request->retired)? 1:0,
 			'getty_image' => $request->image ? trim($request->image) : ''
 		];
-		
+
+        // Add / edit data
 		if ($request->itemid == 0) {
 			$player = Player::create($data);
 		}

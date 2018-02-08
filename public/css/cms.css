@@ -260,6 +260,10 @@ table.dataTable thead th.noSort{
 .errorInput {
 	border: solid 1px #FF0000 !Important;	
 }
+.errorMsg {
+	color: #FF0000;
+	font-weight: bold;
+}
 
 .notification {
 	width: 800px;

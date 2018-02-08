@@ -106,6 +106,16 @@ if (config('app.admin')) {
             Route::get('/player/{id?}', 'Admin\PlayerController@player');
             Route::post('/player', 'Admin\PlayerController@playerUpdate');
 
+
+            Route::get('/rankings/{id?}', 'Admin\RankingController@index');
+            Route::post('/ranking', 'Admin\RankingController@update');
+
+
+            Route::get('/news', 'Admin\NewsController@index');
+            Route::get('/news/article/{id?}', 'Admin\NewsController@article');
+            Route::post('/news/update', 'Admin\NewsController@update');
+            Route::get('/news/delete/{id}', 'Admin\NewsController@delete');
+
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');
