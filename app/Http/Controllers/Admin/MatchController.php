@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Appearance;
 use App\Models\Club;
@@ -19,9 +22,9 @@ use App\Models\Penalty;
 use App\Models\Player;
 use App\Models\Strip;
 use App\Models\StripMatch;
-use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -42,7 +45,7 @@ class MatchController extends Controller
      *
      * @return View
      */
-    public function matches()
+    public function matches(): View
     {
         $matchList = Match::all();
         return view('admin/matches/index', compact('matchList'));
@@ -54,7 +57,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function fixture($id = null)
+    public function fixture(int $id = null): View
     {
         $fixture = Match::find($id);
         $opponents = Opponent::orderBy('name')->get();
@@ -69,21 +72,38 @@ class MatchController extends Controller
      * Create / Update the fixture record.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function fixtureUpdate(Request $request)
+    public function fixtureUpdate(Request $request): RedirectResponse
     {
+        // Validation
+        $rules = [
+            'date' => 'required|date_format:Y-m-d',
+            'opponent' => 'required|min:1',
+            'competition' => 'required|min:1',
+            'ha' => 'required|min:1'
+        ];
+        $messages = [
+            'date.*' => 'Please input a valid date',
+            'opponent.*' => 'Please select an opponent',
+            'competition.*' => 'Please select a competition',
+            'ha.*' => 'Please select H/A',
+        ];
+        $request->validate($rules, $messages);
+
+        // Obtain data
         $data = [
             'date' => date('Y-m-d', strtotime($request->date)),
-            'opponent_id' => trim($request->opponent),
-            'competition_id' => trim($request->competition),
-            'venue' => trim($request->venue),
-            'location_id' => trim($request->location),
-            'ha' => trim($request->ha),
-            'kickoff' => trim($request->kickoff),
-            'opp_ranking' => trim($request->ranking)
+            'opponent_id' => $request->opponent,
+            'competition_id' => $request->competition,
+            'venue' => $request->venue ? trim($request->venue) : '',
+            'location_id' => $request->location,
+            'ha' => $request->ha,
+            'kickoff' => $request->kickoff ? trim($request->kickoff) : '',
+            'opp_ranking' => $request->ranking ? trim($request->ranking) : ''
         ];
 
+        // Add / edit data
         if ($request->itemid == null) {
             $fixture = Match::create($data);
         }
@@ -100,7 +120,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function match($id)
+    public function match(int $id): View
     {
         $match = Match::find($id);
 
@@ -113,7 +133,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function basic($id)
+    public function basic(int $id): View
     {
         $match = Match::find($id);
         $opponents = Opponent::orderBy('name')->get();
@@ -128,38 +148,61 @@ class MatchController extends Controller
     /**
      * Save Basic Match Details.
      *
-     * @param $request Request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function basicUpdate(Request $request)
+    public function basicUpdate(Request $request): RedirectResponse
     {
+        // Validation
+        $rules = [
+            'date' => 'required|date_format:Y-m-d',
+            'opponent' => 'required|min:1',
+            'competition' => 'required|min:1',
+            'round' => 'required|min:1',
+            'ha' => 'required|min:1',
+            'attendance' => 'numeric',
+            'result' => 'required'
+        ];
+        $messages = [
+            'date.*' => 'Please input a valid date',
+            'opponent.*' => 'Please select an opponent',
+            'competition.*' => 'Please select a competition',
+            'round.*' => 'Please select a competition round',
+            'ha.*' => 'Please select H/A',
+            'attendance.*' => 'Attendance must be numeric',
+            'result.*' => 'Please input a result'
+        ];
+        $request->validate($rules, $messages);
+
+        // Obtain data
         $data = [
-            'date' => trim($request->match_date),
-            'opponent_id' => trim($request->opponent),
-            'competition_id' => trim($request->competition),
-            'round_id' => trim($request->round),
-            'other_competition_id' => trim($request->other_competition),
-            'venue' => trim($request->venue),
-            'location_id' => trim($request->location),
-            'ha' => trim($request->ha),
-            'attendance' => $request->attendance,
+            'date' => trim($request->date),
+            'opponent_id' => $request->opponent,
+            'competition_id' => $request->competition,
+            'round_id' => $request->round,
+            'other_competition_id' => $request->other_competition,
+            'venue' => $request->venue ? trim($request->venue) : '',
+            'location_id' => $request->location,
+            'ha' => $request->ha,
+            'attendance' => $request->attendance ?? 0,
             'result' => trim($request->result),
-            'kickoff' => trim($request->kickoff),
+            'kickoff' => $request->kickoff ? trim($request->kickoff) : '',
             'manager_id' => $request->manager,
-            'manager' => trim($request->manager_text),
-            'result_comment' => $request->result_comment,
-            'comment' => $request->comment,
-            'opp_ranking' => trim($request->opp_ranking),
-            'scot_scorers' => trim($request->scot_scorers),
-            'opp_scorers' => trim($request->opp_scorers),
-            'team' => trim($request->team),
-            'opp_team' => trim($request->opp_team),
-            'scot_pen_miss' => trim($request->scot_pen_miss),
-            'opp_pen_miss' => trim($request->opp_pen_miss),
-            'scot_red_card' => trim($request->scot_red_card),
-            'opp_red_card' => trim($request->opp_red_card)
+            'manager' => $request->manager_text ? trim($request->manager_text) : '',
+            'result_comment' => $request->result_comment ?? '',
+            'comment' => $request->comment ?? '',
+            'opp_ranking' => $request->opp_ranking ? trim($request->opp_ranking) : 0,
+            'scot_scorers' => $request->scot_scorers ? trim($request->scot_scorers) : '',
+            'opp_scorers' => $request->opp_scorers ? trim($request->opp_scorers) : '',
+            'team' => $request->team ? trim($request->team) : '',
+            'opp_team' => $request->opp_team ? trim($request->opp_team) : '',
+            'scot_pen_miss' => $request->scot_pen_miss ? trim($request->scot_pen_miss) : '',
+            'opp_pen_miss' => $request->opp_pen_miss ? trim($request->opp_pen_miss) : '',
+            'scot_red_card' => $request->scot_red_card ? trim($request->scot_red_card) : '',
+            'opp_red_card' => $request->opp_red_card ? trim($request->opp_red_card) : ''
         ];
 
+        // Update data
         $match = Match::where('id', $request->itemid)->update($data);
 
         return redirect('/admin/match/' . $request->itemid);
@@ -172,12 +215,12 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function lineup($id)
+    public function lineup(int $id): View
     {
         $match = Match::find($id);
 
-        $players = Player::where('debut_year', '>=', substr($match->date, 0, 4) - 20)
-            ->where('debut_year', '<=', substr($match->date, 0, 4))
+        $players = Player::where('debut_year', '>=', intval($match->date->format('Y')) - 20)
+            ->where('debut_year', '<=', intval($match->date->format('Y')))
             ->orderBy('surname','asc')->orderBy('firstname','asc')->orderBy('debut_year','asc')
             ->get();
 
@@ -193,13 +236,36 @@ class MatchController extends Controller
      * Save Lineup Match Details.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function lineupUpdate(Request $request)
+    public function lineupUpdate(Request $request): RedirectResponse
     {
+        // Validation
+        $rules = array();
+        $messages = array();
 
         for ($i = 0; $i < sizeof($request->id); $i++) {
 
+            $rules['shirt_no.'. $i] = 'required|numeric';
+            $rules['player_id.'. $i] = 'required|min:1';
+            $rules['club_id.'. $i] = 'required|min:1';
+            $rules['goals.'. $i] = 'required|numeric';
+            $rules['penalties.'. $i] = 'required|numeric';
+
+            // specify class that shows error on input
+            $messages['shirt_no.' . $i . '.*'] = 'errorInput';
+            $messages['player_id.' . $i . '.*'] = 'errorInput';
+            $messages['club_id.' . $i . '.*'] = 'errorInput';
+            $messages['goals.' . $i . '.*'] = 'errorInput';
+            $messages['penalties.' . $i . '.*'] = 'errorInput';
+        }
+
+        $request->validate($rules, $messages);
+
+
+        for ($i = 0; $i < sizeof($request->id); $i++) {
+
+            // Obtain data
             $data = [
                 'match_id' => $request->match_id,
                 'shirt_no' => $request->shirt_no[$i],
@@ -215,6 +281,7 @@ class MatchController extends Controller
                 'shirt_no_show' => $request->shirt_no_show[$i]
             ];
 
+            // Add / edit data
             if ($request->id[$i] == 0) {
                 $appearance = Appearance::create($data);
             }
@@ -233,7 +300,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function strips($id)
+    public function strips(int $id): View
     {
         $match = Match::find($id);
         $scotlandShirts = Strip::orderBy('year_from','asc')->get();
@@ -245,18 +312,18 @@ class MatchController extends Controller
      * Save shirt details.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function stripsUpdate(Request $request)
+    public function stripsUpdate(Request $request): RedirectResponse
     {
         $data = [
             'match_id' => $request->itemid,
-            'strip_id' => $request->scotland_top,
-            'scotland_shorts' => $request->scotland_shorts,
-            'opponent_shirt' => $request->opponent_shirt,
-            'opponent_shorts' => $request->opponent_shorts,
-            'goalkeeper_top' => $request->goalkeeper_top,
-            'match_note' => $request->match_note
+            'strip_id' => $request->scotland_top ?? 0,
+            'scotland_shorts' => $request->scotland_shorts ?? '',
+            'opponent_shirt' => $request->opponent_shirt ?? '',
+            'opponent_shorts' => $request->opponent_shorts ?? '',
+            'goalkeeper_top' => $request->goalkeeper_top ?? '',
+            'match_note' => $request->match_note ?? ''
         ];
 
         if (StripMatch::where('match_id','=',$request->itemid)->count() == 0) {
@@ -276,7 +343,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function summary($id)
+    public function summary(int $id): View
     {
         $summary = MatchSummary::where('match_id','=',$id)->first();
 
@@ -287,15 +354,15 @@ class MatchController extends Controller
      * Save match summary.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function summaryUpdate(Request $request)
+    public function summaryUpdate(Request $request): RedirectResponse
     {
         $match = Match::find($request->itemid);
 
         $data = [
             'match_id' => $request->itemid,
-            'content' => $request->summary
+            'content' => $request->summary ?? ''
         ];
 
 
@@ -316,7 +383,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function stats($id)
+    public function stats(int $id): View
     {
         $scotlandStats = MatchStatistic::where('team_id','=','0')->where('match_id','=',$id)->first();
         $opponentStats = MatchStatistic::where('team_id','<>','0')->where('match_id','=',$id)->first();
@@ -331,44 +398,44 @@ class MatchController extends Controller
      * Save extra match stats.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function statsUpdate(Request $request)
+    public function statsUpdate(Request $request): RedirectResponse
     {
         $match = Match::find($request->itemid);
 
         $scotlandData = [
             'match_id' => $request->itemid,
             'team_id' => 0,
-            'colour' => $request->scotland_colour,
-            'possession' => $request->scotland_possession,
-            'shots' => $request->scotland_shots,
-            'on_target' => $request->scotland_on_target,
-            'fouls' => $request->scotland_fouls,
-            'offside' => $request->scotland_offside,
-            'corners' => $request->scotland_corners,
-            'saves' => $request->scotland_saves,
-            'ta' => $request->scotland_ta,
-            'yellow_cards' => $request->scotland_yellow_cards,
-            'red_cards' => $request->scotland_red_cards,
-            'source' => $request->source
+            'colour' => $request->scotland_colour ?? '',
+            'possession' => $request->scotland_possession ?? '',
+            'shots' => $request->scotland_shots ?? '',
+            'on_target' => $request->scotland_on_target ?? '',
+            'fouls' => $request->scotland_fouls ?? '',
+            'offside' => $request->scotland_offside ?? '',
+            'corners' => $request->scotland_corners ?? '',
+            'saves' => $request->scotland_saves ?? '',
+            'ta' => $request->scotland_ta ?? '',
+            'yellow_cards' => $request->scotland_yellow_cards ?? '',
+            'red_cards' => $request->scotland_red_cards ?? '',
+            'source' => $request->source ?? ''
         ];
 
         $opponentData = [
             'match_id' => $request->itemid,
             'team_id' => $match->opponent_id,
-            'colour' => $request->opponent_colour,
-            'possession' => $request->opponent_possession,
-            'shots' => $request->opponent_shots,
-            'on_target' => $request->opponent_on_target,
-            'fouls' => $request->opponent_fouls,
-            'offside' => $request->opponent_offside,
-            'corners' => $request->opponent_corners,
-            'saves' => $request->opponent_saves,
-            'ta' => $request->opponent_ta,
-            'yellow_cards' => $request->opponent_yellow_cards,
-            'red_cards' => $request->opponent_red_cards,
-            'source' => $request->source
+            'colour' => $request->opponent_colour ?? '',
+            'possession' => $request->opponent_possession ?? '',
+            'shots' => $request->opponent_shots ?? '',
+            'on_target' => $request->opponent_on_target ?? '',
+            'fouls' => $request->opponent_fouls ?? '',
+            'offside' => $request->opponent_offside ?? '',
+            'corners' => $request->opponent_corners ?? '',
+            'saves' => $request->opponent_saves ?? '',
+            'ta' => $request->opponent_ta ?? '',
+            'yellow_cards' => $request->opponent_yellow_cards ?? '',
+            'red_cards' => $request->opponent_red_cards ?? '',
+            'source' => $request->source ?? ''
         ];
 
 
@@ -391,7 +458,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function incidents($id)
+    public function incidents(int $id): View
     {
         $match = Match::find($id);
         $incidents = MatchIncident::where('match_id','=',$id)->orderBy('minute','asc')->get();
@@ -404,9 +471,9 @@ class MatchController extends Controller
      * Save Incidents.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function incidentsUpdate(Request $request)
+    public function incidentsUpdate(Request $request): RedirectResponse
     {
 
         for ($i = 0; $i < sizeof($request->id); $i++) {
@@ -448,7 +515,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function penalties($id)
+    public function penalties(int $id): View
     {
         $match = Match::find($id);
         $penalties = Penalty::where('match_id','=',$id)->orderBy('penalty_no','asc')->get();
@@ -460,9 +527,9 @@ class MatchController extends Controller
      * Save Penalties.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function penaltiesUpdate(Request $request)
+    public function penaltiesUpdate(Request $request): RedirectResponse
     {
 
         for ($i = 0; $i < sizeof($request->id); $i++) {
@@ -494,7 +561,7 @@ class MatchController extends Controller
      * @param int $id
      * @return View
      */
-    public function other($id)
+    public function other(int $id): View
     {
         $match = Match::find($id);
         $fact = Fact::where('match_id','=', $id)->first();
@@ -506,9 +573,9 @@ class MatchController extends Controller
      * Save extra match stats.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function otherUpdate(Request $request)
+    public function otherUpdate(Request $request): RedirectResponse
     {
         $formation = "(" . $request->formation . ") " . implode(",", $request->formation_shirt);
 
@@ -540,11 +607,11 @@ class MatchController extends Controller
      * @param int $match_id
      * @return View
      */
-    public function addLineup($match_id)
+    public function addLineup(int $match_id): View
     {
         $match = Match::find($match_id);
-        $players = Player::where('debut_year', '>=', (date('Y', strtotime($match->date))) - 20)
-            ->where('debut_year', '<=', date('Y', strtotime($match->date)))
+        $players = Player::where('debut_year', '>=', intval($match->date->format('Y')) - 20)
+            ->where('debut_year', '<=', intval($match->date->format('Y')))
             ->orderBy('surname','asc')->orderBy('firstname','asc')->orderBy('debut_year','asc')
             ->get();
         $clubs = Club::orderBy('name','asc')->get();
@@ -558,7 +625,7 @@ class MatchController extends Controller
      *
      * @param int $id
      */
-    public function removeLineup($id)
+    public function removeLineup(int $id)
     {
         $remove = Appearance::where('id', '=', $id)->delete();
     }
@@ -569,7 +636,7 @@ class MatchController extends Controller
      * @param int $match_id
      * @return View
      */
-    public function addIncident($match_id)
+    public function addIncident(int $match_id): View
     {
         $match = Match::find($match_id);
         $incidentTypes = IncidentType::all();
@@ -582,7 +649,7 @@ class MatchController extends Controller
      *
      * @param int $id
      */
-    public function removeIncident($id)
+    public function removeIncident(int $id)
     {
         $remove = MatchIncident::where('id', '=', $id)->delete();
 
@@ -597,7 +664,7 @@ class MatchController extends Controller
      * @param int $match_id
      * @return View
      */
-    public function addPenalty($match_id)
+    public function addPenalty(int $match_id): View
     {
         $match = Match::find($match_id);
         return view('admin/matches/partial/penalty', compact('match'));
@@ -608,7 +675,7 @@ class MatchController extends Controller
      *
      * @param int $id
      */
-    public function removePenalty($id)
+    public function removePenalty(int $id)
     {
         $remove = Penalty::where('id', '=', $id)->delete();
     }

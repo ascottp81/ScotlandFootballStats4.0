@@ -17,6 +17,6 @@
             <option value="missed">Missed</option>
         </select>
     </div>
-    <div class="input"><a class="removePenalty"><img src="/cms/images/remove.gif" /></a></div>
+    <div class="input"><a class="removePenalty"><img src="/img/remove.gif" /></a></div>
     <input type="hidden" value="0" name="id[]" data-required="true" />
 </div>

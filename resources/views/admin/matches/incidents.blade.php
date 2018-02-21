@@ -40,11 +40,11 @@
                             <img class="incidentImg" src="/storage/animations/incidents/{{ $incidents[$i]->id }}.gif" />
                             <input type="file" name="image[]" />
                         </div>
-                        <div class="input"><a class="removeIncident"><img src="/cms/images/remove.gif" /></a></div>
+                        <div class="input"><a class="removeIncident"><img src="/img/remove.gif" /></a></div>
                         <input type="hidden" value="{{ $incidents[$i]->id }}" name="id[]" data-required="true" />
                     </div>
                 @endfor
-                <a class="addSub" href="javascript:addIncident();"><img src="/cms/images/add.gif" /></a>
+                <a class="addSub" href="javascript:addIncident();"><img src="/img/add.gif" /></a>
                 <div class="submitRow"><a class="addLink" id="submit" href="javascript:submitForm();">Save</a> <a class="addLink" href="/admin/match/{{ $match->id }}">Cancel</a></div>
             </div>
         </form>

@@ -34,11 +34,11 @@
                                 <option value="missed" @if($penalties[$i]->result == "missed")selected="selected"@endif>Missed</option>
                             </select>
                         </div>
-                        <div class="input"><a class="removePenalty"><img src="/cms/images/remove.gif" /></a></div>
+                        <div class="input"><a class="removePenalty"><img src="/img/remove.gif" /></a></div>
                         <input type="hidden" value="{{ $penalties[$i]->id }}" name="id[]" data-required="true" />
                     </div>
                 @endfor
-                <a class="addSub" href="javascript:addPenalty();"><img src="/cms/images/add.gif" /></a>
+                <a class="addSub" href="javascript:addPenalty();"><img src="/img/add.gif" /></a>
                 <div class="submitRow"><a class="addLink" id="submit" href="javascript:submitForm();">Save</a> <a class="addLink" href="/admin/match/{{ $match->id }}">Cancel</a></div>
             </div>
         </form>

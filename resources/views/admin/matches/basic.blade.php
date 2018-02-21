@@ -11,7 +11,8 @@
                     <div class="inputRow">
                         <div class="inputHead">Date: </div>
                         <div class="input">
-                            <input type="text" class="datepicker" id="match_date" value="{{ $match->date->format('Y-m-d') }}" name="match_date" data-required="true" />
+                            <input type="text" class="datepicker" id="date" value="{{ old('date') ?? $match->date->format('Y-m-d') }}" name="date" />
+                            <span class="errorMsg">{{ $errors->first('date') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -20,9 +21,10 @@
                             <select id="opponent" name="opponent">
                                 <option value="">Please Select</option>
                                 @foreach ($opponents as $opponent)
-                                    <option value="{{ $opponent->id }}" {!! ($match->opponent_id == $opponent->id)? 'selected="selected"':'' !!}>{{ $opponent->name }}</option>
+                                    <option value="{{ $opponent->id }}" @if((old('opponent') ?? $match->opponent_id) == $opponent->id)selected="selected"@endif>{{ $opponent->name }}</option>
                                 @endforeach
                             </select>
+                            <span class="errorMsg">{{ $errors->first('opponent') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -31,9 +33,10 @@
                             <select id="competition" name="competition">
                                 <option value="">Please Select</option>
                                 @foreach ($competitions as $competition)
-                                    <option value="{{ $competition->id }}" {!! ($match->competition_id == $competition->id)? 'selected="selected"':'' !!}>{{ $competition->name }}</option>
+                                    <option value="{{ $competition->id }}" @if((old('competition') ?? $match->competition_id) == $competition->id)selected="selected"@endif>{{ $competition->name }}</option>
                                 @endforeach
                             </select>
+                            <span class="errorMsg">{{ $errors->first('competition') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -42,9 +45,10 @@
                             <select id="round" name="round">
                                 <option value="">Please Select</option>
                                 @foreach ($rounds as $round)
-                                    <option value="{{ $round->id }}" {!! ($match->round_id == $round->id)? 'selected="selected"':'' !!}>{{ $round->name }}</option>
+                                    <option value="{{ $round->id }}" @if((old('round') ?? $match->round_id) == $round->id)selected="selected"@endif>{{ $round->name }}</option>
                                 @endforeach
                             </select>
+                            <span class="errorMsg">{{ $errors->first('round') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -53,7 +57,7 @@
                             <select id="other_competition" name="other_competition">
                                 <option value="0">None</option>
                                 @foreach ($competitions as $competition)
-                                    <option value="{{ $competition->id }}" {!! ($match->other_competition_id == $competition->id)? 'selected="selected"':'' !!}>{{ $competition->name }}</option>
+                                    <option value="{{ $competition->id }}" @if((old('other_competition') ?? $match->other_competition_id) == $competition->id)selected="selected"@endif>{{ $competition->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -61,16 +65,16 @@
                     <div class="inputRow">
                         <div class="inputHead">Venue: </div>
                         <div class="input">
-                            <input type="text" id="venue" value="{{ $match->venue }}" name="venue" data-required="false" />
+                            <input type="text" id="venue" value="{{ old('venue') ?? $match->venue }}" name="venue" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Location: </div>
                         <div class="input">
                             <select id="location" name="location">
-                                <option value="">Please Select</option>
+                                <option value="0">Please Select</option>
                                 @foreach ($locations as $location)
-                                    <option value="{{ $location->id }}" {!! ($match->location_id == $location->id)? 'selected="selected"':'' !!}>{{ $location->city }}</option>
+                                    <option value="{{ $location->id }}" @if((old('location') ?? $match->location_id) == $location->id)selected="selected"@endif>{{ $location->city }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,29 +84,32 @@
                         <div class="input">
                             <select id="ha" name="ha">
                                 <option value="">Please Select</option>
-                                <option value="H" {!! ($match->ha == 'H')? 'selected="selected"':'' !!}>Home</option>
-                                <option value="A" {!! ($match->ha == 'A')? 'selected="selected"':'' !!}>Away</option>
-                                <option value="N1" {!! ($match->ha == 'N1')? 'selected="selected"':'' !!}>Neutral (First)</option>
-                                <option value="N" {!! ($match->ha == 'N')? 'selected="selected"':'' !!}>Neutral (Second)</option>
+                                <option value="H" @if((old('ha') ?? $match->ha) == 'H')selected="selected"@endif>Home</option>
+                                <option value="A" @if((old('ha') ?? $match->ha) == 'A')selected="selected"@endif>Away</option>
+                                <option value="N1" @if((old('ha') ?? $match->ha) == 'N1')selected="selected"@endif>Neutral (First)</option>
+                                <option value="N" @if((old('ha') ?? $match->ha) == 'N')selected="selected"@endif>Neutral (Second)</option>
                             </select>
+                            <span class="errorMsg">{{ $errors->first('ha') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Attendance: </div>
                         <div class="input">
-                            <input type="text" id="attendance" value="{{ $match->getOriginal('attendance') }}" name="attendance" data-required="false" />
+                            <input type="text" id="attendance" value="{{ old('attendance') ?? $match->getOriginal('attendance') }}" name="attendance" />
+                            <span class="errorMsg">{{ $errors->first('attendance') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Result: </div>
                         <div class="input">
-                            <input type="text" id="result" value="{{ $match->result }}" name="result" data-required="false" />
+                            <input type="text" id="result" value="{{ old('result') ?? $match->result }}" name="result" />
+                            <span class="errorMsg">{{ $errors->first('result') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Kick-Off: </div>
                         <div class="input">
-                            <input type="text" id="kickoff" value="{{ $match->kickoff }}" name="kickoff" data-required="false" />
+                            <input type="text" id="kickoff" value="{{ old('kickoff') ?? $match->kickoff }}" name="kickoff" />
                         </div>
                     </div>
                     <div class="inputRow">
@@ -111,7 +118,7 @@
                             <select id="manager" name="manager">
                                 <option value="0">None</option>
                                 @foreach ($managers as $manager)
-                                    <option value="{{ $manager->id }}" {!! ($match->manager_id == $manager->id)? 'selected="selected"':'' !!}>{{ $manager->fullname }} ({{ $manager->from }})</option>
+                                    <option value="{{ $manager->id }}" @if((old('manager') ?? $match->manager_id) == $manager->id)selected="selected"@endif>{{ $manager->fullname }} ({{ $manager->from }})</option>
                                 @endforeach
                             </select>
                         </div>
@@ -119,25 +126,25 @@
                     <div class="inputRow">
                         <div class="inputHead">Manager Text: </div>
                         <div class="input">
-                            <input type="text" id="manager_text" value="{{ $match->manager }}" name="manager_text" data-required="false" />
+                            <input type="text" id="manager_text" value="{{ old('manager_text') ?? $match->manager }}" name="manager_text" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Opponent Ranking: </div>
                         <div class="input">
-                            <input type="text" id="opp_ranking" value="{{ $match->opp_ranking }}" name="opp_ranking" data-required="false" />
+                            <input type="text" id="opp_ranking" value="{{ old('opp_ranking') ?? $match->opp_ranking }}" name="opp_ranking" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Result Comment: </div>
                         <div class="input">
-                            <input type="text" id="result_comment" value="{{ $match->getOriginal('result_comment') }}" name="result_comment" data-required="false" />
+                            <input type="text" id="result_comment" value="{{ old('result_comment') ?? $match->getOriginal('result_comment') }}" name="result_comment" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">General Comment: </div>
                         <div class="input">
-                            <input type="text" id="comment" value="{{ $match->comment }}" name="comment" data-required="false" />
+                            <input type="text" id="comment" value="{{ old('comment') ?? $match->comment }}" name="comment" />
                         </div>
                     </div>
 
@@ -146,49 +153,49 @@
                     <div class="inputRow">
                         <div class="inputHead">Scotland Scorers: </div>
                         <div class="input inputClear">
-                            <textarea id="scot_scorers" name="scot_scorers">{{ $match->getOriginal('scot_scorers') }}</textarea>
+                            <textarea id="scot_scorers" name="scot_scorers">{{ old('scot_scorers') ?? $match->getOriginal('scot_scorers') }}</textarea>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Opponent Scorers: </div>
                         <div class="input inputClear">
-                            <textarea id="opp_scorers" name="opp_scorers">{{ $match->getOriginal('opp_scorers') }}</textarea>
+                            <textarea id="opp_scorers" name="opp_scorers">{{ old('opp_scorers') ?? $match->getOriginal('opp_scorers') }}</textarea>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Scotland Team: </div>
                         <div class="input inputClear">
-                            <textarea id="team" name="team">{{ $match->team }}</textarea>
+                            <textarea id="team" name="team">{{ old('team') ?? $match->team }}</textarea>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Opponent Team: </div>
                         <div class="input inputClear">
-                            <textarea id="opp_team" name="opp_team">{{ $match->getOriginal('opp_team') }}</textarea>
+                            <textarea id="opp_team" name="opp_team">{{ old('opp_team') ?? $match->getOriginal('opp_team') }}</textarea>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Scotland Red Cards: </div>
                         <div class="input">
-                            <input type="text" id="scot_red_card" value="{{ $match->getOriginal('scot_red_card') }}" name="scot_red_card" data-required="false" />
+                            <input type="text" id="scot_red_card" value="{{ old('scot_red_card') ?? $match->getOriginal('scot_red_card') }}" name="scot_red_card" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Opponent Red Cards: </div>
                         <div class="input">
-                            <input type="text" id="opp_red_card" value="{{ $match->getOriginal('opp_red_card') }}" name="opp_red_card" data-required="false" />
+                            <input type="text" id="opp_red_card" value="{{ old('opp_red_card') ?? $match->getOriginal('opp_red_card') }}" name="opp_red_card" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Scotland Missed Pens: </div>
                         <div class="input">
-                            <input type="text" id="scot_pen_miss" value="{{ $match->getOriginal('scot_pen_miss') }}" name="scot_pen_miss" data-required="false" />
+                            <input type="text" id="scot_pen_miss" value="{{ old('scot_pen_miss') ?? $match->getOriginal('scot_pen_miss') }}" name="scot_pen_miss" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Opponent Missed Pens: </div>
                         <div class="input">
-                            <input type="text" id="opp_pen_miss" value="{{ $match->getOriginal('opp_pen_miss') }}" name="opp_pen_miss" data-required="false" />
+                            <input type="text" id="opp_pen_miss" value="{{ old('opp_pen_miss') ?? $match->getOriginal('opp_pen_miss') }}" name="opp_pen_miss" />
                         </div>
                     </div>
                 </div>

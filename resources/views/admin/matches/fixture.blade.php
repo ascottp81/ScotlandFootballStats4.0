@@ -15,7 +15,8 @@
                     <div class="inputRow">
                         <div class="inputHead">Date: </div>
                         <div class="input">
-                            <input type="text" class="datepicker" id="date" value="{{ $fixture->date ?? '' }}" name="date" data-required="true" />
+                            <input type="text" class="datepicker" id="date" value="{{ old('date') ?? ($fixture->date ? date('Y-m-d', strtotime($fixture->date)) : '') }}" name="date" />
+                            <span class="errorMsg">{{ $errors->first('date') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -24,9 +25,10 @@
                             <select id="opponent" name="opponent">
                                 <option value="">Please Select</option>
                                 @foreach ($opponents as $opponent)
-                                    <option value="{{ $opponent->id }}" {!! ($fixture)? (($fixture->opponent_id == $opponent->id)? 'selected="selected"':''):'' !!}>{{ $opponent->name }}</option>
+                                    <option value="{{ $opponent->id }}" @if((old('opponent') ?? $fixture->opponent_id ?? '') == $opponent->id)selected="selected"@endif>{{ $opponent->name }}</option>
                                 @endforeach
                             </select>
+                            <span class="errorMsg">{{ $errors->first('opponent') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -35,24 +37,25 @@
                             <select id="competition" name="competition">
                                 <option value="">Please Select</option>
                                 @foreach ($competitions as $competition)
-                                    <option value="{{ $competition->id }}" {!! ($fixture)? (($fixture->competition_id == $competition->id)? 'selected="selected"':''):'' !!}>{{ $competition->name }}</option>
+                                    <option value="{{ $competition->id }}" @if((old('competition') ?? $fixture->competition_id ?? '') == $competition->id)selected="selected"@endif>{{ $competition->name }}</option>
                                 @endforeach
                             </select>
+                            <span class="errorMsg">{{ $errors->first('competition') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Venue: </div>
                         <div class="input">
-                            <input type="text" id="venue" value="{{ $fixture->venue ?? '' }}" name="venue" data-required="false" />
+                            <input type="text" id="venue" value="{{ old('venue') ?? $fixture->venue ?? '' }}" name="venue" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Location: </div>
                         <div class="input">
                             <select id="location" name="location">
-                                <option value="">Please Select</option>
+                                <option value="0">Please Select</option>
                                 @foreach ($locations as $location)
-                                    <option value="{{ $location->id }}" {!! ($fixture)? (($fixture->location_id == $location->id)? 'selected="selected"':''):'' !!}>{{ $location->city }}</option>
+                                    <option value="{{ $location->id }}" @if((old('location') ?? $fixture->location_id ?? '') == $location->id)selected="selected"@endif>{{ $location->city }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -62,23 +65,24 @@
                         <div class="input">
                             <select id="ha" name="ha">
                                 <option value="">Please Select</option>
-                                <option value="H" {!! ($fixture)? (($fixture->ha == 'H')? 'selected="selected"':''):'' !!}>Home</option>
-                                <option value="A" {!! ($fixture)? (($fixture->ha == 'A')? 'selected="selected"':''):'' !!}>Away</option>
-                                <option value="N1" {!! ($fixture)? (($fixture->ha == 'N1')? 'selected="selected"':''):'' !!}>Neutral (First)</option>
-                                <option value="N" {!! ($fixture)? (($fixture->ha == 'N')? 'selected="selected"':''):'' !!}>Neutral (Second)</option>
+                                <option value="H" @if((old('ha') ?? $fixture->ha ?? '') == 'H')selected="selected"@endif>Home</option>
+                                <option value="A" @if((old('ha') ?? $fixture->ha ?? '') == 'A')selected="selected"@endif>Away</option>
+                                <option value="N1" @if((old('ha') ?? $fixture->ha ?? '') == 'N1')selected="selected"@endif>Neutral (First)</option>
+                                <option value="N" @if((old('ha') ?? $fixture->ha ?? '') == 'N')selected="selected"@endif>Neutral (Second)</option>
                             </select>
+                            <span class="errorMsg">{{ $errors->first('ha') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Kick-Off: </div>
                         <div class="input">
-                            <input type="text" id="kickoff" value="{{ $fixture->kickoff ?? '' }}" name="kickoff" data-required="false" />
+                            <input type="text" id="kickoff" value="{{ old('kickoff') ?? $fixture->kickoff ?? '' }}" name="kickoff" />
                         </div>
                     </div>
                     <div class="inputRow">
                         <div class="inputHead">Opponent Ranking: </div>
                         <div class="input">
-                            <input type="text" id="ranking" value="{{ $fixture->ranking ?? '' }}" name="ranking" data-required="false" />
+                            <input type="text" id="ranking" value="{{ old('ranking') ?? $fixture->ranking ?? '' }}" name="ranking" />
                         </div>
                     </div>
                 </div>
