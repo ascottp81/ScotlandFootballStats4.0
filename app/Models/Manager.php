@@ -145,6 +145,14 @@ class Manager extends Model
      */
     public function getMinDateAttribute(): string
     {
+        if ($this->match_count == 0) {
+            if ($this->appointed != NULL) {
+                return date('Y-m-d', strtotime($this->appointed));
+            }
+            else {
+                return date('Y-m-d', strtotime($this->took_charge));
+            }
+        }
         return Match::where('manager_id','=',$this->id)->orderBy('date','asc')->firstOrFail()->date->format('Y-m-d');
     }
 
@@ -155,6 +163,14 @@ class Manager extends Model
      */
     public function getMaxDateAttribute(): string
     {
+        if ($this->match_count == 0) {
+            if ($this->appointed != NULL) {
+                return date('Y-m-d', strtotime($this->appointed));
+            }
+            else {
+                return date('Y-m-d', strtotime($this->took_charge));
+            }
+        }
         return Match::where('manager_id','=',$this->id)->orderBy('date','desc')->firstOrFail()->date->format('Y-m-d');
     }
 
@@ -165,6 +181,10 @@ class Manager extends Model
      */
     public function getWinPercentageAttribute(): string
     {
+        if ($this->match_count == 0) {
+            return '0.00';
+        }
+
         $wins = Match::where('manager_id','=',$this->id)->won()->count();
         $number = 100 * $wins / $this->match_count;
 
