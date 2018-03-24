@@ -1288,11 +1288,11 @@ class Match extends Model
         if (sizeof($stat) > 0) {
             $data[] = $stat;
         }
-        $stat = $this->getStatBar("Possession", "possession", $stats);
+        $stat = $this->getStatBar("Possession %", "possession", $stats);
         if (sizeof($stat) > 0) {
             $data[] = $stat;
         }
-        $stat = $this->getStatBar("Territorial Advantage", "ta", $stats);
+        $stat = $this->getStatBar("Territorial Advantage %", "ta", $stats);
         if (sizeof($stat) > 0) {
             $data[] = $stat;
         }

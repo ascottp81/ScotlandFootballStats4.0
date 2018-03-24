@@ -96,10 +96,10 @@ class MatchIncident extends Model
         $opponentScored = MatchIncident::where('match_id', '=', $this->match_id)->where('team_id', '<>', '0')->where('minute', '<=', $this->minute)->whereIn('incident_type_id', array(1,2,3))->count();
 
         if ($this->match->ha == "H" || $this->match->ha == "N1") {
-            return "Scotland " . $scotlandScored . "-" . $opponentScored . " " . $this->match->opponent->abbr_name;
+            return "Scotland " . $scotlandScored . "-" . $opponentScored . " " . $this->match->opponent->name;
         }
         else {
-            return $this->match->opponent->abbr_name . " " . $opponentScored . "-" . $scotlandScored . " Scotland";
+            return $this->match->opponent->name . " " . $opponentScored . "-" . $scotlandScored . " Scotland";
         }
     }
 }
