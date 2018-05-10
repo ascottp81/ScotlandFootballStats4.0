@@ -56,6 +56,36 @@ class Api
     }
 
     /**
+     * List all of the opponents who have played
+     *
+     * @return array
+     */
+    public function opponentPlayed(): array
+    {
+        $opponents = Opponent::orderBy('name','asc')->get(['id', 'name', 'abbr_name']);
+
+        $opponentData = array();
+        foreach ($opponents as $opponent) {
+
+            $matches = Opponent::findOrFail($opponent->id)->matches()->whereNotNull('result')->count();
+
+            if ($matches > 0) {
+
+                $singleOpponent = [
+                    "id" => $opponent->id,
+                    "name" => $opponent->name,
+                    "abbr_name" => $opponent->abbr_name,
+                    "count" => $matches
+                ];
+
+                $opponentData[] = $singleOpponent;
+            }
+        }
+
+        return $opponentData;
+    }
+
+    /**
      * List all of the fixtures
      *
      * @return array
