@@ -15,13 +15,18 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
+    public $match;
+    public $player;
+    public $events;
+
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
+        $this->match = new Match();
+        $this->player = new Player();
+        $this->events = new PastEvent();
     }
 
     /**
@@ -44,16 +49,12 @@ class HomeController extends Controller
         // Home Table
         $homeTable = CompetitionTable::home()->firstOrFail();
 
-
         // On this day
-        $events = new PastEvent();
-        $events = $events->getTodayEvents();
-
+        $events = $this->events->getTodayEvents();
 
         // Meta data
         $metatitle = "Match and Player Stats, Competition Details, Scotland International Football Team";
         $metadescription = "Statistics for Scottish International Football, which includes in-depth Match and Player Stats, Competition Details, FIFA Rankings, and a Brief History.";
-
 
         // Session variables for match list
         Session::put('MatchListUrl', '/recent-results');
@@ -74,13 +75,11 @@ class HomeController extends Controller
         $recentResults = Match::recent()->get();
 
         // Get match numbers for recent results
-        $match = new Match();
-        $matchNumbers = $match->getMatchRecordNumbers(Match::recent());
+        $matchNumbers = $this->match->getMatchRecordNumbers(Match::recent());
 
         // Recent Results Player Stats
-        $player = new Player();
-        $topScorers = $player->getRecentTopScorers();
-        $topAppearances = $player->getRecentTopAppearances();
+        $topScorers = $this->player->getRecentTopScorers();
+        $topAppearances = $this->player->getRecentTopAppearances();
 
         // Match Search opponents
         $opponents = Opponent::orderBy('name')->get();
@@ -130,11 +129,8 @@ class HomeController extends Controller
         // Match Search opponents
         $opponents = Opponent::orderBy('name')->get();
 
-
         // On this day
-        $events = new PastEvent();
-        $events = $events->getTodayEvents();
-
+        $events = $this->events->getTodayEvents();
 
         // Meta data
         $metatitle = "Latest News";
@@ -160,11 +156,8 @@ class HomeController extends Controller
         // Home Table
         $homeTable = CompetitionTable::home()->firstOrFail();
 
-
         // On this day
-        $events = new PastEvent();
-        $events = $events->getTodayEvents();
-
+        $events = $this->events->getTodayEvents();
 
         // Meta data
         $metatitle = $article->title;
@@ -185,18 +178,14 @@ class HomeController extends Controller
     {
         $searchResults = Match::search($parameters)->orderBy("date")->get();
 
-
         // Match Numbers
-        $match = new Match();
-        $matchNumbers = $match->getMatchRecordNumbers(Match::search($parameters));
+        $matchNumbers = $this->match->getMatchRecordNumbers(Match::search($parameters));
 
         // Search Parameters
-        $searchParameters = $match->getSearchParameters($parameters);
-
+        $searchParameters = $this->match->getSearchParameters($parameters);
 
         // Search form
         $opponents = Opponent::orderBy('name')->get();
-
 
         // Meta data
         $metatitle = "Match Search Results";

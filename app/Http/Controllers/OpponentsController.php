@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Session;
 
 class OpponentsController extends Controller
 {
+    public $match;
+
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
+        $this->match = new Match();
     }
 	
 	/**
@@ -64,13 +65,12 @@ class OpponentsController extends Controller
 		$matchList = Match::opponentId($opponent->id)->orderBy('date','asc')->get();
 
 		// Match Records
-        $match = new Match();
-        $matchNumbers = $match->getMatchRecordNumbers(Match::opponentId($opponent->id));
-        $homeMatchNumbers = $match->getMatchRecordNumbers(Match::opponentId($opponent->id)->home());
-        $awayMatchNumbers = $match->getMatchRecordNumbers(Match::opponentId($opponent->id)->awayNeutral());
-        $matchNumbersComp = $match->getMatchRecordNumbers(Match::opponentId($opponent->id)->competitive());
-        $homeMatchNumbersComp = $match->getMatchRecordNumbers(Match::opponentId($opponent->id)->competitive()->home());
-        $awayMatchNumbersComp = $match->getMatchRecordNumbers(Match::opponentId($opponent->id)->competitive()->awayNeutral());
+        $matchNumbers = $this->match->getMatchRecordNumbers(Match::opponentId($opponent->id));
+        $homeMatchNumbers = $this->match->getMatchRecordNumbers(Match::opponentId($opponent->id)->home());
+        $awayMatchNumbers = $this->match->getMatchRecordNumbers(Match::opponentId($opponent->id)->awayNeutral());
+        $matchNumbersComp = $this->match->getMatchRecordNumbers(Match::opponentId($opponent->id)->competitive());
+        $homeMatchNumbersComp = $this->match->getMatchRecordNumbers(Match::opponentId($opponent->id)->competitive()->home());
+        $awayMatchNumbersComp = $this->match->getMatchRecordNumbers(Match::opponentId($opponent->id)->competitive()->awayNeutral());
 
 		
 		// Meta data

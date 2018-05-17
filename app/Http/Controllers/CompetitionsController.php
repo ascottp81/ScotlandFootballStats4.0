@@ -14,8 +14,6 @@ class CompetitionsController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -24,7 +22,7 @@ class CompetitionsController extends Controller
     /**
      * Display the competitions index page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -44,7 +42,7 @@ class CompetitionsController extends Controller
     /**
      * Display the competition honours page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function honours()
     {
@@ -61,7 +59,7 @@ class CompetitionsController extends Controller
     /**
      * Display the competition type index page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function competitionindex($url)
     {
@@ -134,7 +132,7 @@ class CompetitionsController extends Controller
     /**
      * Display the competition page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function competition($type_url, $url)
     {

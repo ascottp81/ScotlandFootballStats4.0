@@ -6,8 +6,6 @@ namespace App\Http\Controllers;
 use App\Classes\Api;
 use App\Models\CompetitionType;
 use App\Models\News;
-use App\Models\Opponent;
-use App\Models\Match;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -110,10 +108,6 @@ class ApiController extends Controller
      */
     public function opponents(): JsonResponse
     {
-        //$output = Opponent::orderBy('name','asc')->get(['id', 'name', 'abbr_name']);
-
-        //return response()->json($output, 200);
-
         try {
             $data = $this->_api->opponentPlayed();
             return response()->json($data, 200);

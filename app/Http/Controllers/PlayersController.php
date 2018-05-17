@@ -13,8 +13,6 @@ class PlayersController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -23,7 +21,7 @@ class PlayersController extends Controller
     /**
      * Display the player index page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -41,7 +39,7 @@ class PlayersController extends Controller
     /**
      * Display the player a-z page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function az()
     {
@@ -65,7 +63,7 @@ class PlayersController extends Controller
     /**
      * Display the SFA Hall of Fame page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function sfahalloffame()
     {
@@ -93,7 +91,7 @@ class PlayersController extends Controller
     /**
      * Display the Silver Caps page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function silvercaps()
     {
@@ -122,7 +120,7 @@ class PlayersController extends Controller
     /**
      * Display the Leading goalscorers page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function leadinggoalscorers()
     {
@@ -150,7 +148,7 @@ class PlayersController extends Controller
     /**
      * Display the Current Players page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function currentplayers()
     {
@@ -175,7 +173,7 @@ class PlayersController extends Controller
     /**
      * Display the Player Search Results page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function searchresults($parameters)
     {
@@ -291,7 +289,7 @@ class PlayersController extends Controller
     /**
      * Display the Player details page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function player($id, $url)
     {
@@ -311,7 +309,7 @@ class PlayersController extends Controller
     /**
      * Ajax to to view player stats tooltip.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function tooltip($type, $player_id)
     {
@@ -323,7 +321,7 @@ class PlayersController extends Controller
     /**
      * Ajax to to view player appearance match list tooltip.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function matchtooltip($appearance_id)
     {

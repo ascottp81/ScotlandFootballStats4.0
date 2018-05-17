@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\Session;
 
 class ManagersController extends Controller
 {
+    public $match;
+
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
+        $this->match = new Match();
     }
 
     /**
      * Display the home page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -36,21 +37,20 @@ class ManagersController extends Controller
     /**
      * Display the Manager details page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function manager($url)
     {
         $manager = Manager::where('url','=',$url)->firstOrFail();
 
         // Match Records
-        $match = new Match();
         $managerMatches = Match::managerId($manager->id);
-        $matchNumbers = $match->getMatchRecordNumbers(with(clone $managerMatches));
-        $homeMatchNumbers = $match->getMatchRecordNumbers(with(clone $managerMatches)->home());
-        $awayMatchNumbers = $match->getMatchRecordNumbers(with(clone $managerMatches)->awayNeutral());
-        $matchNumbersComp = $match->getMatchRecordNumbers(with(clone $managerMatches)->competitive());
-        $homeMatchNumbersComp = $match->getMatchRecordNumbers(with(clone $managerMatches)->competitive()->home());
-        $awayMatchNumbersComp = $match->getMatchRecordNumbers(with(clone $managerMatches)->competitive()->awayNeutral());
+        $matchNumbers = $this->match->getMatchRecordNumbers(with(clone $managerMatches));
+        $homeMatchNumbers = $this->match->getMatchRecordNumbers(with(clone $managerMatches)->home());
+        $awayMatchNumbers = $this->match->getMatchRecordNumbers(with(clone $managerMatches)->awayNeutral());
+        $matchNumbersComp = $this->match->getMatchRecordNumbers(with(clone $managerMatches)->competitive());
+        $homeMatchNumbersComp = $this->match->getMatchRecordNumbers(with(clone $managerMatches)->competitive()->home());
+        $awayMatchNumbersComp = $this->match->getMatchRecordNumbers(with(clone $managerMatches)->competitive()->awayNeutral());
 
 
         // Meta data

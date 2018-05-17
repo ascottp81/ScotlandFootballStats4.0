@@ -12,8 +12,6 @@ class HistoryController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -22,7 +20,7 @@ class HistoryController extends Controller
     /**
      * Display the history index page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -42,7 +40,7 @@ class HistoryController extends Controller
     /**
      * Display the history page.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function chapter($url)
     {

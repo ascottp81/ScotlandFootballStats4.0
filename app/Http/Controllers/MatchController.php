@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Match;
-use App\Models\Video;
 use Illuminate\Support\Facades\Session;
 
 
@@ -12,8 +10,6 @@ class MatchController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -22,7 +18,7 @@ class MatchController extends Controller
 	/**
 	 * Display the home page.
 	 *
-	 * @return Response
+	 * @return \Illuminate\Http\Response
 	 */
 	public function index($date, $url)
 	{

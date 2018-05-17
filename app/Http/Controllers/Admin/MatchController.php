@@ -33,7 +33,6 @@ class MatchController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
      */
     public function __construct()
     {
@@ -62,9 +61,10 @@ class MatchController extends Controller
         $fixture = Match::find($id);
         $opponents = Opponent::orderBy('name')->get();
         $competitions = Competition::orderBy('name')->get();
+        $rounds = CompetitionRound::all();
         $locations = Location::orderBy('city')->get();
 
-        return view('/admin/matches/fixture', compact('fixture','id','opponents','competitions','locations'));
+        return view('/admin/matches/fixture', compact('fixture','id','opponents','competitions','rounds','locations'));
     }
 
 
@@ -81,12 +81,14 @@ class MatchController extends Controller
             'date' => 'required|date_format:Y-m-d',
             'opponent' => 'required|min:1',
             'competition' => 'required|min:1',
+            'round' => 'required|min:1',
             'ha' => 'required|min:1'
         ];
         $messages = [
             'date.*' => 'Please input a valid date',
             'opponent.*' => 'Please select an opponent',
             'competition.*' => 'Please select a competition',
+            'round.*' => 'Please select a competition round',
             'ha.*' => 'Please select H/A',
         ];
         $request->validate($rules, $messages);
@@ -96,6 +98,8 @@ class MatchController extends Controller
             'date' => date('Y-m-d', strtotime($request->date)),
             'opponent_id' => $request->opponent,
             'competition_id' => $request->competition,
+            'round_id' => $request->round,
+            'other_competition_id' => '0',
             'venue' => $request->venue ? trim($request->venue) : '',
             'location_id' => $request->location,
             'ha' => $request->ha,

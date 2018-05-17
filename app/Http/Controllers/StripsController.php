@@ -14,8 +14,6 @@ class StripsController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -24,7 +22,7 @@ class StripsController extends Controller
 	/**
 	 * Display the strip index page.
 	 *
-	 * @return Response
+	 * @return \Illuminate\Http\Response
 	 */
 	public function index()
 	{	
@@ -41,7 +39,7 @@ class StripsController extends Controller
 	/**
 	 * Display the Strip details page.
 	 *
-	 * @return Response
+	 * @return \Illuminate\Http\Response
 	 */
 	public function strip($url)
 	{	
@@ -67,7 +65,7 @@ class StripsController extends Controller
 	/**
 	 * Ajax to to view match list tooltip.
 	 *
-	 * @return Response
+	 * @return \Illuminate\Http\Response
 	 */
 	public function matchtooltip($id)
 	{
