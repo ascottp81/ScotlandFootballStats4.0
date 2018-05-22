@@ -58,9 +58,10 @@ class Api
     /**
      * List all of the opponents who have played
      *
+     * @param string $os
      * @return array
      */
-    public function opponentPlayed(): array
+    public function opponentPlayed(string $os = 'ios'): array
     {
         $opponents = Opponent::orderBy('name','asc')->get(['id', 'name', 'abbr_name']);
 
@@ -82,7 +83,15 @@ class Api
             }
         }
 
-        return $opponentData;
+        if ($os == 'ios') {
+            return $opponentData;
+        }
+        else {
+            return [
+                "opponents" => $opponentData
+            ];
+        }
+
     }
 
     /**
