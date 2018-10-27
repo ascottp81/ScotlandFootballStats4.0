@@ -116,6 +116,11 @@ if (config('app.admin')) {
             Route::post('/news', 'Admin\NewsController@update');
             Route::get('/news/delete/{id}', 'Admin\NewsController@delete');
 
+            Route::get('/competitions', 'Admin\CompetitionController@index');
+            Route::get('/competition/{id?}', 'Admin\CompetitionController@type');
+            Route::get('/competition/{id}/versions', 'Admin\CompetitionController@versionIndex');
+            Route::get('/competition/version/{id?}', 'Admin\CompetitionController@version');
+
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');

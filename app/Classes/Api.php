@@ -197,7 +197,9 @@ class Api
                 "round" => ($match->competitionRound->name != "None")? $match->competitionRound->name : ""
             ];
 
-            $matchData[] = $singleMatch;
+            if ($match->result != null) {
+                $matchData[] = $singleMatch;
+            }
         }
 
         return [

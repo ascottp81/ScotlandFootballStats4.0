@@ -34,6 +34,19 @@ $(document).ready(function()
 	    iDisplayLength: 100,
 		"order": [[0, "desc"]]
 	});
+
+    $('.dataTableCompetitionType').DataTable({
+        "order": [ 0, "asc" ],
+        "paging": false,
+        "searching": false,
+        "info": false,
+        "columnDefs": [
+            { "orderData": 3, "targets": 0 },
+            { "orderData": [ 1, 3 ], "targets": 1 },
+            { "orderable": false, "targets": 2 },
+            { "visible": false, "targets": 3 }
+        ]
+    });
 	
 	$('.datatableCompetitions').dataTable({
 		"ordering": false,
@@ -45,13 +58,21 @@ $(document).ready(function()
 	});
 	
 	$("#submit").click(function(e) {
-		var valid = true;						
+		var valid = true;
+        $("input[type=text], select").removeClass("errorInput");
+
 		$("input[type=text]").each(function() {
 			if ($(this).attr("data-required") == "true" && $(this).val() == "") {
 				$(this).addClass("errorInput");
 				valid = false;
 			}
 		});
+        $("select").each(function() {
+            if ($(this).attr("data-required") == "true" && $(this).val() == "") {
+                $(this).addClass("errorInput");
+                valid = false;
+            }
+        });
 		
 		if (!valid){
 			e.preventDefault();

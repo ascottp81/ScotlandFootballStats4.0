@@ -15,7 +15,7 @@
                     <div class="inputRow">
                         <div class="inputHead">Date: </div>
                         <div class="input">
-                            <input type="text" class="datepicker" id="date" value="{{ old('date') ?? ($fixture->date ? date('Y-m-d', strtotime($fixture->date)) : '') }}" name="date" />
+                            <input type="text" class="datepicker" id="date" value="{{ old('date') ?? (isset($fixture->date) ? date('Y-m-d', strtotime($fixture->date)) : '') }}" name="date" />
                             <span class="errorMsg">{{ $errors->first('date') }}</span>
                         </div>
                     </div>
@@ -41,6 +41,18 @@
                                 @endforeach
                             </select>
                             <span class="errorMsg">{{ $errors->first('competition') }}</span>
+                        </div>
+                    </div>
+                    <div class="inputRow">
+                        <div class="inputHead">Round: </div>
+                        <div class="input">
+                            <select id="round" name="round">
+                                <option value="">Please Select</option>
+                                @foreach ($rounds as $round)
+                                    <option value="{{ $round->id }}" @if((old('round') ?? $fixture->round_id ?? '') == $round->id)selected="selected"@endif>{{ $round->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="errorMsg">{{ $errors->first('round') }}</span>
                         </div>
                     </div>
                     <div class="inputRow">
@@ -82,11 +94,11 @@
                     <div class="inputRow">
                         <div class="inputHead">Opponent Ranking: </div>
                         <div class="input">
-                            <input type="text" id="ranking" value="{{ old('ranking') ?? $fixture->ranking ?? '' }}" name="ranking" />
+                            <input type="text" id="ranking" value="{{ old('ranking') ?? $fixture->opp_ranking ?? '' }}" name="ranking" />
                         </div>
                     </div>
                 </div>
-                <div class="submitRow"><a class="addLink" id="submit" href="javascript:submitForm();">Save</a> <a class="addLink" href="/admin/matches">Cancel</a></div>
+                <div class="submitRow"><a class="addLink" id="submit" href="javascript:$('form').submit();">Save</a> <a class="addLink" href="/admin/matches">Cancel</a></div>
             </div>
         </form>
     </div>
