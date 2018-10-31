@@ -61,6 +61,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/contact', 'OtherController@contact');
     Route::post('/email', 'OtherController@email');
 
+    Route::get('/12-pubs-of-christmas', 'OtherController@pubs');
+
 });
 
 

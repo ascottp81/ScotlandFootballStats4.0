@@ -108,4 +108,15 @@ class OtherController extends Controller
         });
     }
 
+
+    /**
+     * Show the 12 pubs page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pubs()
+    {
+        return view('other/pubs');
+    }
+
 }

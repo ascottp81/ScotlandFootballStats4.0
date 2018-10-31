@@ -36,6 +36,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!strpos(url('/'), "scotlandfootballstats")) {
+            return redirect('/12-pubs-of-christmas');
+        }
+
         $recentResults = Match::recent()->limit(2)->get();
         $fixtures = Match::fixtures()->limit(2)->get();
         $news = News::recent()->limit(5)->get();
