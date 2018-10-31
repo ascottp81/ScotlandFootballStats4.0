@@ -23,3 +23,22 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Match::class, function (Faker $faker) {
+
+    return [
+        'date' => '1996-06-18 00:00:00',
+        'opponent_id' => '73',
+        'ha' => 'H',
+        'result' => 'W 1-0'
+    ];
+});
+
+$factory->define(App\Models\Opponent::class, function (Faker $faker) {
+
+    return [
+        'id' => '73',
+        'name' => 'West Germany',
+        'abbr_name' => 'W. Germany'
+    ];
+});
