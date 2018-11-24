@@ -4,11 +4,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fact extends Model
 {
-    use SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -22,7 +20,7 @@ class Fact extends Model
      *
      * @var array
      */
-    protected $fillable = ['match_id', 'fact'];
+    protected $fillable = ['match_id', 'text'];
 
 
 

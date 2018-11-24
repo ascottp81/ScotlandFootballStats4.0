@@ -581,6 +581,7 @@ class MatchController extends Controller
      */
     public function otherUpdate(Request $request): RedirectResponse
     {
+        // Formation and Getty Image
         $formation = "(" . $request->formation . ") " . implode(",", $request->formation_shirt);
 
         $data = [
@@ -589,16 +590,21 @@ class MatchController extends Controller
         ];
         $match = Match::where('id', $request->itemid)->update($data);
 
+
+        // Match Fact
         $factData = [
             'match_id' => $request->itemid,
             'text' => $request->fact
         ];
 
         if (Fact::where('match_id','=',$request->itemid)->count() == 0 && $request->fact != "") {
-            $fact = Fact::create($factData);
+            Fact::create($factData);
+        }
+        elseif ($request->fact != "") {
+            Fact::where('match_id', '=', $request->itemid)->update(['text' => $request->fact]);
         }
         else {
-            $fact = Fact::where('match_id', '=', $request->itemid)->update($factData);
+            Fact::where('match_id', '=', $request->itemid)->delete();
         }
 
         return redirect('/admin/match/' . $request->itemid);
