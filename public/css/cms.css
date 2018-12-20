@@ -16,11 +16,20 @@
 	background: #000066 linear-gradient(#000066, #000066, #0066ff) repeat scroll 0 0;
 	cursor: pointer;
 }
+button {
+	border: 0;
+}
+button:hover {
+	text-decoration: underline;
+}
 
 select, input, textarea {
 	font: normal normal normal 13px Arial, Helvetica, sans-serif;
 }
-
+.clearFloatLeft {
+	clear: left;
+	float: left;
+}
 
 
 /* ================================ Login page ================================== */
@@ -472,6 +481,14 @@ table.dataTable thead th.noSort{
 
 .cmsCompetitions{
 	width: 500px !Important;
+}
+.cmsCompetitionTables{
+	width: 510px !Important;
+	margin: 10px 0 0 10px;
+	float: right;
+}
+.cmsCompetitionTables h2{
+	margin-top: 0;
 }
 .addContentHalf {
 	width: 510px !Important;

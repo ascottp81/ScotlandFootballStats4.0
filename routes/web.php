@@ -116,10 +116,19 @@ if (config('app.admin')) {
             Route::post('/news', 'Admin\NewsController@update');
             Route::get('/news/delete/{id}', 'Admin\NewsController@delete');
 
-            Route::get('/competitions', 'Admin\CompetitionController@index');
-            Route::get('/competition/{id?}', 'Admin\CompetitionController@type');
-            Route::get('/competition/{id}/versions', 'Admin\CompetitionController@versionIndex');
-            Route::get('/competition/version/{id?}', 'Admin\CompetitionController@version');
+
+            Route::get('/competitions/{id?}', 'Admin\CompetitionController@index')->where('id', '[0-9]+');
+            Route::post('/competition', 'Admin\CompetitionController@competitionTypeUpdate');
+            Route::get('/competitions/{url}/{id?}', 'Admin\CompetitionController@competition')->where('id', '[0-9]+');
+            Route::post('/competition-version', 'Admin\CompetitionController@competitionUpdate');
+            Route::get('/competitions/{competitionid}/table/{id?}', 'Admin\CompetitionController@table');
+            Route::post('/competition-table', 'Admin\CompetitionController@tableUpdate');
+            Route::get('/competitions/{competitionid}/table/{tableid}/results/{id?}', 'Admin\CompetitionController@result');
+            Route::post('/competition-result', 'Admin\CompetitionController@resultUpdate');
+
+            Route::get('/ajax/table', 'Admin\CompetitionController@ajax_table');
+            Route::get('/ajax/table/remove/{id}', 'Admin\CompetitionController@ajax_tableRemove');
+            Route::get('/ajax/table/position/{id}', 'Admin\CompetitionController@ajax_tablePosition');
 
         });
 

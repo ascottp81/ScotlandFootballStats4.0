@@ -51,7 +51,7 @@ class RankingController extends Controller
 			'points' => 'required|integer',
 		];
 		$messages = [
-			'date.*' => 'Please input a valid date in the format: 2000-01-01',
+			'date.*' => 'Please input a valid date in the format: YYYY-MM-DD',
 			'ranking.*' => 'Please input a valid ranking',
 			'europe.*' => 'Please input a valid ranking',
 			'points.*' => 'Please input a valid points value'

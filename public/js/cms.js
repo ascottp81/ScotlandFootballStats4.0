@@ -56,28 +56,7 @@ $(document).ready(function()
 	    ],
 	    iDisplayLength: 100
 	});
-	
-	$("#submit").click(function(e) {
-		var valid = true;
-        $("input[type=text], select").removeClass("errorInput");
 
-		$("input[type=text]").each(function() {
-			if ($(this).attr("data-required") == "true" && $(this).val() == "") {
-				$(this).addClass("errorInput");
-				valid = false;
-			}
-		});
-        $("select").each(function() {
-            if ($(this).attr("data-required") == "true" && $(this).val() == "") {
-                $(this).addClass("errorInput");
-                valid = false;
-            }
-        });
-		
-		if (!valid){
-			e.preventDefault();
-		}
-	});
 	
 	$(".closeNotification").click(function() {
 		$(".notification").hide();
@@ -91,16 +70,7 @@ $(document).ready(function()
     setupRemoveIncident();
     setupRemovePenalty();
 	
-	
-	// Competition Table Input
-	$("#playoff").click(function(){
-		if ($(this).is(':checked')) {
-			$("#competitionTable").addClass("hide");
-		}
-		else {
-			$("#competitionTable").removeClass("hide");
-		}
-	});
+
 	
 	setupRemoveTableRow();
 	

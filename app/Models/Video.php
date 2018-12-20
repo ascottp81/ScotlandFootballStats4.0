@@ -121,7 +121,7 @@ class Video extends Model
 				->where('videos.youtube', '<>', '')
 				->where('competition_type_id','=',$type_id)
 				->orderBy(DB::Raw('RAND()'))
-				->firstOrFail();
+				->first();
 		}
 		else {
 			$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
@@ -133,7 +133,7 @@ class Video extends Model
 				->where('competition_type_id','=',$type_id)
 				->where('type_id','=',4)
 				->orderBy(DB::Raw('RAND()'));
-				
+
 			if ($video->count() == 0) {
 				$video = Video::join('matches', 'videos.match_id', '=', 'matches.id')
 					->join('competitions','competitions.id','=','matches.competition_id')
@@ -143,12 +143,15 @@ class Video extends Model
 					->where('matches.result', '<>', '')
 					->where('competition_type_id','=',$type_id)
 					->orderBy(DB::Raw('RAND()'))
-					->firstOrFail();		
+					->first();
 			}
 			else {
-				$video = $video->firstOrFail();
+				$video = $video->first();
 			}
 		}
+		if (!$video) {
+            $video = Video::orderBy(DB::Raw('RAND()'))->first();
+        }
 
         return $video;
     }
