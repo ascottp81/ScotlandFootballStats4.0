@@ -42,12 +42,12 @@
                     <div class="inputHead">Content: </div>
                 </div>
             	<div class="inputRow">
-                    <textarea id="content" name="content" style="width:100%;height:300px;">{{ old('content') ?? $news->content ?? '' }}</textarea>
+                    <textarea class="mceEditor" id="content" name="content" style="width:100%;height:300px;">{{ old('content') ?? $news->content ?? '' }}</textarea>
                     <span class="errorMsg">{{ $errors->first('content') }}</span>
-                </div> 
+                </div>
             </div>
             <div class="submitRow"><a class="addLink" id="submit" href="javascript:submitForm();">Save</a> <a class="addLink" href="/admin/news">Cancel</a></div>
         </div>
-        </form>  
+        </form>
     </div>
 @endsection

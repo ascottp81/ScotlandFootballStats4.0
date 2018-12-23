@@ -71,4 +71,14 @@ class History extends Model
 
         return $matches;
     }
+
+    /**
+     * Get the original id string of famous matches, before the accessor
+     *
+     * @return array|mixed
+     */
+    public function getOriginalFamousMatchesAttribute()
+    {
+        return $this->getOriginal('famous_matches');
+    }
 }

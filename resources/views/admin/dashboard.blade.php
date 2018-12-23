@@ -8,7 +8,7 @@
         <a class="dashboardItem" href="/admin/players"><i class="fa fa-male"></i><p>Players</p></a>
         <a class="dashboardItem" href="/admin/rankings"><i class="fa fa-line-chart"></i><p>FIFA Rankings</p></a>
         <a class="dashboardItem" href="/admin/news"><i class="fa fa-newspaper-o"></i><p>News</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-history"></i><p>History</p></a>
+        <a class="dashboardItem" href="/admin/history"><i class="fa fa-history"></i><p>History</p></a>
         <a class="dashboardItem" href="menus.php"><i class="fa fa-user"></i><p>Managers</p></a>
         <a class="dashboardItem" href="menus.php"><i class="fa fa-users"></i><p>Strips</p></a>
         <a class="dashboardItem" href="/admin/videos"><i class="fa fa-film"></i><p>Videos</p></a>

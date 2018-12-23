@@ -507,3 +507,15 @@ table.dataTable thead th.noSort{
 .removeRow {
 	cursor: pointer;	
 }
+
+
+/* =============================== History ===================================== */
+
+#famousMatches span {
+	float: left;
+	clear: left;
+}
+#famousMatches span a {
+	color: #ffff00;
+	cursor: pointer;
+}

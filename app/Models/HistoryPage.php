@@ -24,7 +24,7 @@ class HistoryPage extends Model
      *
      * @var array
      */
-    protected $fillable = ['history_id','page_no','title','url','content','getty_image','image_text'];
+    protected $fillable = ['history_id','page_no','title','content','getty_image','image_text'];
 
 
 

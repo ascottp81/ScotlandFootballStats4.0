@@ -130,6 +130,13 @@ if (config('app.admin')) {
             Route::get('/ajax/table/remove/{id}', 'Admin\CompetitionController@ajax_tableRemove');
             Route::get('/ajax/table/position/{id}', 'Admin\CompetitionController@ajax_tablePosition');
 
+
+            Route::get('/history/{id?}', 'Admin\HistoryController@index')->where('id', '[0-9]+');
+            Route::post('/history', 'Admin\HistoryController@historyUpdate');
+            Route::get('/history/{url}', 'Admin\HistoryController@pageIndex');
+            Route::get('/history/{url}/add', 'Admin\HistoryController@pageAdd');
+            Route::get('/history/page/{id}', 'Admin\HistoryController@page')->where('id', '[0-9]+');
+            Route::post('/history/page', 'Admin\HistoryController@pageUpdate');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');

@@ -1,6 +1,7 @@
 tinyMCE.init({
         // General options
-        mode : "textareas",
+        mode : "specific_textareas",
+        editor_selector : "mceEditor",
         theme : "advanced",
 
         // Theme options

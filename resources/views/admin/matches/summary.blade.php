@@ -14,7 +14,7 @@
             <div>
                 <div class="fullInputs">
                     <div class="inputRow">
-                        <textarea id="summary" name="summary" style="width:100%;height:300px;">{{ ($summary)? $summary->content : '' }}</textarea>
+                        <textarea class="mceEditor" id="summary" name="summary" style="width:100%;height:300px;">{{ ($summary)? $summary->content : '' }}</textarea>
                     </div>
                 </div>
                 <div class="submitRow"><a class="addLink" id="submit" href="javascript:submitForm();">Save</a> <a class="addLink" href="/admin/match/{{ $id }}">Cancel</a></div>
