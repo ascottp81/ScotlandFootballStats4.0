@@ -142,6 +142,11 @@ if (config('app.admin')) {
             Route::get('/managers', 'Admin\ManagerController@index');
             Route::get('/manager/{id?}', 'Admin\ManagerController@manager')->where('id', '[0-9]+');
             Route::post('/manager', 'Admin\ManagerController@managerUpdate');
+
+
+            Route::get('/strips', 'Admin\StripController@index');
+            Route::get('/strip/{id?}', 'Admin\StripController@strip')->where('id', '[0-9]+');
+            Route::post('/strip', 'Admin\StripController@stripUpdate');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');

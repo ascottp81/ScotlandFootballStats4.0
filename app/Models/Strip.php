@@ -24,7 +24,7 @@ class Strip extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','year_from','year_to','type','colour','match','complete','getty_image','designer','note','video_id'];
+    protected $fillable = ['name','year_from','year_to','type','colour','match','complete','getty_image','designer','note'];
 
 
     /* SCOPES */
@@ -51,16 +51,6 @@ class Strip extends Model
 
 
     /* RELATIONSHIPS */
-
-    /**
-     * A strip has many videos
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function video()
-    {
-        return $this->hasMany('App\Models\Video', 'video_id');
-    }
 
     /**
      * A strip has many matches

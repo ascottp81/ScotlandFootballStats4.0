@@ -10,13 +10,13 @@
         <a class="dashboardItem" href="/admin/news"><i class="fa fa-newspaper-o"></i><p>News</p></a>
         <a class="dashboardItem" href="/admin/history"><i class="fa fa-history"></i><p>History</p></a>
         <a class="dashboardItem" href="/admin/managers"><i class="fa fa-user"></i><p>Managers</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-users"></i><p>Strips</p></a>
+        <a class="dashboardItem" href="/admin/strips"><i class="fa fa-users"></i><p>Strips</p></a>
         <a class="dashboardItem" href="/admin/videos"><i class="fa fa-film"></i><p>Videos</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-book"></i><p>Articles</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-globe"></i><p>Opponents</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-shield"></i><p>Clubs</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-map-marker"></i><p>Locations</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-history"></i><p>Past Events</p></a>
-        <a class="dashboardItem" href="menus.php"><i class="fa fa-external-link"></i><p>External Links</p></a>
+        <a class="dashboardItem" href="/admin/articles"><i class="fa fa-book"></i><p>Articles</p></a>
+        <a class="dashboardItem" href="/admin/opponents"><i class="fa fa-globe"></i><p>Opponents</p></a>
+        <a class="dashboardItem" href="/admin/clubs"><i class="fa fa-shield"></i><p>Clubs</p></a>
+        <a class="dashboardItem" href="/admin/locations"><i class="fa fa-map-marker"></i><p>Locations</p></a>
+        <a class="dashboardItem" href="/admin/events"><i class="fa fa-history"></i><p>Past Events</p></a>
+        <a class="dashboardItem" href="/admin/links"><i class="fa fa-external-link"></i><p>External Links</p></a>
     </div>
 @endsection
