@@ -137,6 +137,11 @@ if (config('app.admin')) {
             Route::get('/history/{url}/add', 'Admin\HistoryController@pageAdd');
             Route::get('/history/page/{id}', 'Admin\HistoryController@page')->where('id', '[0-9]+');
             Route::post('/history/page', 'Admin\HistoryController@pageUpdate');
+
+
+            Route::get('/managers', 'Admin\ManagerController@index');
+            Route::get('/manager/{id?}', 'Admin\ManagerController@manager')->where('id', '[0-9]+');
+            Route::post('/manager', 'Admin\ManagerController@managerUpdate');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');

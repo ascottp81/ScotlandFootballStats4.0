@@ -5,16 +5,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Competition;
-use App\Models\CompetitionRound;
-use App\Models\CompetitionType;
 use App\Models\History;
 use App\Models\HistoryPage;
 use App\Models\Match;
-use App\Models\Opponent;
-use App\Models\CompetitionTable;
-use App\Models\TableResult;
-use App\Models\TableTeam;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
