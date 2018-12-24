@@ -151,6 +151,12 @@ if (config('app.admin')) {
 
             Route::get('/videos/{id?}', 'Admin\VideoController@index');
             Route::post('/video', 'Admin\VideoController@update');
+
+
+            Route::get('/articles', 'Admin\ArticleController@index');
+            Route::get('/articles/details/{id?}', 'Admin\ArticleController@details');
+            Route::post('/articles', 'Admin\ArticleController@update');
+            Route::get('/articles/delete/{id}', 'Admin\ArticleController@delete');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');

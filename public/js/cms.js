@@ -222,9 +222,17 @@ function orderTable(order) {
 
 /* =============================== News ===================================== */
 
-function deleteArticle(id) {
+function deleteNewsArticle(id) {
 	if (confirm("Are you sure that you want to delete this article?")) {
 		location.href = "/admin/news/delete/" + id;
 	}
+}
+
+/* =============================== Articles ===================================== */
+
+function deleteArticle(id) {
+    if (confirm("Are you sure that you want to delete this article?")) {
+        location.href = "/admin/articles/delete/" + id;
+    }
 }
 

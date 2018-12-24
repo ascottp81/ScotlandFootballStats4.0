@@ -20,7 +20,7 @@
                     <td>{{ $article->title }}</td>
                     <td>{{ $article->type }}</td>
                     <td><a href="/admin/news/article/{{ $article->id }}">Edit</a></td>
-                    <td><a href="javascript:deleteArticle({{ $article->id }})">Delete</a></td>
+                    <td><a href="javascript:deleteNewsArticle({{ $article->id }})">Delete</a></td>
                 </tr>
                 @endforeach
             </tbody>
