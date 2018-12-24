@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VideoType extends Model
 {
-    use SoftDeletes;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'videotypes';
+    protected $table = 'videotype';
 
     /**
      * The attributes that are mass assignable.

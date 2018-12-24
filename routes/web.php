@@ -147,6 +147,10 @@ if (config('app.admin')) {
             Route::get('/strips', 'Admin\StripController@index');
             Route::get('/strip/{id?}', 'Admin\StripController@strip')->where('id', '[0-9]+');
             Route::post('/strip', 'Admin\StripController@stripUpdate');
+
+
+            Route::get('/videos/{id?}', 'Admin\VideoController@index');
+            Route::post('/video', 'Admin\VideoController@update');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');

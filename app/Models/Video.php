@@ -40,6 +40,16 @@ class Video extends Model
         return $this->belongsTo('App\Models\Match', 'match_id');
     }
 
+    /**
+     * A video belongs to a type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo('App\Models\VideoType', 'type_id');
+    }
+
 
     /* GETTERS */
 
