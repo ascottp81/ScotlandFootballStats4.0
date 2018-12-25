@@ -157,6 +157,10 @@ if (config('app.admin')) {
             Route::get('/articles/details/{id?}', 'Admin\ArticleController@details');
             Route::post('/articles', 'Admin\ArticleController@update');
             Route::get('/articles/delete/{id}', 'Admin\ArticleController@delete');
+
+
+            Route::get('/opponents/{id?}', 'Admin\OpponentController@index');
+            Route::post('/opponent', 'Admin\OpponentController@update');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');
