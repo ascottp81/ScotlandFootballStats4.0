@@ -24,7 +24,7 @@ class Manager extends Model
      *
      * @var array
      */
-    protected $fillable = ['surname','firstname','name_extension','from','to','took_charge','appointed','reign_ended','reason','born','birthplace','died','summary','caretaker','appointed_first','assistants','url','getty_image'];
+    protected $fillable = ['surname','firstname','name_extension','from','to','took_charge','appointed','reign_ended','reason','born','birthplace','died','summary','caretaker','assistants','url','getty_image'];
     /**
      * Additional fields to treat as Carbon instances
      *
@@ -38,8 +38,7 @@ class Manager extends Model
      * @var array
      */
     protected $casts = [
-        'caretaker' => 'boolean',
-        'appointed_first' => 'boolean'
+        'caretaker' => 'boolean'
     ];
 
 
@@ -200,5 +199,21 @@ class Manager extends Model
     public function getPastEventAttribute(): string
     {
         return $this->fullname . " was born on this day in " . $this->birthplace . ".";
+    }
+
+
+    /**
+     * Determine if manager was appointed before they took charge
+     *
+     * @return bool
+     */
+    public function getAppointedFirstAttribute(): bool
+    {
+        if ($this->appointed && $this->took_charge) {
+            if (strtotime($this->took_charge) > strtotime($this->appointed)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

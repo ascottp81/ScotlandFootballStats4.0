@@ -111,12 +111,6 @@
                     	<input type="checkbox" id="caretaker" value="1" {{ ((old('caretaker') ?? $manager->caretaker ?? '0') == 1)? 'checked="checked"':'' }} name="caretaker" />
                     </div>
                 </div>
-                <div class="inputRow">
-                    <div class="inputHead">Appointed First: </div>
-                    <div class="input">
-                        <input type="checkbox" id="appointed_first" value="1" {{ ((old('appointed_first') ?? $manager->appointed_first ?? '0') == 1)? 'checked="checked"':'' }} name="appointed_first" />
-                    </div>
-                </div>
             </div>
             <div class="leftInputs">
                 <div class="inputRow">

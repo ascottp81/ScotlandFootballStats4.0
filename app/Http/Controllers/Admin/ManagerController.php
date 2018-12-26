@@ -89,7 +89,6 @@ class ManagerController extends Controller
             'summary' => $request->summary ? trim($request->summary) : '',
             'assistants' => $request->assistants ? trim($request->assistants) : '',
 			'caretaker' => ($request->caretaker)? 1:0,
-            'appointed_first' => ($request->appointed_first)? 1:0,
 			'getty_image' => $request->getty_image ? trim($request->getty_image) : ''
 		];
 
