@@ -161,6 +161,18 @@ if (config('app.admin')) {
 
             Route::get('/opponents/{id?}', 'Admin\OpponentController@index');
             Route::post('/opponent', 'Admin\OpponentController@update');
+
+            Route::get('/clubs/{id?}', 'Admin\ClubController@index');
+            Route::post('/club', 'Admin\ClubController@update');
+
+            Route::get('/locations/{id?}', 'Admin\LocationController@index');
+            Route::post('/location', 'Admin\LocationController@update');
+
+            Route::get('/events/{id?}', 'Admin\EventController@index');
+            Route::post('/event', 'Admin\EventController@update');
+
+            Route::get('/links/{id?}', 'Admin\LinkController@index');
+            Route::post('/link', 'Admin\LinkController@update');
         });
 
         Route::get('/logout', 'Auth\LoginController@logout');
