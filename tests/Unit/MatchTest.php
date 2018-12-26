@@ -56,7 +56,7 @@ class MatchTest extends TestCase
     {
         $match = factory(Match::class)->make(['location_id' => '41']);
 
-        $this->assertEquals('Glasgow', $match->location->city);
+        $this->assertEquals('Glasgow', $match->location->name);
     }
 
     /**

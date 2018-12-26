@@ -67,7 +67,7 @@
                             <select id="location" name="location">
                                 <option value="0">Please Select</option>
                                 @foreach ($locations as $location)
-                                    <option value="{{ $location->id }}" @if((old('location') ?? $fixture->location_id ?? '') == $location->id)selected="selected"@endif>{{ $location->city }}</option>
+                                    <option value="{{ $location->id }}" @if((old('location') ?? $fixture->location_id ?? '') == $location->id)selected="selected"@endif>{{ $location->name }}</option>
                                 @endforeach
                             </select>
                         </div>

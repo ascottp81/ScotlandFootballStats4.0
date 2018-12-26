@@ -567,7 +567,7 @@ class Match extends Model
 	public function getVenueLocationAttribute(): string
 	{
 		if ($this->venue != "" && $this->location_id > 0) {
-			return $this->venue . ", " . $this->location->city;
+			return $this->venue . ", " . $this->location->name;
 		}
 		elseif ($this->venue == "" && $this->location_id == 0) {
 			return "Venue: unknown";
@@ -576,7 +576,7 @@ class Match extends Model
 			return $this->venue;
 		}
 		else {
-			return $this->location->city;
+			return $this->location->name;
 		}
 	}
 	
@@ -588,7 +588,7 @@ class Match extends Model
 	public function getVenueHaAttribute(): string
 	{
         if ($this->venue != "" && $this->location_id > 0) {
-            return $this->venue . ", " . $this->location->city . " (" . $this->home_away . ")";
+            return $this->venue . ", " . $this->location->name . " (" . $this->home_away . ")";
         }
         elseif ($this->venue == "" && $this->location_id == 0) {
             return  "(" . $this->home_away . ")";
@@ -597,7 +597,7 @@ class Match extends Model
             return $this->venue . " (" . $this->home_away . ")";
         }
         else {
-            return $this->location->city . " (" . $this->home_away . ")";
+            return $this->location->name . " (" . $this->home_away . ")";
         }
 	}
 	

@@ -62,7 +62,7 @@ class MatchController extends Controller
         $opponents = Opponent::orderBy('name')->get();
         $competitions = Competition::orderBy('name')->get();
         $rounds = CompetitionRound::all();
-        $locations = Location::orderBy('city')->get();
+        $locations = Location::orderBy('name')->get();
 
         return view('/admin/matches/fixture', compact('fixture','id','opponents','competitions','rounds','locations'));
     }
@@ -143,7 +143,7 @@ class MatchController extends Controller
         $opponents = Opponent::orderBy('name')->get();
         $competitions = Competition::orderBy('name')->get();
         $rounds = CompetitionRound::all();
-        $locations = Location::orderBy('city')->get();
+        $locations = Location::orderBy('name')->get();
         $managers = Manager::orderBy('from')->orderBy('id')->get();
 
         return view('admin/matches/basic', compact('match','opponents','competitions','rounds','locations','managers'));

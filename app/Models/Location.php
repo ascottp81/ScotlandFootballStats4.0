@@ -22,7 +22,7 @@ class Location extends Model
      *
      * @var array
      */
-    protected $fillable = ['city'];
+    protected $fillable = ['name'];
 
 
 

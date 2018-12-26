@@ -30,7 +30,7 @@ class LocationController extends Controller
      */
     public function index(int $id = 0): View
     {
-        $locationList = Location::orderBy('city','asc')->get();
+        $locationList = Location::orderBy('name','asc')->get();
         $selectedLocation = Location::find($id);
         return view('admin/locations/index', compact('locationList','selectedLocation','id'));
     }
@@ -45,16 +45,16 @@ class LocationController extends Controller
     {
         // Validation
         $rules = [
-            'city' => 'required'
+            'name' => 'required'
         ];
         $messages = [
-            'city.*' => 'Please input a name'
+            'name.*' => 'Please input a name'
         ];
         $request->validate($rules, $messages);
 
         // Obtain data
         $data = [
-            'city' => trim($request->city)
+            'name' => trim($request->name)
         ];
 
         if ($request->itemid == 0) {

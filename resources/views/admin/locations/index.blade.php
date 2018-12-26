@@ -13,7 +13,7 @@
             <tbody>
             @foreach ($locationList as $location)
                 <tr>
-                    <td>{{ $location->city }}</td>
+                    <td>{{ $location->name }}</td>
                     <td><a href="/admin/locations/{{ $location->id }}">Edit</a></td>
                 </tr>
             @endforeach
@@ -28,8 +28,8 @@
                 <div class="inputRow">
                     <div class="inputHead">Name: </div>
                     <div class="input">
-                        <input type="text" id="city" value="{{ old('city') ?? $selectedLocation->city ?? '' }}" name="city" />
-                        <span class="errorMsg">{{ $errors->first('city') }}</span>
+                        <input type="text" id="name" value="{{ old('name') ?? $selectedLocation->name ?? '' }}" name="name" />
+                        <span class="errorMsg">{{ $errors->first('name') }}</span>
                     </div>
                 </div>
                 <div class="submitRow"><button class="addLink">Save</button> <a class="addLink" href="/admin/locations">Cancel</a></div>
