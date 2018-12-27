@@ -72,21 +72,14 @@
                 </div>
             </div>
             <div class="inputRow">
-                <div class="inputHead">Won: </div>
+                <div class="inputHead">Outcome: </div>
                 <div class="input">
-                    <input type="checkbox" id="won" name="won" value="1" @if((old('won') ?? $competitionVersion->won ?? '') == 1)checked="checked"@endif />
-                </div>
-            </div>
-            <div class="inputRow">
-                <div class="inputHead">Shared: </div>
-                <div class="input">
-                    <input type="checkbox" id="shared" name="shared" value="1" @if((old('shared') ?? $competitionVersion->shared ?? '') == 1)checked="checked"@endif />
-                </div>
-            </div>
-            <div class="inputRow">
-                <div class="inputHead">Qualified: </div>
-                <div class="input">
-                    <input type="checkbox" id="qualified" name="qualified" value="1" @if((old('qualified') ?? $competitionVersion->qualified ?? '') == 1)checked="checked"@endif />
+                    <select id="outcome" name="outcome">
+                        <option value="">&mdash;</option>
+                        <option value="won" @if((old('outcome') ?? $competitionVersion->outcome ?? '') == "won")selected="selected"@endif>Won</option>
+                        <option value="shared" @if((old('outcome') ?? $competitionVersion->outcome ?? '') == "shared")selected="selected"@endif>Shared</option>
+                        <option value="qualified" @if((old('outcome') ?? $competitionVersion->outcome ?? '') == "qualified")selected="selected"@endif>Qualified</option>
+                    </select>
                 </div>
             </div>
             <div class="inputRow">

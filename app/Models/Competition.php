@@ -22,7 +22,7 @@ class Competition extends Model
      *
      * @var array
      */
-    protected $fillable = ['competition_type_id', 'year', 'stage', 'name', 'won', 'shared', 'qualified', 'withdrew', 'comment'];
+    protected $fillable = ['competition_type_id', 'year', 'stage', 'name', 'outcome', 'withdrew', 'comment'];
 
 
 
@@ -131,12 +131,9 @@ class Competition extends Model
     public function getClassAttribute(): string
     {
         $class = "";
-        if ($this->won == 1)
-            $class = " competitionWon";
-        elseif ($this->shared == 1)
-            $class = " competitionShared";
-        elseif ($this->qualified == 1)
-            $class = " competitionQualified";
+        if ($this->outcome != "") {
+            $class = " competition" . ucfirst($this->outcome);
+        }
 
         return $class;
     }

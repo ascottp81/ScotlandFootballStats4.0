@@ -161,7 +161,7 @@ class CompetitionType extends Model
     {
         $competitions = $this->competitions()
             ->where(function ($q) {
-                $q->where('won','=', 1)->orWhere('shared','=', '1')->orWhere('qualified','=', '1');
+                $q->whereIn('outcome', ['won','shared','qualified']);
             })
             ->orderBy('year','asc')
             ->get();
@@ -172,7 +172,7 @@ class CompetitionType extends Model
         foreach ($competitions as $comp) {
             $yearString = $comp->year;
 
-            if ($comp->shared == 1) {
+            if ($comp->outcome == "shared") {
                 $yearString .= "*";
                 $sharedCount++;
             }
@@ -205,7 +205,7 @@ class CompetitionType extends Model
     {
         $competitions = $this->competitions()
             ->where(function ($q) {
-                $q->where('won','=', 1)->orWhere('shared','=', '1')->orWhere('qualified','=', '1');
+                $q->whereIn('outcome', ['won','shared','qualified']);
             })
             ->count();
 

@@ -147,17 +147,15 @@ class CompetitionController extends Controller
             'year' => trim($request->year),
             'stage' => $request->stage ? trim($request->stage) : '',
             'comment' => $request->comment ? trim($request->comment) : '',
-            'won' => $request->won ?? '0',
-            'shared' => $request->shared ?? '0',
-            'qualified' => $request->qualified ?? '0',
+            'outcome' => $request->outcome ?? '',
             'withdrew' => $request->withdrew ?? '0'
         ];
 
         if ($request->itemid == 0) {
-            $competition = Competition::create($data);
+            Competition::create($data);
         }
         else {
-            $competition = Competition::where('id', $request->itemid)->update($data);
+            Competition::where('id', $request->itemid)->update($data);
         }
 
         // Competition Type
