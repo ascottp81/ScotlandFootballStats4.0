@@ -76,36 +76,5 @@ class OtherController extends Controller
 		
         return view('other.links', compact('officialLinks','featuredLinks','otherLinks','metatitle','metadescription'));
     }
-	
-    /**
-     * Show the contact us page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function contact()
-    {
-		// Meta data
-		$metatitle = "Contact Us";
-		$metadescription = "Statistics for Scottish International Football, which includes in-depth Match and Player Stats, Competition Details, FIFA Rankings, and a Brief History.";
-		
-		
-        return view('other.contact', compact('metatitle','metadescription'));
-    }
-	
-    /**
-     * Post the contact us email
-     *
-     * @param Request $request
-     */
-    public function email(Request $request)
-    {
-		$bodymessage = wordwrap($request->message,70);
-		
-        Mail::send('other.email', ['bodymessage' => $bodymessage], function ($m) use ($request) {
-            $m->from($request->email, $request->email);
-			$m->replyTo($request->email, $request->email);
-            $m->to("root@scotlandfootballstats.co.uk", "ScotlandFootballStats")->subject($request->subject);
-        });
-    }
 
 }

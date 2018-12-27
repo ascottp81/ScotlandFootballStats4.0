@@ -71,7 +71,7 @@
        		<div style="clear:both;height:0;"></div>
         </div>
        	<div id="footer">
-            <div class="bottomFooter"><a href="/sitemap">Sitemap</a> | <a href="/links">Links</a> | <a href="/contact">Contact Us</a>  <span class="credit">Designed &amp; Built by Scott Pinkerton Ltd</span></div>
+            <div class="bottomFooter"><a href="/sitemap">Sitemap</a> | <a href="/links">Links</a></div>
         </div>
     </div>
 

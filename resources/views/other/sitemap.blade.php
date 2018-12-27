@@ -105,7 +105,6 @@ $(document).ready(function() {
                 </li>
                 <!--<li><a href="/videos">Videos</a></li>-->
                 <li><a href="/links">Links</a></li>
-                <li><a href="/contact">Contact Us</a></li>
             </ul>
         </div>
         <div class="sitemapImage">
