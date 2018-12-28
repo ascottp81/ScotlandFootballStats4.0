@@ -22,41 +22,8 @@ class TableTeam extends Model
      *
      * @var array
      */
-    protected $fillable = ['competition_table_id', 'position', 'team_id', 'played', 'won', 'drew', 'lost', 'for', 'against', 'points', 'top_place', 'playoff', 'relegated'];
+    protected $fillable = ['competition_table_id', 'position', 'team_id', 'played', 'won', 'drew', 'lost', 'for', 'against', 'points', 'outcome'];
 
-
-
-    /* SCOPES */
-
-    /**
-     * Scope query for top place in table
-     *
-     * @param  $query
-     */
-    public function scopeTop($query)
-    {
-        $query->where('top_place','=','1');
-    }
-
-    /**
-     * Scope query for top place in table
-     *
-     * @param  $query
-     */
-    public function scopePlayoff($query)
-    {
-        $query->where('playoff','=','1');
-    }
-
-    /**
-     * Scope query for bottom in table
-     *
-     * @param  $query
-     */
-    public function scopeRelegated($query)
-    {
-        $query->where('relegated','=','1');
-    }
 
 
     /* RELATIONSHIPS */
@@ -144,23 +111,23 @@ class TableTeam extends Model
      */
     public function getTableLineAttribute(): string
     {
-        if ($this->top_place == 1 || $this->playoff == 1) {
+        if (in_array($this->outcome, ['won','qualified','promoted','playoff','final'])) {
             $nextRow = TableTeam::where('competition_table_id','=',$this->competition_table_id)->where('position','=',$this->position + 1)->first();
 
             if ($nextRow) {
-                if ($this->top_place == 1 && $nextRow->top_place != 1) {
+                if (in_array($this->outcome, ['won','qualified','promoted','final']) && !in_array($nextRow->outcome, ['won','qualified','promoted','final'])) {
                     return "solid";
                 }
-                elseif ($this->playoff == 1 && $nextRow->playoff != 1) {
+                elseif ($this->outcome == 'playoff' && $nextRow->outcome != 'playoff') {
                     return "dashed";
                 }
             }
         }
-        elseif ($this->relegated == 1) {
+        elseif ($this->outcome == 'relegated') {
             $previousRow = TableTeam::where('competition_table_id','=',$this->competition_table_id)->where('position','=',$this->position - 1)->first();
 
             if ($previousRow) {
-                if ($this->relegated == 1 && $previousRow->relegated != 1) {
+                if ($this->outcome == 'relegated' && $previousRow->outcome != 'relegated') {
                     return "relegated";
                 }
             }

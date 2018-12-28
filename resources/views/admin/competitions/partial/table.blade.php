@@ -29,13 +29,16 @@
                 <div class="input goals">
                     <input class="goalsIp" type="text" value="0" name="points[]" data-required="true" />
                 </div>
-                <div class="input shirtcb">
-                    <input class="topCb" type="checkbox" value="1" />
-                    <input type="hidden" value="0" name="top_place[]" data-required="true" />
-                </div>
-                <div class="input shirtcb">
-                    <input class="poCb" type="checkbox" value="1" />
-                    <input type="hidden" value="0" name="playoff[]" data-required="true" />
+                <div class="input">
+                    <select name="outcome[]">
+                        <option value="">&mdash;</option>
+                        <option value="won">Won</option>
+                        <option value="qualified">Qualified</option>
+                        <option value="playoff">Playoff</option>
+                        <option value="promoted">Promoted</option>
+                        <option value="relegated">Relegated</option>
+                        <option value="final">Final</option>
+                    </select>
                 </div>
                 <div class="input"><a class="removeRow"><img src="/img/cms/remove.gif" /></a></div>
                 <input type="hidden" value="0" name="id[]" data-required="true" />

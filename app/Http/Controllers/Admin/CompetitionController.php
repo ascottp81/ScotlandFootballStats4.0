@@ -233,16 +233,15 @@ class CompetitionController extends Controller
                 'for' => trim($request->for[$i]),
                 'against' => $request->against[$i],
                 'points' => trim($request->points[$i]),
-                'top_place' => $request->top_place[$i] ?? '0',
-                'playoff' => $request->playoff[$i] ?? '0'
+                'outcome' => $request->outcome[$i] ?? ''
             ];
 
             if ($request->id[$i] == 0) {
                 $data['position'] = ($i + 1);
-                $tableRow = TableTeam::create($data);
+                TableTeam::create($data);
             }
             else {
-                $tableRow = TableTeam::where('id', '=', $request->id[$i])->update($data);
+                TableTeam::where('id', '=', $request->id[$i])->update($data);
             }
         }
 

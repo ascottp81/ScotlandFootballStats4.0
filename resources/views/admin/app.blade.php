@@ -42,7 +42,7 @@
         <div style="clear:both;height:0;"></div>
     </div>
     <div id="footer">
-        <div class="bottomFooter"><span class="credit">Designed &amp; Built by Scott Pinkerton Ltd</span></div>
+        <div class="bottomFooter"></div>
     </div>
 </div>
 </body>

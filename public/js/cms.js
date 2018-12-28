@@ -192,15 +192,6 @@ function addTableRow() {
 		$( "#sortable" ).sortable( "disable" );
 		var result = $('#sortable').sortable('toArray'); 
 		orderTable(result);
-		
-		$(".topCb, .poCb").click(function(){
-			if ($(this).is(":checked")) {
-				$(this).next().val("1");	
-			}
-			else {
-				$(this).next().val("0");
-			}
-		});
 	});
 }
 function setupRemoveTableRow() {

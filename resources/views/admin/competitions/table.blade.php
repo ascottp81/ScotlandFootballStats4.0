@@ -3,15 +3,6 @@
 @section('head')
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".topCb, .poCb").click(function(){
-		if ($(this).is(":checked")) {
-			$(this).next().val("1");	
-		}
-		else {
-			$(this).next().val("0");
-		}
-	});
-	
 	$("#sortable").sortable();
 	$('#sortable').bind('sortupdate', function(event, ui) {
 		var result = $('#sortable').sortable('toArray'); 
@@ -97,8 +88,7 @@ $(document).ready(function(){
                 <div class="input goals">F</div>
                 <div class="input goals">A</div>
                 <div class="input goals">Pts</div>
-                <div class="input shirtcb">Top</div>
-                <div class="input shirtcb">Play-off</div>
+                <div class="input player">Outcome</div>
             </div>
 			<ul id="sortable" class="ui-sortable clearFloatLeft">
         @if ($row)
@@ -134,13 +124,16 @@ $(document).ready(function(){
                 <div class="input goals">
                     <input class="goalsIp" type="text" value="{{ $row[$i]->points }}" name="points[]" data-required="true" />
                 </div>
-                <div class="input shirtcb">
-                    <input class="topCb" type="checkbox" value="1" @if($row[$i]->top_place == 1)checked="checked"@endif />
-                    <input type="hidden" value="{{ $row[$i]->top_place }}" name="top_place[]" data-required="true" />
-                </div>
-                <div class="input shirtcb">
-                    <input class="poCb" type="checkbox" value="1" @if($row[$i]->playoff == 1)checked="checked"@endif />
-                    <input type="hidden" value="{{ $row[$i]->playoff }}" name="playoff[]" data-required="true" />
+                <div class="input">
+                    <select name="outcome[]">
+                        <option value="">&mdash;</option>
+                        <option value="won" @if($row[$i]->outcome == "won")selected="selected"@endif>Won</option>
+                        <option value="qualified" @if($row[$i]->outcome == "qualified")selected="selected"@endif>Qualified</option>
+                        <option value="playoff" @if($row[$i]->outcome == "playoff")selected="selected"@endif>Playoff</option>
+                        <option value="promoted" @if($row[$i]->outcome == "promoted")selected="selected"@endif>Promoted</option>
+                        <option value="relegated" @if($row[$i]->outcome == "relegated")selected="selected"@endif>Relegated</option>
+                        <option value="final" @if($row[$i]->outcome == "final")selected="selected"@endif>Final</option>
+                    </select>
                 </div>
                 <div class="input"><a class="removeRow"><img src="/img/cms/remove.gif" /></a></div>
                 <input type="hidden" value="{{ $row[$i]->id }}" name="id[]" data-required="true" />
