@@ -85,7 +85,7 @@
                         <div class="tableRow {{ $row->table_line }}"></div>
                     @endif
                     <div class="tableRow">
-                        <div class="team"><span class="flagHolder"><img src="/img/flags/{{ $row->flag }}.gif" class="tableFlag" /></span><span>{{ $row->team }}</span></div>
+                        <div class="team">{!! $row->outcome_symbol !!}<span class="flagHolder"><img src="/img/flags/{{ $row->flag }}.gif" class="tableFlag" /></span><span>{{ $row->team }}</span></div>
                         <div class="data">{{ $row->played }}</div>
                         <div class="data">{{ $row->won }}</div>
                         <div class="data">{{ $row->drew }}</div>

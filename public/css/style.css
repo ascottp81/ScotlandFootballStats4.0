@@ -1929,6 +1929,32 @@ img.tableFlag {
 	width: 196px;
 }
 
+/* table outcome */
+#competitionTables span.won {
+	float: left;
+	width: 30px;
+	font-size: 20px;
+	color: #ffaa00;
+}
+#competitionTables span.promoted {
+	float: left;
+	width: 30px;
+	font-size: 20px;
+	color: #00aa00;
+}
+#competitionTables span.qualified {
+	float: left;
+	width: 30px;
+	font-size: 17px;
+	color: #00aa00;
+}
+#competitionTables span.relegate {
+	float: left;
+	width: 30px;
+	font-size: 20px;
+	color: #aa0000;
+}
+
 .tabFiller {
 	height: 30px;
 	float: left;

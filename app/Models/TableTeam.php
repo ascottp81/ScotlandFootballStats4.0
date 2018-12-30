@@ -136,4 +136,34 @@ class TableTeam extends Model
         return "";
 
     }
+
+    /**
+     * Get the team outcome
+     *
+     * @return string
+     */
+    public function getOutcomeSymbolAttribute(): string
+    {
+        if ($this->outcome == "won") {
+            return '<span class="won fa fa-trophy"></span>';
+        }
+        elseif ($this->outcome == "qualified") {
+            return '<span class="qualified">Q</span>';
+        }
+        elseif ($this->outcome == "playoff") {
+            return '<span class="qualified">P</span>';
+        }
+        elseif ($this->outcome == "promoted") {
+            return '<span class="promoted fa fa-chevron-up"></span>';
+        }
+        elseif ($this->outcome == "relegated") {
+            return '<span class="relegate fa fa-chevron-down"></span>';
+        }
+        elseif ($this->outcome == "final") {
+            return '<span class="qualified">F</span>';
+        }
+        else {
+            return "";
+        }
+    }
 }
