@@ -24,7 +24,7 @@
     <div class="playerLeftContainer">
         <div class="playerImage">{!! $player->image !!}</div>
         
-        <div class="playerDetailsLeft">
+        <div class="playerDetails">
             <div class="playerDetailsHolder">
                 <div class="playerStatsRow">
                     <div class="playerStatsHeading">Caps:</div>
@@ -82,7 +82,7 @@
     </div>
     
     <div class="playerMatchDetails">
-        <span class="flagTitleLink"><span class="flagTitle"></span>Appearances</span>
+        <span class="flagTitleLink"><span class="flag"></span>Appearances</span>
         <div class="matchDetailsData">
             <table id="dataTable">
                 <thead>

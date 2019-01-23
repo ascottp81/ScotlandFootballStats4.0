@@ -18,7 +18,7 @@
         @endif
 
         <div class="competitionResults">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Scotland Matches</span>
+            <span class="flagTitleLink"><span class="flag"></span>Scotland Matches</span>
             <div class="competitionResultsData">
                 @foreach ($matches as $match)
                     @if ($match->competition_round_text != "None" && $match->competition_round_text != "" && $match->competition->id == $competition->id)
@@ -67,7 +67,7 @@
         @foreach ($tables as $table)
         <div id="table{{ $table->id }}">
             <div class="competitionTable">
-                <span class="flagTitleLink"><span class="flagTitle"></span>{{ $table->group_name }} Table</span>
+                <span class="flagTitleLink"><span class="flag"></span>{{ $table->group_name }} Table</span>
                 <div class="competitionTableData">
                     <div class="tableRow">
                         <div class="team">&nbsp;</div>
@@ -108,7 +108,7 @@
             </div>
 
             <div class="groupResults">
-                <span class="flagTitleLink"><span class="flagTitle"></span>{{ $table->group_name }} {{ $table->fixture_result_text }}</span>
+                <span class="flagTitleLink"><span class="flag"></span>{{ $table->group_name }} {{ $table->fixture_result_text }}</span>
                 <div class="groupResultsData">
                 @foreach ($table->results()->get() as $game)
                     @if ($game->date_row != "")<div class="groupResultsDateBlock"><span class="groupResultsDate">{{ $game->date_row }}</span><br />@endif

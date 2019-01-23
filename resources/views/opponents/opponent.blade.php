@@ -9,7 +9,7 @@
     <h1 class="fullTitleBar">Scotland v {{ $opponent->name }}<div class="breadcrumb"><a href="/">Home</a> > <a href="/opponents">Opponents</a> > <span>{{ $opponent->name }}</span></div></h1>
     <div class="opponentLeft">
         <div class="opponentSummary">
-            <div class="opponentTitle"><span class="opponentFlag" style="background-image: url('/img/flags/{{ $opponent->flag }}.gif');"></span>{{ $opponent->name }} <span class="opponentYears">{{ $opponent->years }}</span></div>
+            <div class="title"><span class="flag" style="background-image: url('/img/flags/{{ $opponent->flag }}.gif');"></span>{{ $opponent->name }} <span class="years">{{ $opponent->years }}</span></div>
             <p>{{ $opponent->summary }}</p>
         
             <table cellspacing="0px">
@@ -69,13 +69,13 @@
             </table>
             
             @if ($opponent->memorable_match != '')
-            <p class="opponentMatch"><span class="opponentHeading">Memorable Match: </span><br />{{ $opponent->memorable_match }}</p>   
+            <p class="opponentMatch"><span>Memorable Match: </span><br />{{ $opponent->memorable_match }}</p>
             @endif
         </div>
         <div class="opponentImage">{!! $opponent->image !!}</div>
     </div>
     
-    <div class="playerMatchDetails opponentMatchDetails">
+    <div class="opponentMatchDetails">
         <div class="matchDetailsData">
             <table id="dataTable">
                 <thead>

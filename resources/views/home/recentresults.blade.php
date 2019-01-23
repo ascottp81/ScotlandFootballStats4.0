@@ -10,7 +10,7 @@
     <div class="matchListSearch">
         <div class="searchColumn">
             <div class="searchContainer">
-                <span class="flagTitleLink"><span class="flagTitle"></span>Match Search</span>
+                <span class="flagTitleLink"><span class="flag"></span>Match Search</span>
                 <div class="searchForm">
                     <div class="searchFormHeading">Opponent</div>
                     <div class="searchFormInput">

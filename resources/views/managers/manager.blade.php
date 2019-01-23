@@ -11,11 +11,11 @@
     <div class="managerLeftContainer">
         <div class="managerImage">{!! $manager->image !!}</div>
         
-        <div class="managerDetailsLeft">
+        <div class="managerDetails">
             <div class="managerDetailsHolder">
                 <div class="managerSummaryName">{{ $manager->extended_fullname }}
                 @if ($manager->caretaker)
-                <span class="managerSummaryName2">(Caretaker)</span>
+                <span>(Caretaker)</span>
                 @endif
                 </div>
                 <div class="managerSummaryHeading">Born:</div>
@@ -109,7 +109,7 @@
         </table>
     </div>
     
-    <div class="playerMatchDetails managerMatchDetails">
+    <div class="managerMatchDetails">
         <div class="matchDetailsData">
             <table id="dataTable">
                 <thead>

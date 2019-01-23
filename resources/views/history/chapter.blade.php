@@ -7,7 +7,7 @@
     <h1 class="fullTitleBar">{{ $chapter->title }} {{ $chapter->period }}<div class="breadcrumb"><a href="/">Home</a> > <a href="/history">History</a> > <span>{{ $chapter->title }} {{ $chapter->period }}</span></div></h1>
     <div id="historyAccordion">
         @foreach ($chapter->pages()->get() as $page)
-        <h3 class="flagTitleLink"><span class="flagTitle"></span>{{ $page->title }}</h3>
+        <h3 class="flagTitleLink"><span class="flag"></span>{{ $page->title }}</h3>
         <div class="subChapter">
             <div class="subChapterText">
                 {!! $page->content !!}

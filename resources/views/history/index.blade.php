@@ -12,7 +12,7 @@
             {!! $chapter->image !!}
         </div>
         <div class="historyRight">
-            <a href="/history/{{ $chapter->url }}" class="flagTitleLink"><span class="flagTitle"></span>{{ $chapter->title }} {{ $chapter->period }}</a>
+            <a href="/history/{{ $chapter->url }}" class="flagTitleLink"><span class="flag"></span>{{ $chapter->title }} {{ $chapter->period }}</a>
             <div class="historyRightSummary"><p>{{ $chapter->summary }}</p></div>
             <div class="historyRightMatches">
                 <p class="historyMatchesTitle">Famous Matches:</p>

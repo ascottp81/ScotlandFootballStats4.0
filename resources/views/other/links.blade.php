@@ -7,7 +7,7 @@
     <h1 class="fullTitleBar">External Links</h1>
     <div class="linksRow">
         <div class="linksSector">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Official Sites</span>
+            <span class="flagTitleLink"><span class="flag"></span>Official Sites</span>
             <div class="linksSectorContent">
                 @foreach ($officialLinks as $link)
                 <div class="externalLinkItem">
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="linksSector">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Featured Sites</span>
+            <span class="flagTitleLink"><span class="flag"></span>Featured Sites</span>
             <div class="linksSectorContent">
                 @foreach ($featuredLinks as $link)
                 <div class="externalLinkItem">
@@ -31,7 +31,7 @@
     </div>
     <div class="linksRow">
         <div class="otherLinksSector">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Other Sites</span>
+            <span class="flagTitleLink"><span class="flag"></span>Other Sites</span>
             <div class="linksSectorContent">
                 @foreach ($otherLinks as $link)
                 <div class="externalLinkItem">

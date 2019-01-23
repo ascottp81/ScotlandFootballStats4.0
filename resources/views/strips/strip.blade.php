@@ -41,7 +41,7 @@
     </div>
     
     <div class="playerMatchDetails">
-        <span class="flagTitleLink"><span class="flagTitle"></span>Matches</span>
+        <span class="flagTitleLink"><span class="flag"></span>Matches</span>
         <div class="matchDetailsData">
             <table id="dataTable">
                 <thead>

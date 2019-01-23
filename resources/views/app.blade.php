@@ -6,7 +6,8 @@
     SFA Hall Of Fame, Scottish Football Stats, Scottish Football Statistics, Scottish National Football, World Cup, 
     FIFA World Cup, UEFA European Championships, European Championships, Home Championships, British Championships, Rous Cup, Kirin Cup, 
     History Of Scotland Football Team, Hampden Park, Scottish Football Association" />
-<link href="/css/style.css" type="text/css" rel="stylesheet" media="all" />
+
+<link href="/css/app.css" type="text/css" rel="stylesheet" media="all" />
 <link rel="stylesheet" href="/js/jquery/jquery-ui.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/js/jquery/li-scroller.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/js/jquery/jquery.jscrollpane.css" type="text/css" media="all" />
@@ -49,7 +50,7 @@
 </script>-->   
     <div id="container">
 		<div id="header">
-        	<a class="header" href="/"><span class="flagTitle"></span>ScotlandFootballStats</a>
+        	<a class="headerBanner" href="/"><span class="flag"></span>ScotlandFootballStats</a>
         	<nav>
             	<ul>
                 	<li><a href="/" {!! $home !!}>Home</a></li>
@@ -71,7 +72,7 @@
        		<div style="clear:both;height:0;"></div>
         </div>
        	<div id="footer">
-            <div class="bottomFooter"><a href="/sitemap">Sitemap</a> | <a href="/links">Links</a></div>
+            <div class="footerBanner"><a href="/sitemap">Sitemap</a> | <a href="/links">Links</a></div>
         </div>
     </div>
 

@@ -6,7 +6,7 @@
 @section('content')
     <div class="searchColumn">
         <div class="searchContainer">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Match Search</span>
+            <span class="flagTitleLink"><span class="flag"></span>Match Search</span>
             <div class="searchForm">
                 <div class="searchFormHeading">Opponent</div>
                 <div class="searchFormInput">
@@ -60,13 +60,13 @@
     </div>
     
     <div class="homeMiddleColumn">
-        <h1 class="fullTitleBar"><span class="flagTitle"></span>{{ $article->title }}</h1>            
+        <h1 class="fullTitleBar"><span class="flag"></span>{{ $article->title }}</h1>
         <div class="articleHolder">{!! $article->content !!}</div>
     </div>
 
     <div class="homeRightColumn">
         <div class="homeTableHolder">
-            <a href="/competitions/{{ $homeTable->competition->type->url }}/{{ $homeTable->competition->url }}" class="flagTitleLink"><span class="flagTitle"></span>Group Table</a>
+            <a href="/competitions/{{ $homeTable->competition->type->url }}/{{ $homeTable->competition->url }}" class="flagTitleLink"><span class="flag"></span>Group Table</a>
             <div class="homeGroupTitle">{{ $homeTable->competition->name }}</div>
             <div class="homeGroupData">
                 <div class="homeTableRow">

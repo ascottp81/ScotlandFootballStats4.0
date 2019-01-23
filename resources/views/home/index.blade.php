@@ -6,7 +6,7 @@
 @section('content')
     <div class="searchColumn">
         <div class="searchContainer">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Match Search</span>
+            <span class="flagTitleLink"><span class="flag"></span>Match Search</span>
             <div class="searchForm">
                 <div class="searchFormHeading">Opponent</div>
                 <div class="searchFormInput">
@@ -68,7 +68,7 @@
     <div class="homeMiddleColumn">
         <div class="homeMiddleRow">
             <div class="homeSector">
-                <a class="flagTitleLink" href="/latest-news"><span class="flagTitle"></span>Headlines</a>
+                <a class="flagTitleLink" href="/latest-news"><span class="flag"></span>Headlines</a>
                 <div class="newsHolder">
                 @foreach ($news as $article)
                 <div class="homeNewsItem">{{ $article->title }}</div>
@@ -81,7 +81,7 @@
         </div>
         <div class="homeMiddleRow">
             <div class="homeSector">
-                <a class="flagTitleLink" href="/recent-results"><span class="flagTitle"></span>Recent Results</a>
+                <a class="flagTitleLink" href="/recent-results"><span class="flag"></span>Recent Results</a>
                 @foreach ($recentResults as $result)
                 <div class="homeResult">
                     <div class="homeResultDate">{{ $result->date->format('D jS M Y') }}</div>
@@ -91,7 +91,7 @@
                 @endforeach
             </div>
             <div class="homeSector">
-                <a class="flagTitleLink" href="/fixtures"><span class="flagTitle"></span>Fixtures</a>
+                <a class="flagTitleLink" href="/fixtures"><span class="flag"></span>Fixtures</a>
                 @foreach ($fixtures as $fixture)
                 <div class="homeResult">
                     <div class="homeResultDate">{{ $fixture->date->format('D jS M Y') }}</div>
@@ -110,7 +110,7 @@
     
     <div class="homeRightColumn">
         <div class="homeTableHolder">
-            <a href="/competitions/{{ $homeTable->competition->type->url }}/{{ $homeTable->competition->url }}" class="flagTitleLink"><span class="flagTitle"></span>Group Table</a>
+            <a href="/competitions/{{ $homeTable->competition->type->url }}/{{ $homeTable->competition->url }}" class="flagTitleLink"><span class="flag"></span>Group Table</a>
             <div class="homeGroupTitle">{{ $homeTable->competition->name }}</div>
             <div class="homeGroupData">
                 <div class="homeTableRow">

@@ -17,23 +17,23 @@
         <div class="introText">Many players have pulled on the dark blue of Scotland and represented their country. This section contains details of every player including appearances and goals. There are also details of every match that each player has played and scored in.</div>
 
         <div class="playerListSector">
-            <a href="/players/a-z" class="flagTitleLink"><span class="flagTitle"></span>Players A-Z</a>
+            <a href="/players/a-z" class="flagTitleLink"><span class="flag"></span>Players A-Z</a>
             <div class="playerListSectorSummary">An A-Z of every player who has played for Scotland.</div>
         </div>
         <div class="playerListSector">
-            <a href="/players/sfa-hall-of-fame" class="flagTitleLink"><span class="flagTitle"></span>SFA Hall of Fame</a>
+            <a href="/players/sfa-hall-of-fame" class="flagTitleLink"><span class="flag"></span>SFA Hall of Fame</a>
             <div class="playerListSectorSummary">A record of every player who has won 50+ caps for Scotland, gained a gold cap and entered into the SFA Hall Of Fame.</div>
         </div>
         <div class="playerListSector">
-            <a href="/players/silver-caps" class="flagTitleLink"><span class="flagTitle"></span>Silver Caps (25-49)</a>
+            <a href="/players/silver-caps" class="flagTitleLink"><span class="flag"></span>Silver Caps (25-49)</a>
             <div class="playerListSectorSummary">A record of every player who has won 25-49 caps for Scotland and obtained a silver cap.</div>
         </div>
         <div class="playerListSector">
-            <a href="/players/leading-goalscorers" class="flagTitleLink"><span class="flagTitle"></span>Leading Goalscorers</a>
+            <a href="/players/leading-goalscorers" class="flagTitleLink"><span class="flag"></span>Leading Goalscorers</a>
             <div class="playerListSectorSummary">A record of every player who has scored at least 5 goals for Scotland.</div>
         </div>
         <div class="playerListSector">
-            <a href="/players/current-players" class="flagTitleLink"><span class="flagTitle"></span>Current Players</a>
+            <a href="/players/current-players" class="flagTitleLink"><span class="flag"></span>Current Players</a>
             <div class="playerListSectorSummary">A record of every player that still plays for Scotland.</div>
         </div>
 
@@ -41,7 +41,7 @@
 
     <div class="playersRightColumn">
         <div class="searchContainer">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Player Search</span>
+            <span class="flagTitleLink"><span class="flag"></span>Player Search</span>
             <div class="searchForm">
                 <div class="searchFormHeading">Name</div>
                 <div class="searchFormInput"><input id="playername" /></div>

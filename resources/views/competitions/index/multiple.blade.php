@@ -87,7 +87,7 @@
     
     
     <div class="competitionIndexColumn">
-        <div class="titleLink2">Competitions</div>
+        <div class="competitionListTitle">Competitions</div>
         <div class="competitionListWindow">
             <div class="recordsListAll">
                 @foreach ($competitions as $comp)
@@ -95,7 +95,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="titleLink2">&nbsp;</div>
+        <div class="competitionListTitle">&nbsp;</div>
     </div>
     
     <div class="competitionImageColumn">

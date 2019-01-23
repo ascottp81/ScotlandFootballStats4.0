@@ -20,7 +20,7 @@
 <body>
 <div id="container">
     <div id="header">
-        <a class="header" href="/"><span class="flagTitle"></span>ScotlandFootballStats CMS</a>
+        <a class="header" href="/"><span class="flag"></span>ScotlandFootballStats CMS</a>
         @if (Auth::check())
             <nav>
                 <ul>

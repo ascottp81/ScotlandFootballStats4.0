@@ -47,7 +47,7 @@
     
     <div class="playersRightColumn">
         <div class="searchContainer">
-            <span class="flagTitleLink"><span class="flagTitle"></span>Player Search</span>
+            <span class="flagTitleLink"><span class="flag"></span>Player Search</span>
             <div class="searchForm">
                 <div class="searchFormHeading">Name</div>
                 <div class="searchFormInput"><input id="playername" /></div>
