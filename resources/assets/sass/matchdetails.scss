@@ -1,0 +1,1000 @@
+/* ================================== Match Details ===================================== */
+
+.scorelineComment {
+  font: bold 15px Arial;
+  letter-spacing: 0;
+}
+
+/* Tabs */
+
+#matchDetails, #matchDetails .ui-corner-all {
+  border-radius: 0;
+}
+#matchDetails, #matchDetails .ui-widget-content {
+  background: none;
+  border: 0;
+}
+#matchDetails, #matchDetails .ui-tabs {
+  padding: 0;
+}
+#matchDetails {
+
+  & .ui-tabs-nav {
+    padding: 0;
+  }
+
+  & .ui-widget-header {
+    background: none;
+    border: 0;
+    color: #222222;
+    font-weight: bold;
+  }
+
+  & .ui-tabs-nav li {
+    border: 0 none !important;
+    float: left;
+    list-style: outside none none;
+    margin: {
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      right: 0;
+    }
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  & .ui-tabs-nav div{
+    float: left;
+    margin: {
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      right: 0;
+    }
+    padding: 0;
+    position: relative;
+    width: 333px;
+    height: 30px;
+    display: block;
+  }
+
+  & .ui-tabs-nav li {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    & a {
+      padding: 0;
+      width: 196px;
+    }
+  }
+
+  & .ui-state-active a {
+    color: $gradientSecondaryTextColor;
+
+    &:link, &:visited {
+      color: $gradientSecondaryTextColor;
+    }
+  }
+
+  & .ui-state-default a:hover {
+    text-decoration: underline;
+  }
+
+  & .ui-tabs-panel {
+    padding: 0;
+  }
+
+  /* styling before tabs load */
+  & ul {
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+
+    & li a {
+      float: left;
+      width: 196px;
+    }
+  }
+}
+
+
+// Tabs
+.tabLinkSize0 {
+  width: 0 !important;
+  padding-left: 0 !important;
+  height: 0 !important;
+}
+.tabLinkSize1 {
+  width: 196px !important;
+  padding-left: 0 !important;
+}
+.tabLinkSize2 {
+  width: 402px !important;
+  padding-left: 0 !important;
+}
+.tabLinkSize3 {
+  width: 608px !important;
+  padding-left: 0 !important;
+}
+
+
+#basic, #lineup, #summary, #highlights {
+  margin-top: 10px;
+}
+
+
+/* ============================== Basic Match Details ================================== */
+
+.mdBasicLeft {
+  float: left;
+  width: 300px;
+}
+
+.mdBasicRight {
+  float: right;
+  width: 710px;
+}
+
+.mdBasicDetails {
+  @include barGradient;
+  width: 100%;
+  padding: $defaultInnerPadding;
+
+  & p {
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+    color: $gradientPrimaryTextColor;
+    margin-top: 0;
+
+    &.competition {
+      font-size: 16px;
+
+      & .round {
+        font-size: 14px;
+      }
+    }
+
+    &.basicComment {
+      font-size: 12px;
+    }
+  }
+}
+
+.mdCurrentTable {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #FFF;
+  float: left;
+
+  & .currentTableDate {
+    font-size: 13px;
+    float: right;
+  }
+
+  & .currentTableHolder {
+    width: 100%;
+    position: relative;
+    float: left;
+    padding: 10px;
+    font: {
+      weight: bold;
+      size: 13px;
+      family: $defaultFontFamily;
+    }
+    color: $defaultTextColor;
+
+    & .currentTableRow {
+      @include floatAndClear();
+      padding-bottom: 5px;
+      width: 100%;
+
+      & .currentTableCountry {
+        float: left;
+        width: 105px;
+      }
+
+      & .currentTableValue {
+        float: left;
+        text-align: right;
+        width: 25px;
+      }
+    }
+  }
+
+  & .currentGroupFixtures {
+    border-top: 1px solid #000066;
+    float: left;
+    margin-left: 10px;
+    padding-top: 5px;
+    width: calc(100% - 20px);
+    padding-bottom: 20px;
+
+    & .tableFixture, & .tableFixturesDate {
+      @include floatAndClear;
+      font-family: $defaultFontFamily;
+      color: $defaultTextColor;
+      width: 100%;
+      padding-bottom: 5px;
+    }
+
+    & .tableFixturesDate {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    & .tableFixture {
+      font: {
+        weight: bold;
+        size: 13px;
+      }
+    }
+  }
+}
+
+.mdVideoHolder {
+  width: 100%;
+  margin-top: $defaultOuterMargin;
+  float: left;
+}
+
+.mdBasicLineups {
+  width: 100%;
+  background-color: $defaultBackgroundColor;
+  position: relative;
+  float: left;
+}
+
+// used for lineups and penalties
+.basicLineupsTeam {
+  width: 350px;
+  position: relative;
+  padding-bottom: 20px;
+
+  &:first-child {
+    margin: {
+      left: 0 !important;
+      right: 0 !important;
+    }
+  }
+
+  & .basicLineupsSector {
+    float: left;
+    width: 100%;
+    padding: 10px;
+    padding-top: 0;
+    border-top: $defaultOuterMargin solid $pageBackgroundColor;
+
+    & p {
+      font: {
+        weight: bold;
+        size: 13px;
+        family: $defaultFontFamily;
+      }
+      color: $defaultTextColor;
+      margin: 0;
+      clear: left;
+
+      &:first-child  {
+        padding-top: 10px;
+      }
+    }
+
+    &:nth-child(2) {
+      border-top: 0 !important;
+    }
+
+    & .basicStripHolder {
+      float: right;
+      width: 96px;
+      background-color: #DDDDDD;
+      padding: 10px;
+
+      & img {
+        float: left;
+      }
+    }
+  }
+
+  & .topPadding {
+    padding-top: $defaultOuterMargin !important;
+  }
+}
+.lineupH, .lineupN1 {
+  margin-left: $defaultOuterMargin;
+  float: left;
+}
+.lineupA, .lineupN {
+  margin-right: $defaultOuterMargin;
+  float: right;
+}
+.basicVerticalDivider {
+  width: $defaultOuterMargin;
+  position: absolute;
+  float: left;
+  background-color: $pageBackgroundColor;
+  top: 0;
+  bottom: 0;
+  left: 350px;
+}
+
+
+.basicLineupsTitle {
+  @include barGradient;
+  color: $defaultHeadingColor;
+  font: {
+    weight: bold;
+    size: 16px;
+    family: $defaultFontFamily;
+  }
+  text-decoration: none;
+  display: block;
+  line-height: $titleBarHeight;
+  vertical-align: middle;
+  letter-spacing: -1px;
+  padding: {
+    left: $defaultInnerPadding;
+    right: $defaultInnerPadding;
+  }
+
+  & .basicLineupsFlag {
+    float: right;
+    height: 30px;
+    margin-top: 5px;
+    width: 127px;
+    background: {
+      size: auto 100%;
+      repeat: no-repeat;
+      position: right;
+    }
+  }
+}
+
+
+// Scorer and Key
+.basicScorer {
+  font: {
+    weight: bold;
+    size: 13px;
+    family: $defaultFontFamily;
+  }
+  color: $defaultTextColor;
+  margin: 0;
+
+  & i {
+    color: #000000;
+  }
+
+  & .fa-stack {
+    height: 13px !important;
+    width: 13px !important;
+
+    & i {
+      height: 13px !important;
+      width: 13px !important;
+      margin-top: -7px !important;
+    }
+  }
+
+  & span i.fa-futbol-o {
+    background-color: transparent !important;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  & i.redcard-icon {
+    width: 8px;
+    height: 12px;
+    display: inline-block;
+    background-color: #FF0000;
+    margin-right: 5px;
+  }
+}
+
+
+.mdPenaltyShootout {
+  width: 100%;
+  background-color: $defaultBackgroundColor;
+  position: relative;
+  float: left;
+  margin-top: $defaultOuterMargin;
+
+  & .basicLineupsTeam {
+    padding-bottom: 0;
+
+    &:nth-child(2) {
+      margin:{
+        left: 0;
+        right: 0;
+      }
+    }
+
+    & .basicLineupsSector {
+      border-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  & .basicVerticalDivider {
+    top: 40px;
+  }
+
+  & .basicScorer {
+    width: 100%;
+
+    & .penaltyScoreline {
+      float: right;
+      font: {
+        style: italic;
+        size: 11px;
+      }
+    }
+  }
+}
+
+
+// Key
+.basicKey {
+  @include floatAndClear();
+  margin-top: $defaultOuterMargin;
+  padding: 10px;
+  background-color: $defaultBackgroundColor;
+  width: 100%;
+
+  & span {
+    float: left;
+    width: 50px;
+
+    &.basicKeyItem {
+      width: 170px;
+    }
+  }
+}
+
+
+
+.extraStats {
+  @include barGradient;
+  margin: {
+    left: 0;
+    top: 10px;
+  }
+  position: relative;
+  float: left;
+  width: 480px;
+
+  & .extraStatsRow {
+    @include floatAndClear();
+    margin-top: 10px;
+    width: 100%;
+
+    & .extraStatsTitle {
+      float: left;
+      width: 150px;
+      font: {
+        style: italic;
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      color: $gradientSecondaryTextColor;
+      padding-left: 20px;
+    }
+
+    & .extraStatsTeamLeft, & .extraStatsTeamRight {
+      float: left;
+      width: 150px;
+      font: {
+        weight: bold;
+        size: 14px;
+        family: $defaultFontFamily;
+      }
+      color: $gradientPrimaryTextColor;
+    }
+
+    & .extraStatsTeamLeft {
+      text-align: left;
+    }
+
+    & .extraStatsTeamRight {
+      text-align: right;
+    }
+
+    & .extraStatsBar {
+      float: left;
+      width: 302px;
+      height: 22px;
+      border: solid 1px #000066;
+
+      & .extraStatsLeft, & .extraStatsRight {
+        float: left;
+        height: 20px;
+        font: {
+          weight: bold;
+          size: 14px;
+          family: $defaultFontFamily;
+        }
+      }
+
+      & .extraStatsLeft {
+        padding-left: 8px;
+      }
+
+      & .extraStatsRight {
+        text-align: right;
+        padding-right: 8px;
+      }
+
+      & .whiteBack {
+        background-color: #FFFFFF;
+        color: #0000FF;
+      }
+      & .blueBack {
+        background-color: #0000FF;
+        color: #FFFFFF;
+      }
+      & .redBack {
+        background-color: #FF0000;
+        color: #FFFFFF;
+      }
+      & .yellowBack {
+        background-color: #FFFF00;
+        color: #0000FF;
+      }
+      & .darkblueBack {
+        background-color: #0000FF;
+        color: #FFFFFF;
+      }
+      & .orangeBack {
+        background-color: #FF9900;
+        color: #0000FF;
+      }
+      & .greenBack {
+        background-color: #00FF00;
+        color: #0000FF;
+      }
+      & .lightblueBack {
+        background-color: #00FFFF;
+        color: #0000FF;
+      }
+      & .blackBack {
+        background-color: #000000;
+        color: #FFFFFF;
+      }
+      & .pinkBack {
+        background-color: #FF00FF;
+        color: #000000;
+      }
+    }
+
+    & .extraStatsFooter {
+      font: {
+        size: 10px;
+        family: $defaultFontFamily;
+      }
+      color: $gradientPrimaryTextColor;
+      padding-left: 20px;
+      padding-bottom: 15px;
+    }
+  }
+}
+
+
+.extraStatsImage {
+  @include barGradient;
+  margin: {
+    left: $defaultOuterMargin;
+    top: $defaultOuterMargin;
+  }
+  width: 220px;
+  padding: 10px;
+  padding-top: 0;
+  float: left;
+}
+
+
+
+
+/* ============================= Lineup & Formation ================================== */
+
+.lineupDetails {
+  @include barGradient;
+  margin: {
+    left: 0;
+    bottom: 10px;
+  }
+  position: relative;
+  float: left;
+  width: 525px;
+  padding: {
+    top: 15px;
+    right: 10px;
+    bottom: 15px;
+    left: 5px;
+  }
+
+  & #lineupDetailsTable {
+    width: 508px;
+
+    & td {
+      font: {
+        weight: bold;
+        family: $defaultFontFamily;
+      }
+    }
+
+    & .shirtNo {
+      text-align: right;
+      vertical-align: top;
+      font-size: 14px;
+      color: #FF0000;
+    }
+
+    & .playerName {
+      text-align: left;
+      font-size: 14px;
+      color: #FFFFFF;
+      max-width: 310px;
+    }
+
+    & .lineupClub {
+      text-align: left;
+      font: {
+        style: italic;
+        size: 14px;
+      }
+      color: #FFFF00;
+    }
+
+    & .captain {
+      text-align: right;
+      font-size: 14px;
+      color: #FF0000;
+    }
+
+    & .capCount {
+      font-size: 12px;
+      color: #FF0000;
+      text-align: right;
+      vertical-align: top;
+    }
+
+    & .age {
+      font-size: 12px;
+      color: #FFFF00;
+      text-align: right;
+      vertical-align: top;
+    }
+
+    & .substituted {
+      font: {
+        style: italic;
+        size: 12px;
+      }
+      color: #FFFFFF;
+    }
+
+    & .key {
+      font: {
+        style: italic;
+        size: 11px;
+      }
+      color: #FFFFFF;
+      text-align: center;
+      vertical-align: bottom;
+      height: 30px;
+    }
+
+    & i.fa-futbol-o {
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      display: inline-block;
+    }
+  }
+}
+
+
+
+.formation {
+  background: {
+    image: url(/img/pitch.gif);
+    repeat: no-repeat;
+    color: #0099FF;
+  }
+  margin-left: $defaultOuterMargin;
+  position: relative;
+  float: left;
+  width: 300px;
+  height: 400px;
+
+  & .formationLabel {
+    font: {
+      weight: bold;
+      size: 16px;
+      family: $defaultFontFamily;
+    }
+    text-align: center;
+    vertical-align: middle;
+    width: 300px;
+    display: block;
+    padding: {
+      top: 3px;
+      bottom: 20px;
+    }
+  }
+
+  & .formationRow1, & .formationRow2, & .formationRow3, & .formationRow4, & .formationRow5 {
+    @include floatAndClear();
+    width: 300px;
+    text-align: center;
+  }
+
+  & .formationShirtHolder {
+    text-align: center;
+    float: left;
+  }
+
+  & .formationRow1 {
+    & .formationShirtHolder {
+      width: 300px;
+    }
+  }
+
+  & .formationRow2 {
+    & .formationShirtHolder {
+      width: 150px;
+      padding: {
+        left: 0;
+        right: 75px;
+      }
+
+      &:first-child {
+        padding: {
+          left: 75px;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  & .formationRow3 {
+    & .formationShirtHolder {
+      width: 100px;
+    }
+  }
+
+  & .formationRow4 {
+    & .formationShirtHolder {
+      width: 75px;
+    }
+  }
+
+  & .formationRow5 {
+    & .formationShirtHolder {
+      width: 60px;
+    }
+  }
+
+  & .noFormation {
+    font: {
+      style: italic;
+      weight: bold;
+      size: 24px;
+      family: $defaultFontFamily;
+    }
+    color: #000066;
+    border: 1px;
+    display: block;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 150px;
+  }
+}
+
+
+.lineupPicture {
+  @include barGradient;
+  width: 175px;
+  padding: 10px;
+  float: left;
+  margin-left: $defaultOuterMargin;
+  min-height: 250px;
+
+  & .getty {
+    margin-top: 0 !important;
+  }
+
+  & img {
+    width: 100%;
+  }
+
+  & p {
+    @include floatAndClear();
+    color: #FFFFFF;
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+
+    & .shirtNo {
+      text-align: right;
+      vertical-align: top;
+      font-size: 14px;
+      color: #FF0000;
+    }
+
+    &.noPicture {
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0;
+    }
+  }
+}
+
+.interestingFact {
+  @include barGradient;
+  margin: {
+    left: $defaultOuterMargin;
+    top: $defaultOuterMargin;
+  }
+  width: 175px;
+  padding: 10px;
+  float: left;
+
+  & .factHeading {
+    color: $gradientSecondaryTextColor;
+    font: {
+      style: italic;
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    letter-spacing: -1px;
+  }
+
+  & .factText {
+    color: $gradientPrimaryTextColor;
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+    letter-spacing: -1px;
+    padding: 10px 0;
+  }
+}
+
+
+
+
+/* ========================================= Summary and Timeline ===================================== */
+
+.summary {
+  width: 355px;
+  padding: 10px;
+  padding-bottom: 0;
+  font: {
+    weight: bold;
+    size: 13px;
+    family: $defaultFontFamily;
+  }
+  float: left;
+  background-color: $defaultBackgroundColor;
+  color: $defaultTextColor;
+  line-height: 18px;
+  min-height: 390px !important;
+
+  & p {
+    margin-top: 0;
+
+    & a {
+      color: $defaultTextColor;
+    }
+  }
+}
+
+
+.timeline {
+  float: left;
+  margin-left: $defaultOuterMargin;
+
+  & .incident {
+    @include floatAndClear();
+    @include barGradient;
+    margin-top: $defaultOuterMargin;
+    width: 655px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    & .incidentImage {
+      float: left;
+      width: 300px;
+      height: 170px;
+
+      & img {
+        width: 300px;
+        float: left;
+        height: 170px;
+      }
+    }
+
+    & .incidentData {
+      float: left;
+      padding: 15px;
+      width: 355px;
+
+      & .incidentFlag {
+        float: right;
+      }
+
+      & .incidentMinute {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 16px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientSecondaryTextColor;
+        padding-bottom: 15px;
+      }
+
+      & .incidentPlayer {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 20px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientPrimaryTextColor;
+        padding-bottom: 5px;
+      }
+
+      & .incidentAction {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 14px;
+          family: $defaultFontFamily;
+        }
+        color: #FF0000;
+        padding-bottom: 15px;
+      }
+
+      & .incidentScore {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 14px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientPrimaryTextColor;
+      }
+    }
+  }
+}
+
+
+/* ========================================= Highlights ========================================= */
+
+.videoHolder {
+  float: left;
+  margin-left: $defaultOuterMargin;
+  width: 655px;
+  height: 390px;
+}
+
+.novideo {
+  margin-left: $defaultOuterMargin;
+  width: 710px !important;
+}
+

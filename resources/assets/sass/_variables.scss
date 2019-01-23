@@ -1,38 +1,82 @@
+// General settings
+$defaultFontFamily: Arial, Helvetica, sans-serif;
+$defaultTextColor: #000066;
+$defaultBackgroundColor: #FFFFFF;
+$defaultHeadingColor: #FFFFFF;
+$defaultLinkColor: #0066FF;
 
-// Body
-$body-bg: #f5f8fa;
+$defaultInnerPadding: 12px;
+$defaultOuterMargin: 10px;
 
-// Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+$generalTextSize: 12px;
 
-// Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
 
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 14px;
-$line-height-base: 1.6;
-$text-color: #636b6f;
+// bar and div background gradient colours
+$barGradientColor1: #000066;
+$barGradientColor2: #000066;
+$barGradientColor3: #0066FF;
+$barGradientDefaultColor: #000066;
 
-// Navbar
-$navbar-default-bg: #fff;
 
-// Buttons
-$btn-default-color: $text-color;
+$gradientPrimaryTextColor: #FFFFFF;
+$gradientSecondaryTextColor: #FFFF00;
 
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
 
-// Panels
-$panel-default-heading-bg: #fff;
+
+// Holding Page
+$pageWidth: 1040px;
+$pagePadding: 10px;
+$pageBackgroundColor: #0000FF;
+$titleColor: #FFFFFF;
+
+
+
+
+
+
+// Header
+$headerBannerHeight: 70px;
+$headerNavigationHeight: 30px;
+$headerHeight: $headerBannerHeight + $headerNavigationHeight + (2 * $pagePadding);
+$headerFlagWidth: 91px;
+$headerFlagHeight: 55px;
+
+// Navigation Bar
+$navigationBackgroundColor: #FFFF00;
+$navigationTextColor: #000066;
+$navigationHoverColor: #0000FF;
+
+
+
+// Footer
+$footerHeight: 60px;
+$footerBannerHeight: $footerHeight - (2 * $pagePadding);
+$footerTextColor: #FFFFFF;
+
+
+
+// General Title Bar
+$titleBarHeight: 40px;
+$titleBarLeftRightPadding: 12px;
+$flagHeight: 30px;
+
+
+
+// Breadcrumb
+$breadcrumbText: #FFFF00;
+$breadcrumbLinkText: #FFFFFF;
+
+
+
+// Columns
+$searchColumnWidth: 225px;
+$middleColumnWidth: 550px;
+$rightColumnWidth: 225px;
+
+
+// Search Form
+$searchFormPadding: 10px;
+
+
+// Sectors
+$sectorWidth: 270px;

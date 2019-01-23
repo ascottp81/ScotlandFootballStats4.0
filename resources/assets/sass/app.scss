@@ -1,9 +1,18 @@
+// To Compile:
+// "npm run dev" or "npm run production" (to minify)
+// "npm run watch" will watch for changes
+// settings in webpack.mix.js
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
 @import "variables";
-
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "mixins";
+@import "layout";
+@import "components";
+@import "main";
+@import "matchdetails";
+@import "opponents";
+@import "players";
+@import "competitions";
+@import "history";
+@import "rankings";
+@import "strips";
+@import "other";

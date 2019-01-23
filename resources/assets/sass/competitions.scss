@@ -1,0 +1,785 @@
+/* ========================================= Competitions ======================================== */
+
+$allComponentColumns: $pageWidth - (2 * $pagePadding) - (2 * $defaultOuterMargin);
+$competitiveBlockWidth: floor($allComponentColumns / 3);
+
+.competitiveHolder {
+  margin-top: 10px;
+
+  & .competitiveBlock {
+    @include barGradient;
+    float: left;
+    margin-left: $defaultOuterMargin;
+    width: $competitiveBlockWidth;
+    display: block;
+    height: 230px;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:hover {
+      text-decoration: none !important;
+      border: solid 1px #FFFFFF;
+      padding: 19px;
+    }
+
+    & h2 {
+      font: {
+        weight: bold;
+        size: 20px;
+        family: $defaultFontFamily;
+      }
+    }
+
+    & p {
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+
+      &.competitiveYears {
+        font: {
+          size: 14px;
+        }
+
+        & span {
+          font-size:16px;
+          color: #FFFF00;
+        }
+      }
+    }
+  }
+}
+
+
+.competitionsLeft {
+  float: left;
+  width: 475px;
+  margin-top: 10px;
+
+  & .competitionTitle {
+    font-size: 15px;
+    float: left;
+    width: 295px;
+  }
+
+  & .competitionInfo {
+    width: 180px;
+    height: 40px;
+    background-image: linear-gradient(#0066FF, #0066FF, #CCCCCC);
+    color: #fff;
+    float: left;
+    font: {
+      family: $defaultFontFamily;
+      weight: bold;
+      size: 13px;
+    }
+    padding: 6px 0 0 12px;
+    line-height: 13px;
+
+    & .competitionStats {
+      float: left;
+    }
+    & .competitionIcon {
+      float: right;
+      padding: 6px 12px;
+    }
+  }
+
+  & .honoursLink {
+    @include barGradient;
+    @include floatAndClear();
+    color: $defaultHeadingColor;
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    text-decoration: none;
+    display: block;
+    padding: $defaultInnerPadding;
+    margin-top: $defaultOuterMargin;
+    width: 100%;
+    text-align: center;
+    height: 56px;
+
+    & i {
+      font-size: 32px;
+    }
+
+    & h2 {
+      margin: 0;
+    }
+
+    &:hover {
+      text-decoration: none !important;
+      border: solid 1px #FFFFFF;
+      padding:11px;
+    }
+  }
+}
+
+// images column on right
+.competitionsRight {
+  float: right;
+  width: 535px;
+}
+
+
+
+/* ============================= Honours ===================================== */
+
+// Honour details
+.honours {
+  float: left;
+  width: 340px;
+
+  & .honoursContent {
+    @include barGradient;
+    width: 100%;
+    float: left;
+
+    & .honoursCompetition {
+      border: solid 1px #fff;
+      width: 100%;
+      border-top: none;
+      padding: 11px;
+      float: left;
+
+      &:first-child {
+        border-top: solid 1px #fff;
+      }
+
+      & p {
+        @include floatAndClear();
+        margin: {
+          top: 0;
+          bottom: 5px;
+        }
+        font: {
+          family: $defaultFontFamily;
+          size: 13px;
+          weight: bold;
+        }
+        color: $gradientPrimaryTextColor;
+
+        &:first-child {
+          margin-bottom: 16px;
+        }
+
+        & .honourFooterText {
+          @include floatAndClear();
+          font-size: 11px;
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+// honour images
+.honourImage {
+
+  & div.localGetty, & div.embed {
+    margin: {
+      top: 0;
+      left: 10px;
+    }
+    background-color: #ffffff;
+    float: left;
+  }
+
+  & div.embed {
+    margin-bottom: 24px;
+  }
+
+  & img {
+    height: 292px;
+    margin-bottom: 15px;
+  }
+
+  & .bottomGap {
+    margin-bottom: 10px;
+  }
+}
+
+/* ============================ Individual Competition Index ============================== */
+
+// competition stats and index column
+.competitionIndexColumn {
+  width: 255px;
+  float: left;
+  margin-left: 10px;
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+}
+
+
+// competition images
+.competitionImageColumn {
+  width: 490px;
+  float: right;
+
+  & .getty:first-child {
+    margin-top: 0;
+  }
+}
+
+
+// Competition Stats
+.competitionSummaryColumn {
+  @include barGradient;
+  height: 440px;
+
+  & .competitionMatchCount {
+    @include floatAndClear();
+    padding: $defaultInnerPadding;
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+    color: $gradientPrimaryTextColor;
+
+    & .competitionCountRowTitle {
+      @include floatAndClear();
+      padding-bottom: 5px;
+      color: $gradientSecondaryTextColor;
+    }
+
+    & .competitionCountRow {
+      @include floatAndClear();
+      position: relative;
+      padding-bottom: 5px;
+
+      & .competitionCountData {
+        float: left;
+        width: 33px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.competitionSummary {
+  padding: $defaultInnerPadding;
+  font: {
+    weight: bold;
+    size: 12px;
+    family: $defaultFontFamily;
+  }
+  color: $gradientPrimaryTextColor;
+
+  & ul {
+    padding-left: 10px;
+
+    & li {
+      padding-top: 10px;
+
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+// competition key
+.competitionKey {
+  @include barGradient;
+  @include floatAndClear();
+  color: $gradientPrimaryTextColor;
+  font: {
+    size: 14px;
+    family: $defaultFontFamily;
+  }
+  text-decoration: none;
+  display: block;
+  height:40px;
+  padding-left: $defaultInnerPadding;
+  width: 255px;
+
+  & .keyItem {
+    display: table-cell;
+    vertical-align: middle;
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    height: 40px;
+  }
+}
+
+
+// competition index list
+.competitionListTitle {
+  @extend .titleBar;
+  font-size: 15px;
+  float: left;
+  width: 100%;
+}
+
+.competitionListWindow {
+  width: 255px;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  text-align: left;
+  z-index: 2;
+  background-color: #0066FF;
+  height: 600px;
+  overflow-y: scroll;
+  margin: {
+    left: 0;
+    top: 1px;
+  }
+
+  & .competitionListItem {
+    @include floatAndClear();
+    height: 30px;
+    border-bottom: solid 1px #000066;
+    width: 255px;
+    font: {
+      weight: bold;
+      size: 16px;
+      family: $defaultFontFamily;
+    }
+    color: #FFFFFF;
+    background: {
+      color: #0066FF;
+      position: 200px center;
+      repeat: no-repeat;
+    }
+
+    & a:hover {
+      background: {
+        color: #0066FF;
+        position: 200px center;
+        repeat: no-repeat;
+      }
+    }
+
+    &.competitionWon, &.competitionWon a:hover {
+      background-image: url(/img/trophy.png);
+    }
+    &.competitionShared, &.competitionShared a:hover {
+      background-image: url(/img/trophy2.png);
+    }
+    &.competitionQualified, &.competitionQualified a:hover {
+      background-image: url(/img/qualified.png);
+    }
+
+    & a {
+      display: block;
+      font: {
+        weight: bold;
+        size: 15px;
+        family: $defaultFontFamily;
+      }
+      color: #FFFFFF;
+      text-decoration: none;
+      width: 100%;
+      height: 29px;
+      line-height: 29px;
+      vertical-align: middle;
+      padding: {
+        top: 0;
+        bottom: 0;
+        left: 15px;
+      }
+
+      &:hover {
+        text-decoration: none !important;
+        background-color: #000066;
+      }
+    }
+
+  }
+}
+
+
+
+/* ========================================= Competition Version Page ===================================== */
+
+.competitionVersionLeft {
+  width: 400px;
+  float: left;
+
+  & .competitionSingleSummaryColumn {
+    @include barGradient;
+    margin-bottom: $defaultOuterMargin;
+
+    & .competitionSummaryIndex ul {
+      border-top: solid 1px #FFFFFF;
+      padding-top: 10px;
+    }
+  }
+
+  & .competitionResults {
+    width: 100%;
+    float: left;
+    background-color: $defaultBackgroundColor;
+    margin-bottom: $defaultOuterMargin;
+
+    & .competitionResultsData {
+      padding: 12px 0;
+      width: 100%;
+      float: left;
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      color: $defaultTextColor;
+
+      & .scotlandMatchesBanner {
+        @include barGradient;
+        @include floatAndClear();
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        display: block;
+        vertical-align: middle;
+        padding: 0 $defaultInnerPadding;
+        color: #FFFFFF;
+        margin: {
+          bottom: 12px;
+          top: 12px;
+        }
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      & .matchRow {
+        @include floatAndClear();
+        width: 100%;
+        padding: 0 12px 5px 12px;
+
+        & div {
+          float: left;
+        }
+
+        & .matchDate {
+          width: 80px;
+          text-align: left;
+        }
+        & .matchOpponent {
+          width: 115px;
+          text-align: left;
+        }
+        & .matchHA {
+          width: 35px;
+          text-align: center;
+        }
+        & .matchResult {
+          width: 40px;
+          text-align: center;
+        }
+        & .matchAtt {
+          width: 50px;
+          text-align: right;
+        }
+        & .matchLink {
+          width: 50px;
+          text-align: right;
+
+          & a {
+            color: $defaultLinkColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+.competitionVersionRight {
+  width: 610px;
+  float: right;
+}
+
+
+// Competition table
+.competitionTable {
+  width: 610px;
+  float: left;
+  background-color: $defaultBackgroundColor;
+  margin-bottom: $defaultOuterMargin;
+
+  & .competitionTableData {
+    @include floatAndClear();
+    padding: $defaultInnerPadding;
+    background-color: $defaultBackgroundColor;
+    width: 100%;
+
+    & .tableRow {
+      @include floatAndClear();
+      width: 100%;
+      font: normal bold normal 15px Arial, Helvetica, sans-serif;
+      color: $defaultTextColor;
+      padding-bottom: 10px;
+
+      & div {
+        float: left;
+      }
+
+      & .team {
+        width: 210px;
+
+        & span {
+          float: left;
+
+          // table outcome
+          &.won, &.promoted, &.qualified, &.relegate {
+            float: left;
+            width: 30px;
+          }
+          &.won, &.promoted, &.relegate {
+            font-size: 20px;
+          }
+          &.won {
+            color: #ffaa00;
+          }
+          &.promoted {
+            color: #00aa00;
+          }
+          &.qualified {
+            font-size: 17px;
+            color: #00aa00;
+          }
+          &.relegate {
+            color: #aa0000;
+          }
+
+          &.flagHolder {
+            width: 40px;
+            display: block;
+
+            & img.tableFlag {
+              height: 20px;
+              box-shadow: -1px 0px 5px #888888;
+              float: left;
+              margin-right: 10px;
+              max-width: 30px;
+            }
+          }
+        }
+      }
+
+      & .data {
+        float: left;
+        width: 45px;
+        text-align: right;
+      }
+
+      &.solid, &.relegated {
+        border-top: solid 2px #000066;
+      }
+      &.dashed {
+        border-top: dashed 2px #000066;
+      }
+    }
+
+    & .tableFooterNote {
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      color: $defaultTextColor;
+      padding-top: 20px;
+      float: left;
+    }
+  }
+}
+
+
+
+
+
+// Competition Table Results
+.groupResults {
+  float: left;
+  width: 100%;
+
+  & .groupResultsData {
+    @include barGradient;
+    @include multipleColumn(3, 10px);
+    padding: $defaultInnerPadding;
+    padding-bottom: 0;
+    background-color: $defaultBackgroundColor;
+    width: 100%;
+    float: left;
+
+    & .groupResultsDateBlock {
+      page-break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+
+      & .groupResultsDate {
+        font: {
+          size: 13px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientSecondaryTextColor;
+        padding-top: 12px;
+      }
+
+      & .groupResultsMatch {
+        font: {
+          weight: bold;
+          size: 13px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientPrimaryTextColor;
+      }
+    }
+  }
+}
+
+
+// Competition table tabs
+#competitionTables {
+  border-radius: 0;
+  background: none;
+  border: 0;
+  padding: 0;
+
+  & .ui-corner-all {
+    border-radius: 0;
+  }
+
+  & .ui-widget-content {
+    background: none;
+    border: 0;
+  }
+
+  & .ui-tabs {
+    padding: 0;
+  }
+
+  & .ui-tabs-nav {
+    padding: 0;
+    margin-bottom: 10px;
+    float: left;
+  }
+
+  & .ui-widget-header {
+    background: none;
+    border: 0;
+    color: #222222;
+    font-weight: bold;
+  }
+
+  & .ui-tabs-nav li, & .ui-tabs-nav div {
+    float: left;
+    margin: {
+      top: 0;
+      bottom: 0;
+      left: $defaultOuterMargin;
+      right: 0;
+    }
+    padding: 0;
+  }
+
+  & .ui-tabs-nav li {
+    list-style: outside none none;
+    white-space: nowrap;
+    border: 0;
+    top: 0;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    & a {
+      padding: 0;
+      width: 196px;
+    }
+  }
+
+  & .ui-tabs-nav div{
+    width: 333px;
+    height: 30px;
+    display: block;
+  }
+
+  & .ui-state-active a, & .ui-state-active a:link, & .ui-state-active a:visited {
+    color: #ff0 !important;
+  }
+
+  & .ui-state-default a:hover {
+    text-decoration: underline;
+  }
+
+  & .ui-tabs-panel {
+    padding: 0;
+  }
+
+  // styling before tabs load
+  & ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & li a {
+      float: left;
+      width: 196px;
+    }
+  }
+
+  & .tabFiller {
+    @include barGradient;
+    height: 30px;
+    float: left;
+    margin-left: 10px;
+  }
+  & .tab1 {
+    width: 196px;
+  }
+  & .tab2 {
+    width: 402px;
+  }
+  & .tab0 {
+    width: 0;
+    margin-left: 0 !important;
+  }
+}
+
+
+/* ===================================== Single Match Competition ============================= */
+
+.fixtureSpacer {
+  height: 10px;
+  width: 10px;
+}
+.fixtureMatchDetails {
+  font: normal normal normal 16px Arial, Helvetica, sans-serif;
+  line-height: 30px;
+  vertical-align: middle;
+
+  & a {
+    color: #FF0;
+    text-decoration: none;
+  }
+}
+
+
+.singleMatchComments {
+  margin-top: 10px;
+
+  & ul {
+    padding-left: 10px;
+  }
+}
+

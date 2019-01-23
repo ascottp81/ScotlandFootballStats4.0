@@ -1,0 +1,30 @@
+
+// bar and div background gradient
+@mixin barGradient {
+  background: {
+    image: linear-gradient($barGradientColor1, $barGradientColor2, $barGradientColor3);
+    color: $barGradientDefaultColor;
+  }
+}
+
+// Paddings and margins
+@mixin noPaddingNoMargin {
+  padding: 0;
+  margin: 0;
+}
+
+// positioning
+@mixin floatAndClear($position:left) {
+  float: $position;
+  clear: $position;
+}
+
+// Multiple column wrap
+@mixin multipleColumn($count:2, $gap:10px) {
+  -moz-column-count: $count;
+  -moz-column-gap: $gap;
+  -webkit-column-count: $count;
+  -webkit-column-gap: $gap;
+  column-count: $count;
+  column-gap: $gap;
+}

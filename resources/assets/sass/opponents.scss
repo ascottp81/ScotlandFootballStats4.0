@@ -1,0 +1,219 @@
+/* ================================= Opponents Index ====================================== */
+
+$allOpponentColumns: $pageWidth - (2 * $pagePadding) - (2 * $defaultOuterMargin);
+$opponentColumnWidth: floor($allOpponentColumns / 3);
+
+.opponentsColumn {
+  width: $opponentColumnWidth;
+  float: left;
+  margin: {
+    top: $defaultOuterMargin;
+    left: $defaultOuterMargin;
+  }
+
+  &:nth-of-type(2) {
+    width: $allOpponentColumns - (2 * $opponentColumnWidth);
+    margin-left: 0;
+  }
+
+  & a.opponentLink {
+    @include floatAndClear();
+    width: 100%;
+    color: $defaultHeadingColor;
+    font: {
+      weight: bold;
+      size: 15px;
+      family: $defaultFontFamily;
+    }
+    line-height: $titleBarHeight;
+    padding-left: $defaultInnerPadding;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  & a:hover {
+    text-decoration: underline;
+  }
+
+  & .flag {
+    float: right;
+    height: $flagHeight;
+    width: 127px;
+    margin: {
+      top: 5px;
+      right: 0;
+    }
+    background: {
+      size: auto 100%;
+      repeat: no-repeat;
+      position: right;
+    }
+  }
+
+  // Sector heading and image
+  & .opponentsSector {
+    @include floatAndClear();
+    background-color: $defaultBackgroundColor;
+
+    & span {
+      @include barGradient;
+      @include floatAndClear();
+      width: 100%;
+      color: $defaultHeadingColor;
+      font: {
+        family: $defaultFontFamily;
+        size: 12px;
+        weight: bold;
+      }
+      line-height: 30px;
+      padding-left: $defaultInnerPadding;
+      text-decoration: none;
+      vertical-align: middle;
+    }
+
+    & .getty {
+      float: left;
+    }
+
+    & p.opponentsImageText {
+      font: {
+        size: 11px;
+        family: $defaultFontFamily;
+      }
+      margin: 0;
+      background-color: $defaultBackgroundColor;
+      padding: 5px;
+      color: $defaultTextColor;
+      clear: left;
+    }
+
+    // second sector in a column (top of Europe sector)
+    &:nth-of-type(2) {
+      margin-top: 10px;
+    }
+  }
+}
+
+
+/* ========================================= Opponent Page ===================================== */
+
+.opponentMatchDetails {
+  width: 495px;
+  float: right;
+}
+.opponentLeft {
+  @include floatAndClear();
+  width: 515px;
+
+  & .opponentSummary {
+    @include barGradient;
+    @include floatAndClear();
+    width: 100%;
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    padding: $defaultInnerPadding;
+    color: $defaultHeadingColor;
+
+
+    // Opponent title
+    & .title {
+      @include floatAndClear();
+      margin-bottom: 10px;
+      font: {
+        weight: bold;
+        size: 16px;
+        family: $defaultFontFamily;
+      }
+      line-height: 30px;
+      vertical-align: middle;
+
+      & .flag {
+        float: left;
+        width: 45px;
+        height: 30px;
+        margin-right: 20px;
+        background: {
+          size: auto 100%;
+          repeat: no-repeat;
+        }
+      }
+
+      & .years {
+        font: {
+          style: italic;
+          size: 12px;
+        }
+      }
+    }
+
+    & p, & table {
+      @include floatAndClear();
+      margin: {
+        top: 0;
+        bottom: 20px;
+      }
+    }
+
+    // match stats
+    & table {
+      width: 100%;
+
+      & .countHeading {
+        color: $gradientSecondaryTextColor;
+        font: {
+          style: italic;
+          weight: bold;
+          size: 12px;
+          family: $defaultFontFamily;
+        }
+        letter-spacing: -1px;
+        padding: {
+          top: 0;
+          right: 5px;
+          bottom: 0;
+          left: 12px;
+        }
+        text-align: center;
+      }
+
+      & td {
+        padding: 1px 7px;
+        text-align: center;
+
+        &.countSeparator {
+          border-left: {
+            width: 1px;
+            style: solid;
+            color: #FFFF00;
+          }
+        }
+      }
+    }
+
+    // memorable match
+    & .opponentMatch {
+      @include floatAndClear();
+      margin-bottom: 10px !important;
+
+      & span {
+        color: $gradientSecondaryTextColor;
+        font: {
+          style: italic;
+          weight: bold;
+          size: 12px;
+          family: $defaultFontFamily;
+        }
+        letter-spacing: -1px;
+      }
+    }
+  }
+
+
+  & .opponentImage {
+    @include floatAndClear();
+    width: 100%;
+  }
+}

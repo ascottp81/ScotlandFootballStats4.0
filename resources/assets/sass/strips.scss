@@ -1,0 +1,195 @@
+/* ==================================== Strips ======================================== */
+
+.stripLinksHolder {
+  width: 100%;
+  margin-top: $defaultOuterMargin;
+  float: left;
+
+  & .stripLinksColumn {
+    float: left;
+    margin-left: $defaultOuterMargin;
+    width: calc(50% - 5px);
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    & .stripLink {
+      color: $titleColor;
+      float: left;
+      font: {
+        family: $defaultFontFamily;
+        size: 15px;
+        weight: bold;
+      }
+      line-height: 40px;
+      padding-left: $defaultInnerPadding;
+      text-decoration: none;
+      vertical-align: middle;
+      width: 100%;
+    }
+  }
+}
+
+
+/* ================================== Strip Page =================================== */
+
+.stripLeftContainer {
+  float: left;
+  width: 445px;
+
+  // Image
+  & .managerImage {
+    width: 225px;
+    float: left;
+
+    & .getty:first-child {
+      margin-top: 0;
+    }
+
+    & .noImage {
+      width: 100%;
+      font-size: 210px;
+      background-color:#CCC;
+      color: #FFF;
+      text-align: center;
+    }
+  }
+
+  // Details
+  & .stripDetailsLeft {
+    float: left;
+    margin-left: $defaultOuterMargin;
+    width: 210px;
+  }
+
+  & .stripDetailsHolder {
+    @include barGradient;
+    @include floatAndClear();
+    margin-top: 0;
+    min-height: 165px;
+    padding: $defaultInnerPadding;
+    width: 100%;
+
+    & .stripImageHolder {
+      width: 100%;
+      background-color: #CCCCCC;
+      text-align: center;
+      float: left;
+    }
+
+    & .stripCopyright {
+      width: 100%;
+      background-color: #CCCCCC;
+      text-align: left;
+      margin-bottom: 10px;
+      padding: 0 10px 10px 10px;
+      float: left;
+
+      & p{
+        color: #0066FF;
+        font: {
+          size: 10px;
+          family: $defaultFontFamily;
+        }
+        margin: 0;
+
+        & a{
+          color: #0000FF;
+          font-weight: bold;
+          text-decoration: none;
+
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    & .stripItemHeading {
+      @include floatAndClear();
+      color: $gradientSecondaryTextColor;
+      font: {
+        style: italic;
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      letter-spacing: -1px;
+      padding-bottom: 5px;
+      width: 50%;
+    }
+
+    & .stripItemValue, & .stripItemValue2 {
+      color: $gradientPrimaryTextColor;
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      letter-spacing: -1px;
+      float: left;
+    }
+
+    & .stripItemValue {
+      padding-bottom: 5px;
+    }
+
+    & .stripItemValue2 {
+      padding-bottom: 10px;
+      clear: left;
+    }
+
+    & .stripSummaryStatement {
+      @include floatAndClear();
+      color: $gradientPrimaryTextColor;
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      padding: 10px 0 0 0;
+    }
+  }
+}
+
+
+
+// Strip video
+.stripVideoContainer {
+  @include barGradient;
+  float: right;
+  width: 565px;
+  height: 200px;
+  margin-top: $defaultOuterMargin;
+  padding: 10px;
+
+  & .stripVideo {
+    float: left;
+  }
+
+  & .stripVideoData {
+    float: left;
+    padding-left: 10px;
+    width: 270px;
+
+    & h2 {
+      font: {
+        size: 16px;
+        weight: normal;
+        family: $defaultFontFamily;
+      }
+      color: $gradientSecondaryTextColor;
+    }
+
+    & p {
+      font: {
+        size: 13px;
+        weight: bold;
+        family: $defaultFontFamily;
+      }
+      color: $gradientPrimaryTextColor;
+      margin: 0;
+    }
+  }
+}

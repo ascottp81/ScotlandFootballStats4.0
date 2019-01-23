@@ -1,0 +1,177 @@
+/* ======================================= History Index ========================================== */
+
+.history {
+  @include floatAndClear();
+  width: 100%;
+  margin-top: $defaultOuterMargin;
+  background-color: $defaultBackgroundColor;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  & .historyLeft {
+    @include barGradient;
+    float: left;
+    width: 370px;
+
+    & .getty {
+      width: 350px;
+      margin: 10px;
+      float: left;
+    }
+  }
+
+  & .historyRight {
+    float: left;
+    width: 650px;
+
+    & .flagTitleLink {
+      font-size: 18px;
+    }
+
+    & .historyRightSummary {
+      float: left;
+      width: 325px;
+      padding: 10px;
+
+      & p {
+        font: {
+          weight: bold;
+          size: 12px;
+          family: $defaultFontFamily;
+        }
+        color: $defaultTextColor;
+        line-height: 18px;
+        margin: 0;
+      }
+    }
+
+    & .historyRightMatches {
+      @include barGradient;
+      margin: 12px;
+      width: 301px;
+      float: right;
+      padding: 10px;
+
+      & p {
+        margin: {
+          top: 0;
+          bottom: 5px;
+        }
+
+        & span {
+          color: $gradientSecondaryTextColor;
+          font: {
+            size: 12px;
+            family: $defaultFontFamily;
+          }
+        }
+
+        &.historyMatchesTitle {
+          color: $gradientSecondaryTextColor;
+          margin: 0 0 10px 0;
+          font: {
+            weight: bold;
+            style: italic;
+            size: 12px;
+            family: $defaultFontFamily;
+          }
+        }
+
+        & a {
+          color: #FFFFFF;
+          font: {
+            weight: bold;
+            size: 14px;
+            family: $defaultFontFamily;
+          }
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+/* ========================== History Chapter ======================================= */
+
+#historyAccordion {
+  & h3 {
+    @include barGradient;
+    margin: 0;
+    color: $defaultHeadingColor;
+    font: {
+      weight: bold;
+      size: 18px;
+      family: $defaultFontFamily;
+    }
+    border: 0 !important;
+    line-height: $titleBarHeight;
+    border-radius: 0 !important;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & .subChapter {
+    border-radius: 0px !important;
+    border: 0 !important;
+    font: {
+      weight: bold;
+      size: 13px;
+      family: $defaultFontFamily;
+    }
+    line-height: 18px !important;
+    color: $defaultTextColor;
+    padding: $defaultInnerPadding;
+    top: 0 !important;
+    margin: 0 !important;
+
+    & .subChapterText {
+      width: 570px;
+      float: left;
+
+      & p {
+        margin: 0;
+      }
+    }
+
+    & .subChapterImage {
+      width: 400px;
+      float: right;
+
+      & .getty{
+        margin-top: 0;
+      }
+
+      & p {
+        font: {
+          weight: normal;
+          size: 11px;
+          family: $defaultFontFamily;
+        }
+        margin: 0;
+        line-height: 13px;
+        padding-top: 5px;
+        float: left;
+      }
+    }
+
+    &:nth-of-type(even) {
+      & .subChapterText {
+        float: right;
+      }
+      & .subChapterImage {
+        float: left;
+      }
+    }
+  }
+}

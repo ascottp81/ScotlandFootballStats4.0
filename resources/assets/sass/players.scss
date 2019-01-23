@@ -1,0 +1,435 @@
+/* =================================== Players & Managers ============================================ */
+
+.playersIndexColumn {
+  width: 525px;
+  margin: {
+    left: $defaultOuterMargin;
+    right: $defaultOuterMargin;
+  }
+  float: left;
+
+  // index sector/link
+  & .playerListSector{
+    float: left;
+    margin-top: $defaultOuterMargin;
+    width: 100%;
+
+    & .playerListSectorSummary {
+      background-color: $defaultBackgroundColor;
+      color: $defaultTextColor;
+      font: {
+        weight: bold;
+        size: 11px;
+        family: $defaultFontFamily;
+      }
+      height: 40px;
+      padding: {
+        left: $defaultInnerPadding;
+        right: $defaultInnerPadding;
+        top: 5px;
+      }
+    }
+  }
+
+  & .playerList {
+    width: 100%;
+    margin: {
+      top: $defaultOuterMargin;
+      left: 0;
+    }
+    background-color: $defaultBackgroundColor;
+    padding: $defaultInnerPadding;
+    min-height: 350px;
+    float: left;
+  }
+}
+
+.playersRightColumn, .managersRightColumn{
+  float: left;
+  width: 225px;
+
+  & .localGetty img {
+    margin-bottom: 15px;
+  }
+
+  & .getty:first-child {
+    margin-top: 0;
+  }
+}
+
+
+.playerImage {
+  width: 250px;
+  float: left;
+
+  & .localGetty img {
+    margin-bottom: 15px;
+  }
+
+  & .getty:first-child {
+    margin-top: 0;
+  }
+
+  & .noImage {
+    width: 250px;
+    font-size: 210px;
+    background-color:#CCCCCC;
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+}
+
+
+
+/* ====================================== Player Search Results Details ============================================ */
+
+.searchDetails {
+  @include barGradient;
+  width: 100%;
+  padding: $defaultInnerPadding;
+  margin-top: 0;
+  color: $gradientPrimaryTextColor;
+  font: {
+    size: 12px;
+    family: $defaultFontFamily;
+  }
+  float: left;
+
+  & .searchDetailsRow {
+    @include floatAndClear();
+    padding: 2px 0;
+
+    & .searchDetailsHead {
+      width: 70px;
+      float: left;
+      color: $gradientSecondaryTextColor;
+    }
+
+    & .searchDetailsData {
+      width: 135px;
+      font-weight: bold;
+      float: left;
+    }
+  }
+}
+
+
+.searchFilterLink {
+  @include barGradient;
+  width: 100%;
+  height: $titleBarHeight;
+  line-height: $titleBarHeight;
+  vertical-align: middle;
+  color: $defaultHeadingColor;
+  font: {
+    family: $defaultFontFamily;
+    weight: bold;
+    size: 16px;
+  }
+  text-align: center;
+  display: block;
+  float: left;
+  margin: {
+    top: 10px;
+    bottom: 0;
+  }
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+/* =================================== Player & Manager Details ===================================== */
+
+.playerYear {
+  font: {
+    weight: bold;
+    size: 18px;
+    family: $defaultFontFamily;
+  }
+  letter-spacing: 0;
+}
+
+.playerLeftContainer {
+  width: 445px;
+  float: left;
+
+  & .localGetty img {
+    margin-bottom: 0;
+  }
+}
+
+// Player details, i.e. caps, club, DOB
+.playerDetails {
+  float: left;
+  width: 185px;
+  margin-left: 10px;
+
+  & .playerDetailsHolder {
+    @include barGradient;
+    @include floatAndClear();
+    margin-top: $defaultOuterMargin;
+    padding: $defaultInnerPadding;
+    width: 100%;
+    min-height: 165px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    // Caps and goals
+    & .playerStatsRow {
+      @include floatAndClear();
+      width: 100%;
+      padding-bottom: 10px;
+
+      & .playerStatsHeading, & .playerStatsSubHeading {
+        float: left;
+        width: 80px;
+        font: {
+          style: italic;
+          weight: bold;
+          family: $defaultFontFamily;
+        }
+        color: $gradientSecondaryTextColor;
+        letter-spacing: -1px;
+      }
+
+      & .playerStatsData, & .playerStatsSubData {
+        float: left;
+        width: 50px;
+        font: {
+          weight: bold;
+          family: $defaultFontFamily;
+        }
+        color: $gradientPrimaryTextColor;
+        letter-spacing: -1px;
+        text-align: right;
+      }
+
+      & .playerStatsHeading, & .playerStatsData {
+        font-size: 18px;
+      }
+
+      & .playerStatsSubHeading {
+        font-size: 14px;
+      }
+
+      & .playerStatsSubData {
+        font-size: 13px;
+      }
+
+      & .playerStatsInfo {
+        float: left;
+        width: 30px;
+        text-align: right;
+        padding-top: 3px;
+      }
+    }
+
+    // Club, position, dob
+    & .playerExtraDetailsRow {
+      @include floatAndClear();
+      width: 100%;
+      padding-bottom: 10px;
+
+      & .playerExtraDetailsHeading {
+        float: left;
+        width: 60px;
+        font: {
+          style: italic;
+          weight: bold;
+          size: 14px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientSecondaryTextColor;
+        letter-spacing: -1px;
+      }
+
+      & .playerExtraDetailsData {
+        float: left;
+        width: 100%;
+        font: {
+          weight: bold;
+          size: 13px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientPrimaryTextColor;
+        letter-spacing: -1px;
+      }
+    }
+  }
+}
+
+
+// player matches
+.playerMatchDetails {
+  width: 565px;
+  float: right;
+}
+
+
+/* =================================== Manager Details ===================================== */
+
+.managerLeftContainer {
+  width: 470px;
+  float: left;
+
+
+  // Image
+  & .managerImage {
+    width: 225px;
+    float: left;
+
+    & .getty:first-child {
+      margin-top: 0;
+    }
+
+    & .noImage {
+      width: 100%;
+      font-size: 210px;
+      background-color:#CCC;
+      color: #FFF;
+      text-align: center;
+    }
+  }
+
+
+  // Details
+  & .managerDetails {
+    float: left;
+    width: 235px;
+    margin-left: 10px;
+
+    & .managerDetailsHolder {
+      @include barGradient;
+      @include floatAndClear();
+      margin-top: 0;
+      width: 100%;
+      min-height: 165px;
+      padding: $defaultInnerPadding;
+      color: $gradientPrimaryTextColor;
+
+
+      & .managerSummaryName {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 17px;
+          family: $defaultFontFamily;
+        }
+        letter-spacing: -1px;
+        padding-bottom: 10px;
+
+        & span {
+          font: {
+            weight: bold;
+            size: 14px;
+            family: $defaultFontFamily;
+          }
+          letter-spacing: -1px;
+        }
+      }
+
+      & .managerSummaryHeading {
+        @include floatAndClear();
+        color: $gradientSecondaryTextColor;
+        font: {
+          style: italic;
+          weight: bold;
+          size: 12px;
+          family: $defaultFontFamily;
+        }
+        letter-spacing: -1px;
+      }
+
+      & .managerSummaryValue {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 14px;
+          family: $defaultFontFamily;
+        }
+        letter-spacing: -1px;
+        padding-bottom: 10px;
+      }
+
+
+      & .managerSummaryStatement {
+        @include floatAndClear();
+        font: {
+          weight: bold;
+          size: 12px;
+          family: $defaultFontFamily;
+        }
+        padding: 10px 0 0 0;
+      }
+    }
+  }
+}
+
+
+// Match Stats
+.managerCountData {
+  @include barGradient;
+  color: $gradientPrimaryTextColor;
+  font: {
+    weight: bold;
+    size: 14px;
+    family: $defaultFontFamily;
+  }
+  letter-spacing: -1px;
+  margin: {
+    left: 0;
+    bottom: 10px;
+  }
+  padding: 10px;
+  text-align: center;
+  width: 540px;
+  float: right;
+
+  & table {
+    width: 100%;
+
+    & .countHeading {
+      color: $gradientSecondaryTextColor;
+      font: {
+        style: italic;
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      letter-spacing: -1px;
+      padding: {
+        top: 0;
+        right: 5px;
+        bottom: 0;
+        left: 12px;
+      }
+      text-align: center;
+    }
+
+    & td {
+      padding: 1px 7px;
+
+      &.countSeparator {
+        border-left: {
+          width: 1px;
+          style: solid;
+          color: yellow;
+        }
+      }
+    }
+  }
+}
+
+
+// Match list
+.managerMatchDetails {
+  width: 540px;
+  float: right;
+}

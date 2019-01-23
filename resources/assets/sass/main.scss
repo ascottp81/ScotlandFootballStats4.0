@@ -1,0 +1,454 @@
+
+/* ================================ Home Page ============================================== */
+
+.homeScroller{
+  width: $pageWidth - $searchColumnWidth - (2 * $pagePadding) - $defaultOuterMargin;
+  height: $titleBarHeight;
+  float: left;
+  margin-bottom: $defaultOuterMargin;
+  padding: {
+    left: 0;
+    right: 0;
+  }
+
+  & #introTicker {
+    display: none;
+    margin-top: 0;
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+    color: $defaultHeadingColor;
+    height: 16px;
+    list-style: none;
+    width: 10000px;
+  }
+}
+
+
+.homeMiddleColumn {
+  float: left;
+  width: $middleColumnWidth;
+
+  & .homeMiddleRow {
+    margin-bottom: 0;
+    float: left;
+
+    &:first-child {
+      margin-bottom: $defaultOuterMargin;
+    }
+  }
+}
+
+// Each sector in the middle of the home page
+.homeSector {
+  height: 200px;
+  width: $sectorWidth;
+  background-color: $defaultBackgroundColor;
+  margin-left: $defaultOuterMargin;
+  float: left;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+
+// News headlines
+.newsHolder {
+  padding: $defaultInnerPadding;
+  padding-top: 8px;
+  float: left;
+
+  & .homeNewsItem {
+    @include floatAndClear;
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    color: $defaultTextColor;
+    padding: {
+      top: 1px;
+      bottom: 1px;
+    }
+
+    // Top headline
+    &:first-child {
+      font-size: 16px;
+    }
+  }
+}
+
+
+.homeResult {
+  float: left;
+  padding: {
+    left: $defaultInnerPadding;
+    right: $defaultInnerPadding;
+    top: $defaultInnerPadding;
+  }
+  width: $sectorWidth;
+
+  & div {
+    @include floatAndClear;
+    width: $sectorWidth - (2 * $defaultInnerPadding);
+    color: $defaultTextColor;
+  }
+
+  & .homeResultDate {
+    font: {
+      style: italic;
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+  }
+
+  & .homeResultScoreline {
+    font: {
+      weight: bold;
+      size: 18px;
+      family: $defaultFontFamily;
+    };
+    padding-top: 3px;
+  }
+
+  & .homeResultDetails {
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    padding-top: 3px;
+
+    & a {
+      color: $defaultLinkColor;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+.homeRightColumn {
+  width: $rightColumnWidth;
+  float: right;
+  display: block;
+}
+
+
+
+// Home page pictures
+.pictureRow{
+  @include floatAndClear;
+
+  & .pictureHolderLeft{
+    width: calc(50% - 5px);
+    float: left;
+  }
+
+  & .pictureHolderRight{
+    width: calc(50% - 5px);
+    float: right;
+  }
+}
+
+
+
+/* ============================== Article Page ======================================== */
+
+.articleHolder {
+  width: 100%;
+  padding: $defaultInnerPadding;
+  background-color: $defaultBackgroundColor;
+  font: {
+    weight: bold;
+    size: $generalTextSize;
+    family: $defaultFontFamily;
+  }
+  color: $defaultTextColor;
+}
+
+
+/* ============================== Latest News =============================== */
+
+// News articles
+.latestNewsContent {
+  float: left;
+  width: $middleColumnWidth + $rightColumnWidth + $defaultOuterMargin;
+
+  & .newsColumn {
+    background-color: $defaultBackgroundColor;
+    float: left;
+    margin: {
+      left: 0;
+      top: 0;
+    }
+    position: relative;
+    width: 475px;
+    min-height: 420px;
+    padding: $defaultInnerPadding;
+
+    & .newsArticle {
+      color: $defaultTextColor;
+      font: {
+        size: $generalTextSize;
+        family: $defaultFontFamily;
+      }
+      margin: 0;
+      padding-bottom: 15px;
+
+      & h2 {
+        margin: {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 5px;
+        }
+        font-size: 14px;
+      }
+
+      & span.newsDate {
+        font: {
+          style: italic;
+          size: 11px;
+          family: $defaultFontFamily;
+        }
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+// Squad details
+.squadColumn {
+  background-color: $defaultBackgroundColor;
+  float: left;
+  margin: {
+    left: 10px;
+    top: 0;
+  }
+  min-height: 420px;
+  position: relative;
+  width: 300px;
+
+  & .squadContent {
+    color: $defaultTextColor;
+    font: {
+      size: $generalTextSize;
+      family: $defaultFontFamily;
+    }
+    padding: $defaultInnerPadding;
+
+    & h2 {
+      font: {
+        weight: bold;
+        size: 13px;
+      }
+      margin: {
+        top: 0;
+        bottom: 5px;
+      }
+      text-decoration: underline;
+    }
+  }
+}
+
+
+/* ======================================== Fixtures ====================================== */
+
+.fixtureItem {
+  @include barGradient;
+  width: $pageWidth - (2 * $pagePadding);
+  height: 100px;
+  padding: $defaultInnerPadding;
+  margin-top: $defaultOuterMargin;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  & .leftFixtureColumn {
+    width: 520px;
+    height: 76px;
+    float: left;
+
+    & .fixture {
+      @include floatAndClear();
+      margin-top: 10px;
+
+      & .fixtureFlag {
+        float: left;
+
+        & img {
+          height: 30px;
+          max-width: 45px;
+          float: left;
+        }
+      }
+
+
+      & .fixtureString {
+        float: left;
+        padding: 0 20px;
+        font: {
+          size: 20px;
+          family: $defaultFontFamily;
+        }
+        color: $gradientPrimaryTextColor;
+        line-height: 30px;
+        vertical-align: middle;
+        text-align: center;
+        width: 335px;
+      }
+    }
+  }
+
+  & .rightFixtureColumn {
+    width: 476px;
+    height: 76px;
+    float: left;
+
+    & .fixtureVenue, & .fixtureKickoff {
+      font-family: $defaultFontFamily;
+      color: $gradientPrimaryTextColor;
+      margin-top: 5px;
+    }
+
+    & .fixtureVenue {
+      font-size: 16px;
+    }
+
+    & .fixtureKickoff {
+      font-size: 14px;
+
+      & span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  & .fixtureDate {
+    font: {
+      style: italic;
+      size: 16px;
+      family: $defaultFontFamily;
+    }
+    color: $gradientSecondaryTextColor
+  }
+}
+
+
+
+/* ============================== Recent Results & Match Search ================================= */
+
+.searchMatchDetails {
+  float: right;
+  width: 620px;
+}
+.searchMatchDetails .matchDetailsData {
+  min-height: 340px;
+}
+.matchListCount {
+  @include barGradient;
+  color: $gradientPrimaryTextColor;
+  display: block;
+  font: {
+    weight: bold;
+    size: 14px;
+    family: $defaultFontFamily;
+  }
+  height: 40px;
+  letter-spacing: -1px;
+  margin: {
+    top: 0;
+    left: 0;
+  }
+  padding-top: 9px;
+  text-decoration: none;
+  width: 620px;
+  float: left;
+
+  & .countHeading {
+    color: $gradientSecondaryTextColor;
+    font: {
+      style: italic;
+      weight: bold;
+      size: 12px;
+    }
+    padding: {
+      top: 0;
+      bottom: 0;
+      left: 12px;
+      right: 5px;
+    }
+  }
+}
+
+.matchListSearch {
+  float: left;
+  width: 390px;
+}
+
+// Search details & Recent top players
+.matchSearchDetails {
+  @include barGradient;
+  float: left;
+  color: $gradientPrimaryTextColor;
+  font: {
+    size: 12px;
+    family: $defaultFontFamily;
+  }
+  margin-top: 0;
+  padding: 10px;
+  width: 155px;
+  min-height: 380px;
+
+
+  & .searchDetailsRow {
+    @include floatAndClear();
+    padding: 2px 0;
+  }
+
+
+  // search headings
+  & .searchDetailsHead, & .searchDetailsHead1 {
+    float: left;
+    color: $gradientSecondaryTextColor;
+  }
+
+  & .searchDetailsHead1 {
+    padding-bottom: 10px;
+  }
+
+  // search parameters
+  & .searchDetailsData {
+    width: 135px;
+    font-weight: bold;
+    float: left;
+    padding-bottom: 10px;
+  }
+
+  // Player names
+  & .searchDetailsData1 {
+    @include floatAndClear();
+    padding-bottom: 3px;
+    width: 115px;
+    font-weight: bold;
+  }
+
+  // player numbers
+  & .searchDetailsData2 {
+    float: left;
+    padding-bottom: 3px;
+    width: 20px;
+    font-weight: bold;
+    text-align: right;
+  }
+}

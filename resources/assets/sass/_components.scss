@@ -1,0 +1,480 @@
+
+/* ====================================== Title Bars ================================== */
+
+// Title bar used for page titles, subtitles and links
+.titleBar {
+  @include barGradient;
+  height: $titleBarHeight;
+  line-height: $titleBarHeight;
+  color: $titleColor;
+  font: {
+    weight: bold;
+    family: $defaultFontFamily;
+  }
+  text-decoration: none;
+  vertical-align: middle;
+  padding: {
+    left: $titleBarLeftRightPadding;
+    right: $titleBarLeftRightPadding;
+  }
+  display: block;
+}
+
+
+// Title bar with Flag on right
+.flagTitleLink {
+  @extend .titleBar;
+  font-size: 20px;
+  letter-spacing: -1px;
+
+  // Flag image in flag title
+  & .flag {
+    background: {
+      image: url(/img/flagtitle.gif);
+      repeat: no-repeat;
+    }
+    float: right;
+    width: $flagHeight * 1.5;
+    height: $flagHeight;
+    margin-top: ($titleBarHeight - $flagHeight) / 2;
+  }
+}
+
+
+
+
+// Title bar at top that stretches with of page
+.fullTitleBar {
+  @extend .titleBar;
+  font-size: 20px;
+  letter-spacing: -1px;
+  width: 100%;
+  margin: {
+    top: 0;
+    bottom: $defaultOuterMargin;
+  }
+}
+
+
+// Breadcrumb
+.breadcrumb {
+  float: right;
+  font-size: 13px;
+  color: $breadcrumbText;
+
+  & a {
+    color: $breadcrumbLinkText;
+    text-decoration: none;
+  }
+}
+
+
+
+/* Intro text box at top of some pages */
+.introText {
+  @include barGradient;
+  color: $gradientPrimaryTextColor;
+  font: {
+    weight: bold;
+    size: 12px;
+    family: $defaultFontFamily;
+  }
+  text-decoration: none;
+  display: block;
+  padding: $defaultInnerPadding;
+  width: 100%;
+  margin-top: 0;
+
+  & p {
+    margin-top: 0;
+  }
+}
+
+
+// Basic Content
+.basicContent {
+  width: 100%;
+  min-height: 500px;
+  background-color: $defaultBackgroundColor;
+  float: left;
+  padding: $defaultInnerPadding;
+  color: $defaultTextColor;
+
+  & h2 {
+    font: {
+      weight: bold;
+      size: 20px;
+      family: $defaultFontFamily;
+    }
+  }
+
+  & p {
+    font: {
+      size: 13px;
+      family: $defaultFontFamily;
+    }
+    line-height: 26px;
+  }
+
+}
+
+
+/* ===================================== Search ======================================= */
+
+// Column containing search
+.searchColumn {
+  width: $searchColumnWidth;
+  float: left;
+  margin-right: $defaultOuterMargin;
+}
+
+// Search sector
+.searchContainer {
+  float: left;
+  background-color: $defaultBackgroundColor;
+
+  // Search form
+  & .searchForm {
+    padding: $searchFormPadding;
+    float: left;
+
+    // input control containers
+    & .searchFormInput {
+      @include floatAndClear;
+      width: $searchColumnWidth - (2 * $searchFormPadding );
+      color: $defaultTextColor;
+
+      // input controls
+      & select, & input {
+        width: $searchColumnWidth - (2 * $searchFormPadding );
+        color: $defaultTextColor;
+      }
+    }
+
+    // input headings
+    & .searchFormHeading {
+      @extend .searchFormInput;
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+      margin-top: 10px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    // Submit button
+    & .searchButton {
+      @extend .titleBar;
+      width: $searchColumnWidth - (2 * $searchFormPadding );
+      font-size: 16px;
+      text-align: center;
+      float: left;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+  }
+}
+
+// Datepicker popup
+#ui-datepicker-div {
+  display: none;
+}
+
+
+
+/* ============================= Articles Link ================================== */
+
+.homeArticles {
+  @include barGradient;
+  padding: $searchFormPadding;
+  width: $searchColumnWidth;
+  margin-top: $defaultOuterMargin;
+  min-height: 70px;
+  float: left;
+  display: block;
+
+  // article links
+  & a.articleItem {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-top: solid 1px #000066;
+    display: block;
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+    color: #ffff00;
+    text-decoration: none;
+
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+  }
+}
+
+
+
+/* ================================= Mini Group Table ============================= */
+
+.homeTableHolder {
+  width: $rightColumnWidth;
+  float: right;
+  display: block;
+  background-color: $defaultBackgroundColor;
+  padding-bottom: 20px;
+
+  & .homeGroupTitle, & .homeGroupData {
+    @include floatAndClear;
+    margin: {
+      left: $defaultInnerPadding;
+      top: 8px;
+    }
+    font: {
+      weight: bold;
+      family: $defaultFontFamily;
+    }
+    color: $defaultTextColor;
+  }
+
+  & .homeGroupTitle {
+    font: {
+      style: italic;
+      size: 14px;
+    }
+  }
+
+  & .homeGroupData {
+    font-size: 18px;
+    padding-bottom: 20px;
+    width: $rightColumnWidth - (2 * $defaultInnerPadding);
+
+    & .homeTableRow {
+      @include floatAndClear;
+      padding-bottom: 3px;
+      width: 100%;
+
+      & .homeTableCountry {
+        width: 120px;
+        float: left;
+      }
+
+      & .homeTableValue {
+        width: 38px;
+        float: left;
+        text-align: right;
+      }
+    }
+  }
+
+  & .homeGroupFixtures {
+    width: $rightColumnWidth - (2 * $defaultInnerPadding);
+    margin-left: $defaultInnerPadding;
+    padding-top: 5px;
+    float: left;
+    border-top: solid 1px #000066;
+
+    & .tableFixturesDate, & .tableFixture {
+      @include floatAndClear;
+      font-family: $defaultFontFamily;
+      color: $defaultTextColor;
+      width: 100%;
+    }
+    & .tableFixturesDate {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    & .tableFixture {
+      font: {
+        weight: bold;
+        size: 13px;
+      }
+    }
+  }
+}
+
+
+
+/* =============================== Past Events ================================= */
+
+.pastEvents {
+  @include barGradient;
+  width: $rightColumnWidth;
+  margin-top: $defaultOuterMargin;
+  padding: $defaultInnerPadding;
+  color: $defaultHeadingColor;
+  float: right;
+
+  & .title {
+    font: {
+      weight: bold;
+      size: 16px;
+      family: $defaultFontFamily;
+    }
+    margin: {
+      top: 0;
+      bottom: 10px;
+    }
+  }
+
+  & p, & .eventDate {
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+  }
+
+  & .eventDate {
+    color: #FFFF00;
+  }
+
+  & .year {
+    font: {
+      weight: bold;
+      size: 14px;
+      family: $defaultFontFamily;
+    }
+    color: #FFFF00;
+    margin: 0;
+  }
+}
+
+
+
+
+/* ============================ Images and videos ================================ */
+.video iframe {
+  float: left;
+}
+.getty {
+  margin-top: $defaultOuterMargin;
+}
+.localGetty{
+  background-color: #FFFFFF;
+  display: inline-block;
+  position: relative;
+  float: left;
+
+  & img {
+    margin-bottom: 0;
+    width: 100%;
+    float: left;
+  }
+}
+
+
+/* ==============================  Match List ==================================== */
+
+.matchDetailsData {
+  width: 100%;
+  margin: 0;
+  background-color: $defaultBackgroundColor;
+  padding: $defaultInnerPadding;
+  min-height: 280px;
+  float: right;
+}
+
+table.dataTable {
+
+  &.no-footer {
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    border-bottom: 0 !important;
+  }
+
+  & thead th {
+    padding: {
+      top: 2px;
+      right: 10px;
+      bottom: 2px;
+      left: 0 !important;
+    }
+    border: 0 !important;
+    text-align: left;
+    color: $defaultLinkColor;
+    text-decoration: underline;
+    padding: {
+      top: 2px !important;
+      bottom: 2px !important;
+      right: 10px !important;
+    }
+  }
+
+  & tbody td {
+    padding: 2px 0 !important;
+    color: $defaultTextColor;
+
+    & a {
+      color: $defaultLinkColor;
+    }
+
+    &.matchDetailsInfo {
+      padding: {
+        top: 0 !important;
+        bottom: 0 !important;
+        right: 6px !important;
+      }
+      vertical-align: middle;
+    }
+  }
+
+  & tbody th {
+    &.matchDetailsInfo {
+      padding-right: 6px !important;
+    }
+  }
+
+  & .right {
+    text-align: right !important;
+    padding-right: 20px !important;
+  }
+
+}
+
+
+/* ================================== Tabs ==================================== */
+
+.tabLink {
+  @include barGradient;
+  line-height: 30px;
+  vertical-align: middle;
+  padding-left: 12px !important;
+  font: {
+    family: $defaultFontFamily;
+    weight: bold;
+    size: 15px;
+  }
+  color: #FFFFFF !important;
+  text-decoration: none;
+  float: left;
+}
+
+
+/* ================================== Scrolling ================================ */
+
+/* jScrollPane styling */
+.jspTrack {
+  background-color: #0066FF !important;
+}
+.jspDrag {
+  background-color: #0000AA !important;
+}
+.jspArrow {
+  background-color: #000066 !important;
+  text-indent: 0 !important;
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  text-align: center;
+}

@@ -1,0 +1,237 @@
+/* ========================================== FIFA Rankings ========================================== */
+
+.rankingStats {
+  @include barGradient;
+  width: 255px;
+  float: left;
+  height: 350px;
+  padding: {
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  position: relative;
+  margin-top: 10px;
+
+  & .rankingHeading {
+    @include floatAndClear();
+    color: $gradientSecondaryTextColor;
+    font: {
+      style: italic;
+      weight: bold;
+      size: 11px;
+      family: $defaultFontFamily;
+    }
+    height: 20px;
+    width: 125px;
+    padding-left: 10px;
+  }
+
+  & .rankingData, & .rankingHeadingTitle {
+    color: $gradientPrimaryTextColor;
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    height: 20px;
+  }
+
+  & .rankingData {
+    float: left;
+    padding-right: 10px;
+  }
+
+  & .rankingHeadingTitle {
+    @include floatAndClear();
+    padding-left: 10px;
+  }
+
+  & .chartLink {
+    @include barGradient;
+    color: $gradientPrimaryTextColor;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font: {
+      weight: bold;
+      size: 15px;
+      family: $defaultFontFamily;
+    }
+    height: 30px;
+    margin-top: 10px;
+    padding: {
+      left: $defaultInnerPadding;
+      right: $defaultInnerPadding;
+      top: 5px;
+    }
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+
+#fifaChart {
+  width: 755px;
+  height: 350px;
+  float: left;
+  margin: {
+    left: 10px;
+    top: 10px;
+  }
+  background-color: $defaultBackgroundColor;
+}
+
+/* Slider */
+.rankingSliderHolder {
+  @include barGradient;
+  @include floatAndClear();
+  margin-top: 10px;
+  width: 100%;
+  height: 124px;
+
+  & .rankingSliderTitle {
+    @include floatAndClear();
+    font: {
+      weight: bold;
+      size: 13px;
+      family: $defaultFontFamily;
+    }
+    color: $gradientSecondaryTextColor;
+    padding: {
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 5px;
+    }
+  }
+
+  & .rankingSliderSubTitle {
+    @include floatAndClear();
+    font: {
+      size: 10px;
+      family: $defaultFontFamily;
+    }
+    color: $gradientPrimaryTextColor;
+    padding: {
+      top: 0;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+
+  & .sliderScale {
+    @include floatAndClear();
+    width: calc(100% - 7px);
+    margin-left: 7px;
+
+    & .sliderScaleSector {
+      width: 98px;
+      float: left;
+      height: 12px;
+      text-align: left;
+      font: {
+        size: 10px;
+        family: $defaultFontFamily;
+      }
+      color: $gradientPrimaryTextColor;
+
+      &:last-of-type{
+        width: 25px;
+      }
+    }
+  }
+
+  & .rankingSlider {
+    @include floatAndClear();
+    width: 100%;
+    padding: {
+      top: 10px;
+      bottom: 10px;
+      left: 20px;
+      right: 20px;
+    }
+
+    & .ui-slider-range {
+      background: #0000FF !important;
+    }
+  }
+
+  & .sliderDate {
+    @include floatAndClear();
+    padding: {
+      top: 0;
+      right: 0;
+      bottom: 10px;
+      left: 10px;
+    }
+    font: {
+      weight: bold;
+      size: 12px;
+      family: $defaultFontFamily;
+    }
+    color: $gradientPrimaryTextColor;
+
+    & .sliderDateHeading {
+      font: {
+        weight: normal;
+        style: italic;
+        size: 11px;
+      }
+      color: $gradientSecondaryTextColor;
+    }
+  }
+}
+
+// Ranking Records
+$allRankingColumns: $pageWidth - (2 * $pagePadding) - (2 * $defaultOuterMargin);
+$rankingColumn: floor($allRankingColumns / 3);
+
+.rankingRecords {
+  @include barGradient;
+  @include floatAndClear();
+  width: 100%;
+  margin-top: 10px;
+
+  & .rankingRecordsColumn {
+    float: left;
+    width: $rankingColumn + 10;
+    border-right: solid 10px #0000FF;
+    padding: $defaultInnerPadding;
+
+    &:last-child {
+      border-right: 0;
+      width: ceil($allRankingColumns / 3);
+    }
+
+    & .rankingRecordsRow{
+      @include floatAndClear();
+      color: $gradientPrimaryTextColor;
+      font: {
+        weight: bold;
+        size: 12px;
+        family: $defaultFontFamily;
+      }
+
+      &:first-child{
+        color: $gradientSecondaryTextColor;
+      }
+
+      & .rankingRecordsDate{
+        float: left;
+        width: 120px;
+      }
+
+      & .rankingRecordsRanking{
+        float: left;
+        width: 62px;
+        text-align: center;
+      }
+    }
+  }
+}

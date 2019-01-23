@@ -1,0 +1,151 @@
+/* ==================================== Sitemap ======================================= */
+
+#sitemapTree {
+  font: {
+    weight: bold;
+    size: 16px;
+    family: $defaultFontFamily;
+  }
+  color: $defaultTextColor;
+  float: left;
+
+  & a:hover {
+    text-decoration: underline;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  & > ul > li > ul > li > a {
+    font-size: 14px;
+  }
+
+  & > ul > li > ul > li > ul > li > a {
+    font-size: 12px;
+  }
+}
+
+
+a .jstree-icon {
+  visibility: hidden !important;
+  width: 5px !important;
+}
+
+.jstree-closed > i:before, .jstree-open > i:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.jstree-closed > i:before {
+  content: "\f0fe";
+}
+.jstree-open > i:before {
+  content: "\f146";
+}
+.jstree-default .jstree-node, .jstree-default .jstree-icon, .jstree-default .jstree-hovered {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sitemapImage {
+  float: right;
+  width: 594px;
+}
+
+
+/* ================================== External Links ======================================= */
+
+.linksRow {
+  @include floatAndClear();
+  width: 100%;
+
+  &:first-of-type {
+    margin-bottom: 10px;
+  }
+
+  & .linksSector {
+    float: left;
+    width: 505px;
+    margin-left: $defaultOuterMargin;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  & .otherLinksSector {
+    float: left;
+    width: 600px;
+
+    & .linksSectorContent {
+      min-height: 261px;
+    }
+  }
+
+  & .linksSectorContent {
+    width: 100%;
+    padding: $defaultInnerPadding;
+    min-height: 300px;
+    background-color: $defaultBackgroundColor;
+    color: $defaultTextColor;
+    font: {
+      size: 13px;
+      family: $defaultFontFamily;
+    }
+    line-height: 26px;
+  }
+
+  & .externalLinkItem {
+    @include floatAndClear();
+    padding-bottom: 10px;
+
+    & h3 {
+      @include floatAndClear();
+      margin: 0;
+
+      & a {
+        color: $defaultTextColor;
+        font: {
+          weight: bold;
+          size: 16px;
+          family: $defaultFontFamily;
+        }
+        text-decoration: none;
+      }
+
+      & i {
+        color: $defaultTextColor;;
+        font-size: 12px;
+      }
+    }
+
+    & a:hover {
+      text-decoration: underline;
+    }
+
+    & p {
+      @include floatAndClear();
+      margin: 5px 0;
+    }
+  }
+}
+
+
+.linksImage {
+  float: left;
+  margin-left: $defaultOuterMargin;
+  width: 410px;
+
+  & .getty{
+    margin-top: 0;
+  }
+
+  & .localGetty img {
+    margin-bottom: 15px;
+  }
+}
+

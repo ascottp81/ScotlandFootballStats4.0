@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  @include noPaddingNoMargin;
+  height: 100%;
+  background: {
+    image: url(/img/background.jpg);
+    size: 100% 100%;
+    attachment: fixed;
+  }
+}
+#container {
+  min-height: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: $pageWidth;
+  background-color: $pageBackgroundColor;
+}
+#header {
+  height: $headerHeight;
+  padding: $pagePadding;
+}
+#body {
+  padding-bottom: $footerHeight;
+  width: $pageWidth - (2 * $pagePadding);
+  margin: 0 $pagePadding;
+
+  & a:hover{
+    text-decoration: underline;
+  }
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footerHeight;
+
+  & a:hover{
+    text-decoration: underline !important;
+  }
+}
+
+.blue {
+  color: #000066;
+}
+.yellow {
+  color: #FFFF00;
+}
+
+.video {
+  margin-top: $defaultOuterMargin;
+  float: left;
+}
+.video iframe {
+  float: left;
+}
+
+.scrollerBullet {
+  color: #ffff00;
+  float: left;
+  padding-top: 0;
+}
+
+.loading {
+  @include floatAndClear();
+  width: 100%;
+  line-height: 200px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 40px;
+  color: #000066;
+}
+
+/* Summary on competitions page and appearance breakdown on players page */
+.tooltipText {
+  @include floatAndClear();
+  background-color: #000066;
+  padding: 6px;
+  margin: 0;
+  width: 180px;
+  font: {
+    weight: bold;
+    size: 11px;
+    family: $defaultFontFamily;
+  }
+  color: #FFFFFF;
+}
+
+
+
+/* ================================ Header ================================== */
+
+// Header Banner
+.headerBanner {
+  @include barGradient;
+  height: $headerBannerHeight;
+  display: block;
+  font: {
+    weight: bold;
+    size: 44px;
+    family: $defaultFontFamily;
+  }
+  text-decoration: none;
+  color: #fff;
+  padding: 0 24px;
+  line-height: $headerBannerHeight;
+  vertical-align: middle;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  & .flag {
+    background: {
+      image: url(/img/headerflag.gif);
+      size: $headerFlagWidth $headerFlagHeight;
+      repeat: no-repeat;
+    }
+    float: right;
+    width: $headerFlagWidth;
+    height: $headerFlagHeight;
+    margin-top: floor(($headerBannerHeight - $headerFlagHeight) / 2);
+  }
+}
+
+// navigation bar
+nav {
+  width: 100%;
+  height: $headerNavigationHeight;
+  background-color: $navigationBackgroundColor;
+  float: left;
+
+  & ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 2px;
+
+    & li {
+      float: left;
+      border-left: solid 1px #000066;
+      padding: 0 10px;
+      margin-top: 3px;
+
+      &:first-child {
+        border-left:0;
+      }
+
+      & a {
+        font: {
+          family: $defaultFontFamily;
+          size: 16px;
+        }
+        color: $navigationTextColor;
+        text-decoration: none;
+
+        &:hover {
+          color: $navigationHoverColor;
+          text-decoration: underline;
+        }
+        &.selected {
+          color: $navigationHoverColor;
+        }
+      }
+    }
+  }
+}
+
+
+/* =============================== Footer ========================================= */
+
+// footer banner
+.footerBanner {
+  @include barGradient;
+  height: $footerBannerHeight;
+  display: block;
+  margin: $pagePadding;
+  font: {
+    family: $defaultFontFamily;
+    size: 13px;
+  }
+  line-height: $footerBannerHeight;
+  vertical-align: middle;
+  padding: 0 10px;
+  color: $footerTextColor;
+
+  & a {
+    color: $footerTextColor;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
