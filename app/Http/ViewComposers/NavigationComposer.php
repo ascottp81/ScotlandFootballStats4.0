@@ -25,57 +25,37 @@ class NavigationComposer {
      */
     public function compose(View $view)
     {
-		$homeLink = "";
-		$opponentsLink = "";
-		$playersLink = "";
-		$competitionsLink = "";
-		$managersLink = "";
-		$historyLink = "";
-		$rankingsLink = "";
-		$stripsLink = "";
-		$videosLink = "";
-		
-		$url = Route::current()->uri;
-		$urlSegments = explode("/", $url);
-		
-		if (in_array($urlSegments[0], array("","fixtures","latest-news","recent-results","articles","match-search"))) {
-			$homeLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "opponents") {
-			$opponentsLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "players") {
-			$playersLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "competitions") {
-			$competitionsLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "managers") {
-			$managersLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "history") {
-			$historyLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "fifa-rankings") {
-			$rankingsLink = 'class="selected"';
-		}
-		elseif ($urlSegments[0] == "strips") {
-			$stripsLink = 'class="selected"';
-		}
-		
-		$links = array(
-		   'home' => $homeLink,
-		   'opponents' => $opponentsLink,
-		   'players' => $playersLink,
-		   'competitions' => $competitionsLink,
-		   'managers' => $managersLink,
-		   'history' => $historyLink,
-		   'rankings' => $rankingsLink,
-		   'strips' => $stripsLink,
-		   'videos' => $videosLink
-		);
-		
-        $view->with($links);
+        $url = Route::current()->uri;
+        $urlSegments = explode("/", $url);
+
+        $selected = [];
+        if (in_array($urlSegments[0], array("","fixtures","latest-news","recent-results","articles","match-search"))) {
+            $selected[] = 'home';
+        }
+        else {
+            $selected[] = $urlSegments[0];
+        }
+
+        $titles = ['Home', 'Opponents', 'Players', 'Competitions', 'Managers', 'History', 'FIFA Rankings', 'Strips'];
+        $routes = ['home', 'opponents', 'players', 'competitions', 'managers', 'history', 'fifa-rankings', 'strips'];
+
+        $links = [];
+        for ($i = 0; $i < sizeof($titles); $i++) {
+            $link = new \stdClass();
+            $link->title = $titles[$i];
+            $link->route = $routes[$i];
+
+            if (in_array($routes[$i], $selected)) {
+                $link->selected = true;
+            }
+            else {
+                $link->selected = false;
+            }
+
+            $links[] = $link;
+        }
+
+        $view->with(['links' => $links]);
     }
 
 }

@@ -14,19 +14,19 @@
 // include the middleware group 'web; to start the session
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/recent-results', 'HomeController@recentresults');
     Route::get('/fixtures', 'HomeController@fixtures');
     Route::get('/latest-news', 'HomeController@latestnews');
     Route::get('/articles/{url}', 'HomeController@article');
     Route::get('/match-search/{parameters}', 'HomeController@matchsearch');
 
-    Route::get('/opponents', 'OpponentsController@index');
+    Route::get('/opponents', 'OpponentsController@index')->name('opponents');
     Route::get('/opponents/{url}', 'OpponentsController@opponent');
 
     Route::get('/match-details/{date}/{url}', 'MatchController@index');
 
-    Route::get('/players', 'PlayersController@index');
+    Route::get('/players', 'PlayersController@index')->name('players');
     Route::get('/players/a-z', 'PlayersController@az');
     Route::get('/players/sfa-hall-of-fame', 'PlayersController@sfahalloffame');
     Route::get('/players/silver-caps', 'PlayersController@silvercaps');
@@ -37,22 +37,22 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/players/tooltip/{type}/{id}', 'PlayersController@tooltip');
     Route::get('/players/{id}/{url}', 'PlayersController@player');
 
-    Route::get('/competitions', 'CompetitionsController@index');
+    Route::get('/competitions', 'CompetitionsController@index')->name('competitions');
     Route::get('/competitions/honours', 'CompetitionsController@honours');
     Route::get('/competitions/{url}', 'CompetitionsController@competitionindex');
     Route::get('/competitions/{type}/{url}', 'CompetitionsController@competition');
 
-    Route::get('/managers', 'ManagersController@index');
+    Route::get('/managers', 'ManagersController@index')->name('managers');
     Route::get('/managers/{url}', 'ManagersController@manager');
 
-    Route::get('/history', 'HistoryController@index');
+    Route::get('/history', 'HistoryController@index')->name('history');
     Route::get('/history/{url}', 'HistoryController@chapter');
 
-    Route::get('/fifa-rankings', 'RankingsController@index');
+    Route::get('/fifa-rankings', 'RankingsController@index')->name('fifa-rankings');
     Route::get('/fifa-rankings/chart/{start}/{end}/{chart}', 'RankingsController@chart');
     Route::get('/fifa-rankings/date-range/{start}/{end}', 'RankingsController@dateRange');
 
-    Route::get('/strips', 'StripsController@index');
+    Route::get('/strips', 'StripsController@index')->name('strips');
     Route::get('/strips/{url}', 'StripsController@strip');
     Route::get('/strips/tooltip/matches/{id}', 'StripsController@matchtooltip');
 

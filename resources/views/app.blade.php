@@ -53,15 +53,9 @@
         	<a class="headerBanner" href="/"><span class="flag"></span>ScotlandFootballStats</a>
         	<nav>
             	<ul>
-                	<li><a href="/" {!! $home !!}>Home</a></li>
-                	<li><a href="/opponents" {!! $opponents !!}>Opponents</a></li>
-                    <li><a href="/players" {!! $players !!}>Players</a></li>
-                    <li><a href="/competitions" {!! $competitions !!}>Competitions</a></li>
-                    <li><a href="/managers" {!! $managers !!}>Managers</a></li>
-                    <li><a href="/history" {!! $history !!}>History</a></li>
-                    <li><a href="/fifa-rankings" {!! $rankings !!}>FIFA Rankings</a></li>
-                    <li><a href="/strips" {!! $strips !!}>Strips</a></li>
-                    <!--<li><a href="/videos/" {!! $videos !!}>Videos</a></li>-->
+                    @foreach($links as $link)
+                    <li><a href="{{ route($link->route) }}" @if($link->selected)class="selected"@endif>{{ $link->title }}</a></li>
+                    @endforeach
                 </ul>
             </nav>
         </div>
