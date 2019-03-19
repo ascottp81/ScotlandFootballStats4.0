@@ -58,7 +58,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/sitemap', 'OtherController@sitemap');
     Route::get('/links', 'OtherController@links');
-    Route::get('/contact', 'OtherController@contact');
     Route::post('/email', 'OtherController@email');
 
 });
